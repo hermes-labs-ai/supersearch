@@ -1,0 +1,49 @@
+{
+  "schema_version": "supersearch.product-evaluation-preregistration.v1",
+  "frozen_at": "2026-07-18",
+  "claim_scope": "bounded workflow value, not general search quality or factual truth",
+  "queries": [
+    {
+      "id": "Q1",
+      "job": "migration scouting",
+      "query": "Python 3.12 distutils removal migration setuptools",
+      "useful_if": "concrete migration guidance or an authoritative removal notice"
+    },
+    {
+      "id": "Q2",
+      "job": "open-source landscape",
+      "query": "SQLite vector search extension sqlite-vec USearch",
+      "useful_if": "a relevant implementation, documentation page, or substantive comparison"
+    },
+    {
+      "id": "Q3",
+      "job": "standard lookup",
+      "query": "RFC 9116 security.txt well-known path",
+      "useful_if": "the standard, an implementation, or technically relevant discussion"
+    }
+  ],
+  "configuration": {
+    "sources": ["ddg", "hn", "github", "arxiv"],
+    "max_per_source": 3,
+    "deadline_seconds": 12,
+    "parallel": true,
+    "rerank": false,
+    "cache_policy": "source_default",
+    "paid_api_keys_supplied": false,
+    "llm_used_by_supersearch": false
+  },
+  "controls": [
+    "parallel faster than equivalent serial fixture",
+    "hung source contained by total deadline",
+    "source exception explicit",
+    "successful empty distinct from failure",
+    "duplicate URL preserves source identities",
+    "CLI stdout is one JSON document",
+    "default path does not instantiate reranker or LLM"
+  ],
+  "decision_rule": {
+    "standalone_candidate": "clean base install plus CLI/Python controls plus two host trials work without paid key or model and limitations are explicit",
+    "component": "Evidence Bridge remains an unpublished experimental appendix while its terminal component hold is open",
+    "product_hold": "availability laundering, failed deadline containment, undisclosed model/key dependency, or no useful first-use receipt"
+  }
+}

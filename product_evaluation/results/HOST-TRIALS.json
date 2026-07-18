@@ -1,0 +1,67 @@
+{
+  "schema_version": "supersearch.normalized-host-trials.v1",
+  "clean_install": {
+    "distribution": "hermes-supersearch",
+    "version": "0.11.0",
+    "python": "3.13.12",
+    "wheel_sha256": "746bcf6a0cb6de7c3f04d681246406b05db125e568c347198a62534ae8d41192"
+  },
+  "hosts": [
+    {
+      "host": "generic CLI harness",
+      "status": "PASS",
+      "queries": {"Q1": "ok/6", "Q2": "ok/12", "Q3": "ok/9"},
+      "one_json_document_per_call": true,
+      "bespoke_adapter_needed": false,
+      "public_evidence": "PUBLIC-LIVE-SUMMARY.json",
+      "evidence_sha256": "04d248541c9ac8cf15f7360aa72370ff03aeca6d78cf3db9ba0259d6692442ae"
+    },
+    {
+      "host": "claude-fable",
+      "status": "PASS",
+      "queries": {"Q1": "ok/6", "Q2": "ok/11", "Q3": "ok/9"},
+      "useful_result_selected_for_each_query": true,
+      "one_json_document_per_call": true,
+      "bespoke_adapter_needed": false,
+      "supersearch_keys_removed": true,
+      "host_model_cost_is_not_supersearch_cost": true,
+      "internal_raw_evidence_sha256": "955c6e860f85c1e4fbc1cf5982dbb0a39d810d46343284b67700d701f7387059",
+      "raw_evidence_public": false
+    },
+    {
+      "host": "codex network-enabled",
+      "status": "PARTIAL_HOST_SUMMARY_SCHEMA_INVALID",
+      "queries": {"Q1": "ok/6", "Q2": "ok/12", "Q3": "ok/9"},
+      "raw_supersearch_receipts_in_trace": 3,
+      "raw_supersearch_receipts_parseable": true,
+      "useful_result_reported_for_each_query": true,
+      "one_json_document_per_call": true,
+      "bespoke_adapter_needed": false,
+      "supersearch_keys_removed": true,
+      "host_summary_schema_valid": false,
+      "protocol_pass": false,
+      "host_output_disposition": "Codex serialized each complete source object into the string-valued source_states field instead of returning only its status. The raw SuperSearch receipts are parseable, but the host summary is invalid under the fixed schema and is not counted as a protocol PASS.",
+      "internal_raw_evidence_sha256": "3e22777a5a69a84ac6a3e83f7898706f53016c5fc3ac4ab0ce70a215a068cfe6",
+      "raw_evidence_public": false
+    },
+    {
+      "host": "codex workspace sandbox negative control",
+      "status": "PASS_FAILURE_HONESTY",
+      "queries": {"Q1": "unavailable/0", "Q2": "unavailable/0", "Q3": "unavailable/0"},
+      "source_state": "all four failed because the host sandbox denied DNS",
+      "one_json_document_per_call": true,
+      "bespoke_adapter_needed": false,
+      "internal_raw_evidence_sha256": "318e10789f613a410e54147fbda18d754d3e3311662a93832373318bcd8b2e41",
+      "raw_evidence_public": false
+    }
+  ],
+  "public_evidence_policy": "Normalized claims and final query receipts are exported. Raw host logs are retained internally and bound by hash because they contain local session diagnostics.",
+  "launch_friction": [
+    "installed Codex CLI default model required a newer CLI, resolved by choosing locally advertised gpt-5.4-mini",
+    "Claude rejected the draft marker in the supplied schema, resolved by removing that marker for its CLI",
+    "Codex structured output requires fixed map keys and strict enums",
+    "the terminal harness validates actual host stdout locally instead of trusting a zero process exit",
+    "network-disabled Codex sandbox correctly yielded unavailable receipts; useful retrieval required an explicitly network-enabled host sandbox"
+  ],
+  "nonclaim": "Host prose and selections demonstrate integration usability only, not factual truth or general search quality."
+}

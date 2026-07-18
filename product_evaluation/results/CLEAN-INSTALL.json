@@ -1,0 +1,28 @@
+{
+  "schema_version": "supersearch.clean-install.v1",
+  "status": "PASS",
+  "python": "3.13.12",
+  "distribution": "hermes-supersearch",
+  "version": "0.11.0",
+  "wheel": "hermes_supersearch-0.11.0-py3-none-any.whl",
+  "wheel_sha256": "0996e4b66f24d149516a7bd0cc0d2007bd3579223b3ab53dcccd499e3087c914",
+  "source_distribution_publication_status": "NOT_BUILT_FROM_FINAL_RECEIPT_BOUNDARY",
+  "source_distribution_privacy_scan": "PASS; exact allowlist excludes AGENTS.md, raw host logs, pre-repair live results, and machine-local paths",
+  "declared_runtime_dependencies": [
+    "ddgs>=4.0.0",
+    "requests>=2.31.0",
+    "numpy>=1.24.0",
+    "lxml>=4.9.0",
+    "httpx>=0.24.0"
+  ],
+  "commands": [
+    "uv venv --python 3.13 .control/clean-install-terminal-schema-final",
+    "uv pip install --python .control/clean-install-terminal-schema-final/bin/python .control/product-build-terminal-schema-final/hermes_supersearch-0.11.0-py3-none-any.whl",
+    ".control/clean-install-terminal-schema-final/bin/supersearch search --list-sources",
+    ".control/clean-install-terminal-schema-final/bin/supersearch search --help",
+    ".control/clean-install-terminal-schema-final/bin/supersearch search q --deadline nan (expected exit 2)"
+  ],
+  "model_or_paid_key_needed_for_install_or_help": false,
+  "nonfinite_deadline_rejected": true,
+  "note": "The terminal repair wheel declares numpy and httpx even though the core search path does not use a model; dependency extras remain roadmap work. The earlier live-evaluation wheel remains separately hash-bound in PUBLIC-LIVE-SUMMARY.json. A source archive built before this receipt is intentionally not represented as the final source boundary; the allowlisted public export receipt binds that boundary without an impossible self-hash."
+}

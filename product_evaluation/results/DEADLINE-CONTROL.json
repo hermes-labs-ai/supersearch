@@ -1,0 +1,16 @@
+{
+  "control": "timed-out source registered a 30-second atexit hook; CLI must not wait for it after flushing the receipt",
+  "deadline_seconds": 0.25,
+  "passed": true,
+  "receipt_duration_ms": 255.95,
+  "receipt_status": "partial",
+  "result_count": 1,
+  "return_code": 0,
+  "schema_version": "supersearch.deadline-process-control.v1",
+  "source_states": {
+    "fast": "completed",
+    "slow": "timed_out"
+  },
+  "stderr": "Parallel source timeout after 0.25s; skipped slow sources: slow\n",
+  "wall_ms": 316.429
+}

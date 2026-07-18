@@ -1,0 +1,73 @@
+{
+  "schema_version": "supersearch.product-receipt.v1",
+  "status": "STANDALONE_OSS_CANDIDATE",
+  "task": {
+    "product_thesis": "One query across heterogeneous public web, code, community, and research surfaces under one caller-visible deadline, with source-explicit failure states and no paid key or LLM required by the default path.",
+    "framing_change": "SuperSearch is the product; Verify is optional evidence tooling and the Evidence Bridge shadow adapter is an internal appendix."
+  },
+  "proof": {
+    "preregistration_sha256": "50d49ea4a7e4a8a9a3d0b070b376f3366949c9e20785cd4880574d861bd2fa90",
+    "offline_tests": {"passed": 270, "skipped_live_model": 2},
+    "terminal_repair_wheel_sha256": "0996e4b66f24d149516a7bd0cc0d2007bd3579223b3ab53dcccd499e3087c914",
+    "source_boundary": "The final source boundary is the clean Git head plus its out-of-tree allowlisted public-export receipt; no self-referential source-archive hash is claimed.",
+    "clean_install": "PASS on Python 3.13.12; model/key not needed for install, help, list-sources, or default search",
+    "live_evaluation": {"results": 27, "criterion_useful": 15, "useful_rank_one_queries": 3, "queries": 3},
+    "public_live_summary_sha256": "714bca05572fc847b79f1891fb1ceb8d8746892e496e97b45010eb1d32deff1b",
+    "human_evaluation_sha256": "011d7bf33e45ebbca643f6e19cca18ab0ec5ee4a7cb699d62434ab52ae83ef54",
+    "host_trials_sha256": "029842af8c4f0df3b30e9f53c758af767b4b789d6d83d54d7b2963a9a6bc6930",
+    "deadline_control": {"status": "PASS", "deadline_ms": 250, "receipt_duration_ms": 255.95, "process_wall_ms": 316.429, "sha256": "ba388dab605518f0285a0168378efb1dcb17adee89d0dbfd6e4751d3451b7a38"},
+    "initial_exact_review": {
+      "boundary": "2dd9e99cdb11cf811dccf1e501c39e4257654d84..176b1a171afb61c9e41c68bb746d78e967e94213",
+      "receipt_sha256": "65dba6d06db671151412bc13b6fa57d4fa3314019ad7f56b000adc57c3fe6acc",
+      "verdict": "FINDINGS",
+      "finding_count": 3,
+      "disposition": "all three material warnings repaired"
+    },
+    "terminal_review_contract": {
+      "boundary": "the Evidence Bridge component head through this exact product receipt head",
+      "receipt_location": ".control/product-review-terminal-privacy-final/RECEIPT.json",
+      "acceptance": "This candidate is terminal only when the out-of-tree exact re-review returns PASS with zero material findings."
+    }
+  },
+  "goal": {
+    "disposition": "STANDALONE_OSS_CANDIDATE",
+    "terminality": "One product architecture pass, one market pass, one cross-agent pack, and one exact review/repair cycle; optional polish remains backlog."
+  },
+  "integration": {
+    "verify": "OPTIONAL_STANDALONE_SURFACE",
+    "evidence_bridge": "PHASED_COMPONENT_HOLD",
+    "native_bridge_integration": "NO_INTEGRATION",
+    "evidence_component_head": "2dd9e99cdb11cf811dccf1e501c39e4257654d84",
+    "evidence_component_diff_sha256": "22c2850e7f460561ace6ff27d5bd873c0da6c381f1db2968f282b24ad13f30ee"
+  },
+  "public": {
+    "effect": "NONE",
+    "repository_recommendation": "standalone public repository named supersearch from the privacy-checked allowlisted export",
+    "package_recommendation": "hermes-supersearch distribution; supersearch import and CLI",
+    "license": "Apache-2.0",
+    "raw_internal_adapter_or_host_logs": "EXCLUDED_FROM_PUBLIC_EXPORT"
+  },
+  "next_action": {
+    "action": "Under separate exact authority, generate the allowlisted public export from the final clean head, verify its receipt, then create the public repository and publish the final wheel.",
+    "next_falsifier": "Hold if a fresh supported-platform install cannot emit parseable JSON, a failed source becomes ok, or caller-visible parallel latency materially exceeds the declared deadline after the process-boundary repair."
+  },
+  "follow_on_leverage": {
+    "bounded_backlog": [
+      "query-aware source selection to reduce off-topic fan-out",
+      "split optional numpy/httpx model dependencies from the retrieval-only wheel",
+      "typed source error codes and per-result cache-hit metadata",
+      "restore LocalReranker wildcard-import compatibility only if the legacy API is promised",
+      "render cross-host query labels as shell comments for literal replay"
+    ],
+    "not_backlog_priority": [
+      "framework-logo adapters",
+      "default answer synthesis",
+      "native Evidence Bridge integration"
+    ]
+  },
+  "nonclaims": [
+    "No general truth, relevance, recall, latency, freshness, or vendor-superiority claim.",
+    "Search provenance is retrieval-route identity, not authorship, authority, or independence.",
+    "Host trials demonstrate protocol usability, not factual correctness."
+  ]
+}

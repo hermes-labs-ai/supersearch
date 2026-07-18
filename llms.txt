@@ -1,0 +1,27 @@
+# SuperSearch
+
+SuperSearch is a local, deadline-bounded search fan-out for agents and engineers.
+The Product V1 command is:
+
+    supersearch search "<query>" --sources ddg,hn,github,arxiv --deadline 12
+
+It writes one `supersearch.search.v1` JSON document to stdout. Inspect the top
+level `status`, then every source status, before consuming `results`. Treat URLs
+and snippets as search evidence, not answers or certified facts.
+
+The default search path requires no paid search key and invokes no LLM. Optional
+local reranking, Verify, research, and experimental utilities have separate
+requirements and claims.
+
+Primary docs:
+
+- README.md
+- docs/AGENT-INTEGRATION.md
+- docs/ARCHITECTURE.md
+- docs/search-receipt-v1.schema.json
+- docs/LIMITATIONS.md
+- docs/PRIVACY-COST.md
+- docs/verify-receipt-v1.md
+
+Do not use the legacy positional command as the Product V1 integration path.
+Do not describe a Verify verdict as truth or certification.

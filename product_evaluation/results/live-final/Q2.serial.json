@@ -1,0 +1,140 @@
+{
+  "cache": {
+    "ddgs_ttl_seconds": 86400,
+    "note": "DDGS-backed retrieval may use the local cache; direct sources are not cached by the fan-out orchestrator.",
+    "policy": "source_default"
+  },
+  "execution": {
+    "deadline_enforced": false,
+    "deadline_seconds": 12.0,
+    "duration_ms": 13261.512,
+    "llm_required": false,
+    "mode": "serial",
+    "rerank_requested": false
+  },
+  "query": "SQLite vector search extension sqlite-vec USearch",
+  "result_count": 9,
+  "results": [
+    {
+      "rank": 1,
+      "score": null,
+      "snippet": "sqlite-vec is a new vector search SQLite extension written entirely in C with no dependencies, MIT/Apache-2.0 dual licensed. The first \"stable\" v0.1.0 release is here, meaning that it is ready for folks to try in their own projects!",
+      "sources": [
+        "ddg"
+      ],
+      "title": "Introducing sqlite-vec v0.1.0: a vector search SQLite extension that...",
+      "url": "https://alexgarcia.xyz/blog/2024/sqlite-vec-stable-release/index.html"
+    },
+    {
+      "rank": 2,
+      "score": null,
+      "snippet": "An extremely small, \"fast enough\" vector search SQLite extension that runs anywhere! A successor to sqlite-vss.sqlite-lembed, Generate text embeddings locally from embedding models in the .gguf format. About. A vector search SQLite extension that runs anywhere!",
+      "sources": [
+        "ddg"
+      ],
+      "title": "GitHub - asg017/sqlite-vec: A vector search SQLite extension that...",
+      "url": "https://github.com/asg017/sqlite-vec/"
+    },
+    {
+      "rank": 3,
+      "score": null,
+      "snippet": "A vector search SQLite extension that runs anywhere!SQLite-Vector is a cross-platform, ultra-efficient SQLite extension that brings vector search capabilities to your embedded database.",
+      "sources": [
+        "ddg"
+      ],
+      "title": "USearch Alternatives and Reviews",
+      "url": "https://www.libhunt.com/r/USearch"
+    },
+    {
+      "rank": 4,
+      "score": null,
+      "snippet": "5 pts | 2 comments | by marcobambini",
+      "sources": [
+        "hn"
+      ],
+      "title": "Show HN: SQLite-vector \u2013 Vector search extension for SQLite (no index, 30MB RAM)",
+      "url": "https://news.ycombinator.com/item?id=44711872"
+    },
+    {
+      "rank": 5,
+      "score": null,
+      "snippet": "314 pts | 43 comments | by brylie",
+      "sources": [
+        "hn"
+      ],
+      "title": "Sqlite-vec: Work-in-progress vector search SQLite extension that runs anywhere",
+      "url": "https://news.ycombinator.com/item?id=41137658"
+    },
+    {
+      "rank": 6,
+      "score": null,
+      "snippet": "40 pts | 2 comments | by Tiberium",
+      "sources": [
+        "hn"
+      ],
+      "title": "SQLite-vec v0.1.0: a vector search SQLite extension that runs everywhere",
+      "url": "https://news.ycombinator.com/item?id=41127849"
+    },
+    {
+      "rank": 7,
+      "score": null,
+      "snippet": "\u2b50 7901 | A vector search SQLite extension that runs anywhere!",
+      "sources": [
+        "github"
+      ],
+      "title": "asg017/sqlite-vec",
+      "url": "https://github.com/asg017/sqlite-vec"
+    },
+    {
+      "rank": 8,
+      "score": null,
+      "snippet": "\u2b50 1998 | A SQLite extension for efficient vector search, based on Faiss!",
+      "sources": [
+        "github"
+      ],
+      "title": "asg017/sqlite-vss",
+      "url": "https://github.com/asg017/sqlite-vss"
+    },
+    {
+      "rank": 9,
+      "score": null,
+      "snippet": "\u2b50 1021 | SQLite-Vector is a cross-platform, ultra-efficient SQLite extension that brings vector search capabilities to your embedded database.",
+      "sources": [
+        "github"
+      ],
+      "title": "sqliteai/sqlite-vector",
+      "url": "https://github.com/sqliteai/sqlite-vector"
+    }
+  ],
+  "retrieved_at": "2026-07-18T08:59:39.948971Z",
+  "schema_version": "supersearch.search.v1",
+  "sources": [
+    {
+      "diagnostics": [],
+      "name": "ddg",
+      "result_count": 3,
+      "status": "completed"
+    },
+    {
+      "diagnostics": [],
+      "name": "hn",
+      "result_count": 3,
+      "status": "completed"
+    },
+    {
+      "diagnostics": [],
+      "name": "github",
+      "result_count": 3,
+      "status": "completed"
+    },
+    {
+      "diagnostics": [
+        "arXiv search error: HTTPSConnectionPool(host='export.arxiv.org', port=443): Max retries exceeded with url: /api/query?search_query=all%3ASQLite+vector+search+extension+sqlite-vec+USearch&start=0&max_results=3&sortBy=relevance&sortOrder=descending (Caused by ConnectTimeoutError(<HTTPSConnection(host='export.arxiv.org', port=443) at 0x107184f50>, 'Connection to export.arxiv.org timed out. (connect timeout=10)'))"
+      ],
+      "name": "arxiv",
+      "result_count": 0,
+      "status": "failed"
+    }
+  ],
+  "status": "partial"
+}

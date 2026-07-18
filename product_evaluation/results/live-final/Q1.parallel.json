@@ -1,0 +1,108 @@
+{
+  "cache": {
+    "ddgs_ttl_seconds": 86400,
+    "note": "DDGS-backed retrieval may use the local cache; direct sources are not cached by the fan-out orchestrator.",
+    "policy": "source_default"
+  },
+  "execution": {
+    "deadline_enforced": true,
+    "deadline_seconds": 12.0,
+    "duration_ms": 8238.088,
+    "llm_required": false,
+    "mode": "parallel",
+    "rerank_requested": false
+  },
+  "query": "Python 3.12 distutils removal migration setuptools",
+  "result_count": 6,
+  "results": [
+    {
+      "rank": 1,
+      "score": null,
+      "snippet": "See the Whats New Section. Remove the distutils package. See the migration guide for advice replacing the APIs it provided. The third-party Setuptools package continues to provide distutils, if you still require it in Python 3.12 and beyond",
+      "sources": [
+        "ddg"
+      ],
+      "title": "What to use instead of distutils in setup.py python3.12",
+      "url": "https://stackoverflow.com/questions/78834533/what-to-use-instead-of-distutils-in-setup-py-python3-12"
+    },
+    {
+      "rank": 2,
+      "score": null,
+      "snippet": "Backwards Compatibility Code that imports distutils will no longer work from Python 3.12. The suggested migration path is to use the equivalent (though not identical) imports from setuptools (see [5]), or to migrate to an alternative build backend (see PEP 517).",
+      "sources": [
+        "ddg"
+      ],
+      "title": "PEP 632 - Deprecate distutils module | peps.python.org",
+      "url": "https://peps.python.org/pep-0632/"
+    },
+    {
+      "rank": 3,
+      "score": null,
+      "snippet": "According to PEP 632, distutils will be formally marked as deprecated, and in Python 3.12, it will be removed. My product is soon going to support Python 3.10 and I don't want to put up with deprecation warnings, so I would like to remove references to distutils now. However, I can't find clear documentation about how to do this properly.",
+      "sources": [
+        "ddg"
+      ],
+      "title": "How can one fully replace distutils, which is deprecated in 3.10?",
+      "url": "https://stackoverflow.com/questions/69858963/how-can-one-fully-replace-distutils-which-is-deprecated-in-3-10"
+    },
+    {
+      "rank": 4,
+      "score": null,
+      "snippet": "The Epiphany is a many-core, low power, low on-chip memory architecture and one can very cheaply gain access to a number of parallel cores which is beneficial for HPC education and prototyping. The ve",
+      "sources": [
+        "arxiv"
+      ],
+      "title": "ePython: An implementation of Python for the many-core Epiphany coprocessor",
+      "url": "https://arxiv.org/abs/2010.14827v1"
+    },
+    {
+      "rank": 5,
+      "score": null,
+      "snippet": "Social network analysis is the process of investigating social structures through the use of networks and graph theory. It combines a variety of techniques for analyzing the structure of social networ",
+      "sources": [
+        "arxiv"
+      ],
+      "title": "Social Network Analysis: From Graph Theory to Applications with Python",
+      "url": "https://arxiv.org/abs/2102.10014v1"
+    },
+    {
+      "rank": 6,
+      "score": null,
+      "snippet": "An emerging area of research is the study of macroscale migration patterns as a network of nodes that represent places (e.g., countries, cities, and rural areas) and edges that encode migration ties t",
+      "sources": [
+        "arxiv"
+      ],
+      "title": "Migration Networks: Applications of Network Analysis to Macroscale Migration Patterns",
+      "url": "https://arxiv.org/abs/2002.10992v2"
+    }
+  ],
+  "retrieved_at": "2026-07-18T08:59:18.528044Z",
+  "schema_version": "supersearch.search.v1",
+  "sources": [
+    {
+      "diagnostics": [],
+      "name": "ddg",
+      "result_count": 3,
+      "status": "completed"
+    },
+    {
+      "diagnostics": [],
+      "name": "hn",
+      "result_count": 0,
+      "status": "completed"
+    },
+    {
+      "diagnostics": [],
+      "name": "github",
+      "result_count": 0,
+      "status": "completed"
+    },
+    {
+      "diagnostics": [],
+      "name": "arxiv",
+      "result_count": 3,
+      "status": "completed"
+    }
+  ],
+  "status": "ok"
+}

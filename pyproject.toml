@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hermes-supersearch"
+version = "0.11.0"
+description = "Deadline-bounded search fan-out with source-explicit receipts for agents and engineers."
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{name = "Hermes Labs", email = "info@hermes-labs.ai"}]
+requires-python = ">=3.10"
+keywords = ["search", "agents", "metasearch", "provenance", "cli"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "ddgs>=4.0.0",
+    "requests>=2.31.0",
+    "numpy>=1.24.0",
+    "lxml>=4.9.0",
+    "httpx>=0.24.0",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "pytest-mock>=3.10",
+    "responses>=0.23",
+    "jsonschema>=4.23",
+]
+
+[project.urls]
+Homepage = "https://hermes-labs.ai"
+
+[project.scripts]
+supersearch = "supersearch.__main__:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages]
+find = {where = ["src"]}
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-q --tb=short"

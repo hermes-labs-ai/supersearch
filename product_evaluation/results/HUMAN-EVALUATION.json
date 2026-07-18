@@ -1,0 +1,59 @@
+{
+  "schema_version": "supersearch.human-evaluation.v1",
+  "scope": "manual criterion-bound labels over the final three parallel receipts; not truth or general relevance evaluation",
+  "rows": [
+    {
+      "query_id": "Q1",
+      "receipt": "live-final/Q1.parallel.json",
+      "receipt_sha256": "d56960a09db4c23a705ab980bcde7b1229b58cad517348b6f6002ded202a63b2",
+      "result_count": 6,
+      "useful_ranks": [1, 2, 3],
+      "useful_count": 3,
+      "useful_fraction": 0.5,
+      "useful_source_adapters": ["ddg"],
+      "useful_domains": ["peps.python.org", "stackoverflow.com"],
+      "first_useful_rank": 1,
+      "note": "three migration/removal results followed by three off-topic arXiv matches"
+    },
+    {
+      "query_id": "Q2",
+      "receipt": "live-final/Q2.parallel.json",
+      "receipt_sha256": "e522cd23abea99d923af29a26ec94e65606a55079cdda8daa96161c7f557ba91",
+      "result_count": 12,
+      "useful_ranks": [1, 2, 3, 7, 8, 9],
+      "useful_count": 6,
+      "useful_fraction": 0.5,
+      "useful_source_adapters": ["ddg", "github"],
+      "useful_domains": ["alexgarcia.xyz", "github.com", "www.libhunt.com"],
+      "first_useful_rank": 1,
+      "note": "release/docs/comparison and implementation repositories were useful; HN threads and non-SQLite arXiv matches were not counted under the fixed criterion"
+    },
+    {
+      "query_id": "Q3",
+      "receipt": "live-final/Q3.parallel.json",
+      "receipt_sha256": "b866bda7a9688a63cb6936a872e5fcac09b1b9820267035d082cb7b608c9950b",
+      "result_count": 9,
+      "useful_ranks": [1, 2, 3, 4, 5, 6],
+      "useful_count": 6,
+      "useful_fraction": 0.6667,
+      "useful_source_adapters": ["ddg", "github"],
+      "useful_domains": ["github.com", "simplyscan.io", "www.rfc-editor.org"],
+      "first_useful_rank": 1,
+      "note": "standard, technically relevant guidance, and implementations were useful; all three arXiv path matches were off-topic"
+    }
+  ],
+  "totals": {
+    "results": 27,
+    "useful": 15,
+    "useful_fraction": 0.5556,
+    "queries_with_a_useful_first_result": 3,
+    "queries": 3,
+    "distinct_useful_domains": 7
+  },
+  "limitations": [
+    "one reviewer applied the frozen criteria",
+    "labels use result title and snippet without fetching every page",
+    "source selection was intentionally fixed rather than optimized per query",
+    "the repeated off-topic arXiv tail shows that broad fan-out does not imply useful breadth"
+  ]
+}

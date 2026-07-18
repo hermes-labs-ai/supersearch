@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hermes-labs.ai/schemas/supersearch.search.v1.json",
+  "title": "SuperSearch Product V1 search receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "query",
+    "status",
+    "retrieved_at",
+    "execution",
+    "cache",
+    "sources",
+    "result_count",
+    "results"
+  ],
+  "properties": {
+    "schema_version": {"const": "supersearch.search.v1"},
+    "query": {"type": "string", "minLength": 1},
+    "status": {"enum": ["ok", "partial", "no_results", "unavailable"]},
+    "retrieved_at": {"type": "string", "format": "date-time"},
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "deadline_seconds", "deadline_enforced", "duration_ms", "rerank_requested", "llm_required"],
+      "properties": {
+        "mode": {"enum": ["parallel", "serial"]},
+        "deadline_seconds": {"type": "number", "exclusiveMinimum": 0, "maximum": 3600},
+        "deadline_enforced": {"type": "boolean"},
+        "duration_ms": {"type": "number", "minimum": 0},
+        "rerank_requested": {"type": "boolean"},
+        "llm_required": {"type": ["boolean", "null"]}
+      }
+    },
+    "cache": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "ddgs_ttl_seconds", "note"],
+      "properties": {
+        "policy": {"const": "source_default"},
+        "ddgs_ttl_seconds": {"type": "integer", "minimum": 0},
+        "note": {"type": "string"}
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "status", "result_count", "diagnostics"],
+        "properties": {
+          "name": {"type": "string", "minLength": 1},
+          "status": {"enum": ["completed", "degraded", "failed", "timed_out"]},
+          "result_count": {"type": "integer", "minimum": 0},
+          "diagnostics": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "result_count": {"type": "integer", "minimum": 0},
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["rank", "title", "url", "snippet", "sources", "score"],
+        "properties": {
+          "rank": {"type": "integer", "minimum": 1},
+          "title": {"type": "string"},
+          "url": {"type": "string", "minLength": 1},
+          "snippet": {"type": "string"},
+          "sources": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "score": {"type": ["number", "null"]}
+        }
+      }
+    }
+  }
+}

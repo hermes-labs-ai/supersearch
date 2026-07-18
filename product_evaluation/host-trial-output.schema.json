@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["host", "queries", "protocol_assessment", "nonclaim"],
+  "properties": {
+    "host": {"type": "string"},
+    "queries": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "receipt_status", "result_count", "source_states", "useful_result"],
+        "properties": {
+          "id": {"enum": ["Q1", "Q2", "Q3"]},
+          "receipt_status": {"enum": ["ok", "partial", "no_results", "unavailable"]},
+          "result_count": {"type": "integer", "minimum": 0},
+          "source_states": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["ddg", "hn", "github", "arxiv"],
+            "properties": {
+              "ddg": {"enum": ["completed", "degraded", "failed", "timed_out"]},
+              "hn": {"enum": ["completed", "degraded", "failed", "timed_out"]},
+              "github": {"enum": ["completed", "degraded", "failed", "timed_out"]},
+              "arxiv": {"enum": ["completed", "degraded", "failed", "timed_out"]}
+            }
+          },
+          "useful_result": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["title", "url", "why_useful"],
+            "properties": {
+              "title": {"type": "string"},
+              "url": {"type": "string"},
+              "why_useful": {"type": "string"}
+            }
+          }
+        }
+      }
+    },
+    "protocol_assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["one_json_document_per_call", "source_failure_explicit", "bespoke_adapter_needed"],
+      "properties": {
+        "one_json_document_per_call": {"type": "boolean"},
+        "source_failure_explicit": {"type": "boolean"},
+        "bespoke_adapter_needed": {"type": "boolean"}
+      }
+    },
+    "nonclaim": {"type": "string"}
+  }
+}

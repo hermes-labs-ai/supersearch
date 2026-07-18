@@ -1,0 +1,29 @@
+include CITATION.cff CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md llms.txt
+exclude CHANGELOG.md
+exclude AGENTS.md
+recursive-include docs *.md *.json
+recursive-include examples *.md *.py
+recursive-include tests *.py
+prune product_evaluation
+include product_evaluation/FIVE-MINUTE-SHOWCASE.md
+include product_evaluation/PREREGISTRATION.json
+include product_evaluation/PREREGISTRATION.md
+include product_evaluation/PRODUCT-DECISION.md
+include product_evaluation/README.md
+include product_evaluation/deadline_probe.py
+include product_evaluation/host-trial-output.schema.json
+include product_evaluation/run_host_trials.py
+include product_evaluation/run_live_pack.py
+include product_evaluation/results/BENCHMARK.md
+include product_evaluation/results/CLEAN-INSTALL.json
+include product_evaluation/results/DEADLINE-CONTROL.json
+include product_evaluation/results/HOST-TRIALS.json
+include product_evaluation/results/HOST-TRIALS.md
+include product_evaluation/results/HUMAN-EVALUATION.json
+include product_evaluation/results/HUMAN-EVALUATION.md
+include product_evaluation/results/PRODUCT-RECEIPT.json
+include product_evaluation/results/PUBLIC-LIVE-SUMMARY.json
+include product_evaluation/results/live-final/Q*.json
+include product_evaluation/results/live-final/Q*.stderr.txt
+prune evidence_showcase
+global-exclude __pycache__ *.py[cod]

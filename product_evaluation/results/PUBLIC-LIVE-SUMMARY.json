@@ -1,0 +1,32 @@
+{
+  "schema_version": "supersearch.public-live-summary.v1",
+  "source_machine_summary_sha256": "04d248541c9ac8cf15f7360aa72370ff03aeca6d78cf3db9ba0259d6692442ae",
+  "scope": "three preregistered queries on one machine/network; descriptive, not general",
+  "wheel": {
+    "distribution": "hermes-supersearch",
+    "version": "0.11.0",
+    "sha256": "746bcf6a0cb6de7c3f04d681246406b05db125e568c347198a62534ae8d41192"
+  },
+  "configuration": {
+    "sources": ["ddg", "hn", "github", "arxiv"],
+    "max_per_source": 3,
+    "deadline_seconds": 12,
+    "rerank": false,
+    "paid_api_keys_supplied": false,
+    "llm_used_by_supersearch": false
+  },
+  "rows": [
+    {"query_id": "Q1", "mode": "parallel", "status": "ok", "wall_ms": 8668.243, "result_count": 6, "unique_domain_count": 3, "source_states": {"ddg": "completed", "hn": "completed", "github": "completed", "arxiv": "completed"}},
+    {"query_id": "Q1", "mode": "serial", "status": "ok", "wall_ms": 22589.976, "result_count": 6, "unique_domain_count": 3, "source_states": {"ddg": "completed", "hn": "completed", "github": "completed", "arxiv": "completed"}},
+    {"query_id": "Q2", "mode": "parallel", "status": "ok", "wall_ms": 12340.84, "result_count": 12, "unique_domain_count": 5, "source_states": {"ddg": "completed", "hn": "completed", "github": "completed", "arxiv": "completed"}},
+    {"query_id": "Q2", "mode": "serial", "status": "partial", "wall_ms": 14095.422, "result_count": 9, "unique_domain_count": 4, "source_states": {"ddg": "completed", "hn": "completed", "github": "completed", "arxiv": "failed"}},
+    {"query_id": "Q3", "mode": "parallel", "status": "ok", "wall_ms": 2509.461, "result_count": 9, "unique_domain_count": 4, "source_states": {"ddg": "completed", "hn": "completed", "github": "completed", "arxiv": "completed"}},
+    {"query_id": "Q3", "mode": "serial", "status": "ok", "wall_ms": 16273.399, "result_count": 9, "unique_domain_count": 4, "source_states": {"ddg": "completed", "hn": "completed", "github": "completed", "arxiv": "completed"}}
+  ],
+  "limitations": [
+    "public indexes and network conditions can change between calls",
+    "DDGS cache state can favor the second mode for a query",
+    "serial mode is a comparison control and does not enforce the total deadline",
+    "counts do not measure factual truth or general search quality"
+  ]
+}
