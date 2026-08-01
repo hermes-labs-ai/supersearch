@@ -1,6 +1,11 @@
-"""Tests for the CLI-facing formatters in supersearch.__main__."""
+"""Tests for the CLI entry point and formatters in supersearch.__main__."""
 
-from supersearch.__main__ import format_markdown, format_result
+import subprocess
+import sys
+
+import pytest
+
+from supersearch.__main__ import format_markdown, format_result, main
 from supersearch.search import SearchResult
 
 
@@ -75,3 +80,27 @@ def test_format_markdown_renders_deep_extractions():
     md = format_markdown(output)
     assert "## Deep extractions" in md
     assert "Key fact from page." in md
+
+
+def test_scraper_uses_active_python_interpreter(monkeypatch):
+    observed = {}
+
+    def fake_run(args, **kwargs):
+        observed["args"] = args
+        observed["kwargs"] = kwargs
+        return subprocess.CompletedProcess(args, 0)
+
+    monkeypatch.setattr(sys, "argv", ["supersearch", "acme", "--scrape=github_org"])
+    monkeypatch.setattr(subprocess, "run", fake_run)
+
+    with pytest.raises(SystemExit) as exc:
+        main()
+
+    assert exc.value.code == 0
+    assert observed["args"] == [
+        sys.executable,
+        "-m",
+        "supersearch.scrapers.github_org",
+        "acme",
+    ]
+    assert observed["kwargs"] == {"capture_output": False, "check": False}
