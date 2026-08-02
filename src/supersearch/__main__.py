@@ -179,8 +179,9 @@ def main():
         import subprocess
 
         result = subprocess.run(
-            ["python3", "-m", scraper_map[scrape_target], query] + sys.argv[3:],
+            [sys.executable, "-m", scraper_map[scrape_target], query] + sys.argv[3:],
             capture_output=False,
+            check=False,
         )
         sys.exit(result.returncode)
 
