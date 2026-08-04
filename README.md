@@ -210,16 +210,15 @@ truth-accuracy claim.
 
 ## Installation and distribution truth
 
-The unpublished candidate supports Python 3.10+ and currently declares `ddgs`,
+SuperSearch supports Python 3.10+ and currently declares `ddgs`,
 `requests`, `numpy`, `lxml`, and `httpx`. Numpy and httpx mostly serve optional
-local-model paths; they remain base dependencies in this candidate, so the
+local-model paths; they remain base dependencies, so the
 README does not pretend the wheel is slimmer than it is.
 
 PyPI already has a case-insensitive `Super-Search` distribution. The public
 distribution should therefore be `hermes-supersearch`, while keeping the
 `supersearch` import and command, subject to a final availability check at
-release time. The public repository can be named `supersearch`. This candidate
-has no public effect.
+release time. The public repository can be named `supersearch`.
 
 ## Tests
 
