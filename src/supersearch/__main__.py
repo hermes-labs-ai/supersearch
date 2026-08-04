@@ -66,13 +66,13 @@ def main():
     """Main CLI entry point."""
     if len(sys.argv) < 2 or sys.argv[1] in {"-h", "--help"}:
         print(
-            "Usage: python -m supersearch search '<query>' [--pretty] [--sources=ddg,hn,github,arxiv]"
-            "\n       python -m supersearch verify '<claim>' [--json] [--max-sources=N] [--deep] [--no-gates]"
-            "\n       python -m supersearch '<query>' [legacy options]"
+            "Usage: supersearch search '<query>' [--pretty] [--sources=ddg,hn,github,arxiv]"
+            "\n       supersearch verify '<claim>' [--json] [--max-sources=N] [--deep] [--no-gates]"
+            "\n       supersearch '<query>' [legacy options]"
             "\n       legacy: [--deep] [--raw] [--out=<dir>]"
             " [--source=<name>] [--summarize] [--local] [--no-cache]"
             " [--expand] [--cache-clear] [--self-improve]"
-            "\n       python -m supersearch research '<topic>' [--depth=N] [--max-pages=N] [--out=<dir>] [--no-gates]"
+            "\n       supersearch research '<topic>' [--depth=N] [--max-pages=N] [--out=<dir>] [--no-gates]"
         )
         sys.exit(0 if len(sys.argv) >= 2 else 1)
 

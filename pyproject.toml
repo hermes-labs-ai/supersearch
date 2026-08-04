@@ -37,6 +37,8 @@ test = [
 
 [project.urls]
 Homepage = "https://hermes-labs.ai"
+Repository = "https://github.com/hermes-labs-ai/supersearch"
+Issues = "https://github.com/hermes-labs-ai/supersearch/issues"
 
 [project.scripts]
 supersearch = "supersearch.__main__:main"

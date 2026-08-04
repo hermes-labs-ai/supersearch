@@ -14,13 +14,12 @@ search evidence, not an answer.
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install hermes-supersearch
+python -m pip install "git+https://github.com/hermes-labs-ai/supersearch.git"
 supersearch search "Python 3.12 distutils removal migration setuptools" --pretty
 ```
 
-The package command above is the intended public install path. This candidate
-has not published or reserved that distribution; the proven pre-public path is
-installation of the locally built wheel recorded in `product_evaluation`.
+SuperSearch is not currently published on PyPI. The command above installs the
+current source directly from the canonical Hermes Labs repository.
 
 The command writes exactly one versioned JSON document to stdout:
 
@@ -211,16 +210,15 @@ truth-accuracy claim.
 
 ## Installation and distribution truth
 
-The unpublished candidate supports Python 3.10+ and currently declares `ddgs`,
+SuperSearch supports Python 3.10+ and currently declares `ddgs`,
 `requests`, `numpy`, `lxml`, and `httpx`. Numpy and httpx mostly serve optional
-local-model paths; they remain base dependencies in this candidate, so the
+local-model paths; they remain base dependencies, so the
 README does not pretend the wheel is slimmer than it is.
 
 PyPI already has a case-insensitive `Super-Search` distribution. The public
 distribution should therefore be `hermes-supersearch`, while keeping the
 `supersearch` import and command, subject to a final availability check at
-release time. The public repository can be named `supersearch`. This candidate
-has no public effect.
+release time. The public repository can be named `supersearch`.
 
 ## Tests
 
