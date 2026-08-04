@@ -14,13 +14,12 @@ search evidence, not an answer.
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install hermes-supersearch
+python -m pip install "git+https://github.com/hermes-labs-ai/supersearch.git"
 supersearch search "Python 3.12 distutils removal migration setuptools" --pretty
 ```
 
-The package command above is the intended public install path. This candidate
-has not published or reserved that distribution; the proven pre-public path is
-installation of the locally built wheel recorded in `product_evaluation`.
+SuperSearch is not currently published on PyPI. The command above installs the
+current source directly from the canonical Hermes Labs repository.
 
 The command writes exactly one versioned JSON document to stdout:
 
