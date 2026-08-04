@@ -14,12 +14,12 @@ search evidence, not an answer.
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install "git+https://github.com/hermes-labs-ai/supersearch.git"
+python -m pip install hermes-supersearch
 supersearch search "Python 3.12 distutils removal migration setuptools" --pretty
 ```
 
-SuperSearch is not currently published on PyPI. The command above installs the
-current source directly from the canonical Hermes Labs repository.
+The PyPI distribution is `hermes-supersearch`; the Python import and CLI command
+are both `supersearch`.
 
 The command writes exactly one versioned JSON document to stdout:
 
@@ -216,9 +216,8 @@ local-model paths; they remain base dependencies, so the
 README does not pretend the wheel is slimmer than it is.
 
 PyPI already has a case-insensitive `Super-Search` distribution. The public
-distribution should therefore be `hermes-supersearch`, while keeping the
-`supersearch` import and command, subject to a final availability check at
-release time. The public repository can be named `supersearch`.
+distribution is therefore `hermes-supersearch`, while the import, CLI command,
+and public repository remain `supersearch`.
 
 ## Tests
 
