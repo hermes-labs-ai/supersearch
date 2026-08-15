@@ -21,6 +21,12 @@ supersearch search "Python 3.12 distutils removal migration setuptools" --pretty
 The PyPI distribution is `hermes-supersearch`; the Python import and CLI command
 are both `supersearch`.
 
+Confirm the installed version without starting a search:
+
+```bash
+supersearch --version
+```
+
 The command writes exactly one versioned JSON document to stdout:
 
 ```json

@@ -5,8 +5,24 @@ import sys
 
 import pytest
 
+import supersearch.__main__ as cli
 from supersearch.__main__ import format_markdown, format_result, main
+from supersearch import __version__
 from supersearch.search import SearchResult
+
+
+def test_root_version_exits_without_starting_a_legacy_search(monkeypatch, capsys):
+    def unexpected_search(*_args, **_kwargs):
+        raise AssertionError("--version must not start a search")
+
+    monkeypatch.setattr(cli.DuckDuckGoSearch, "search", unexpected_search)
+    monkeypatch.setattr(sys, "argv", ["supersearch", "--version"])
+
+    with pytest.raises(SystemExit) as exc:
+        main()
+
+    assert exc.value.code == 0
+    assert capsys.readouterr().out.strip() == __version__
 
 
 def test_format_result_surfaces_provenance():
