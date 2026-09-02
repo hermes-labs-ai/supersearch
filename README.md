@@ -11,6 +11,10 @@ slow source hold the whole call open.
 The default `search` path needs **no paid search key and no LLM**. It returns
 search evidence, not an answer.
 
+**[See the 60-second evidence-packet replay](https://hermes-labs-ai.github.io/supersearch/)**
+to understand where the open retrieval kernel fits in the larger SuperSearch
+product.
+
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
@@ -20,6 +24,23 @@ supersearch search "Python 3.12 distutils removal migration setuptools" --pretty
 
 The PyPI distribution is `hermes-supersearch`; the Python import and CLI command
 are both `supersearch`.
+
+## Product boundary
+
+This repository is the open Apache-2.0 retrieval kernel: source adapters,
+deadline containment, URL deduplication, source-state reporting, the
+`supersearch.search.v1` contract, and the local CLI/Python API.
+
+Hermes Labs is separately developing a managed evidence-packet layer that can
+turn a research objective into multiple query families, inspect selected pages,
+retain passage-level provenance, expose coverage gaps, and optionally produce a
+cited synthesis. That compiler, its evaluation corpus, hosted operations, and
+enterprise controls are not part of this repository or the PyPI package.
+
+The public replay is deliberately static: it demonstrates the packet contract
+and failure visibility without pretending that a hosted API is available. If
+you are evaluating this workflow for an agent or research team, contact
+[`info@hermes-labs.ai`](mailto:info@hermes-labs.ai).
 
 Confirm the installed version without starting a search:
 
