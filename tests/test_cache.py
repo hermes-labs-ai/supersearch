@@ -1,7 +1,9 @@
 """Tests for the JSON file cache."""
 
-from pathlib import Path
+import json
+import threading
 import time
+from pathlib import Path
 
 from supersearch import cache
 
@@ -76,6 +78,49 @@ def test_put_survives_unserializable_payload(tmp_cache_dir):
     # Writing a set (not JSON-serializable) should NOT raise, just return False.
     ok = cache.put("x", "q", {1, 2, 3}, cache_dir=tmp_cache_dir)
     assert ok is False
+
+
+def test_concurrent_put_same_key_both_succeed_without_corruption(tmp_cache_dir, monkeypatch):
+    # put() used to give every writer for a key the same .tmp path. Two
+    # concurrent writers then raced on one inode: whichever opened second
+    # truncated the first's in-progress bytes, and whichever replace() ran
+    # second raised (its shared tmp path had already been renamed away by
+    # the winner), so one writer returned False and the survivor's file
+    # could be a corrupted splice of both payloads.
+    #
+    # Force the two threads to both be mid-write at the same instant by
+    # splitting the json.dump() call around a barrier: neither thread may
+    # write its second half until both have opened their tmp file and
+    # written their first half, which is exactly the window where a shared
+    # tmp path corrupts.
+    barrier = threading.Barrier(2)
+
+    def synced_dump(entry, fp):
+        text = json.dumps(entry)
+        mid = len(text) // 2
+        fp.write(text[:mid])
+        fp.flush()
+        barrier.wait(timeout=5)
+        fp.write(text[mid:])
+
+    monkeypatch.setattr(cache.json, "dump", synced_dump)
+
+    payload_a = {"writer": "a", "data": "x" * 200}
+    payload_b = {"writer": "b", "data": "y" * 200}
+    results = {}
+
+    def worker(name, payload):
+        results[name] = cache.put("ddg", "race", payload, cache_dir=tmp_cache_dir)
+
+    t1 = threading.Thread(target=worker, args=("a", payload_a))
+    t2 = threading.Thread(target=worker, args=("b", payload_b))
+    t1.start()
+    t2.start()
+    t1.join()
+    t2.join()
+
+    assert results == {"a": True, "b": True}
+    assert cache.get("ddg", "race", cache_dir=tmp_cache_dir) in (payload_a, payload_b)
 
 
 def test_get_survives_corrupt_cache_file(tmp_cache_dir, tmp_path):
