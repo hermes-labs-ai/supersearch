@@ -11,15 +11,42 @@ slow source hold the whole call open.
 The default `search` path needs **no paid search key and no LLM**. It returns
 search evidence, not an answer.
 
+**[See the 60-second evidence-packet replay](https://hermes-labs-ai.github.io/supersearch/)**
+to understand where the open retrieval kernel fits in the larger SuperSearch
+product.
+
 ```bash
 python3 -m venv .venv
 . .venv/bin/activate
-python -m pip install "git+https://github.com/hermes-labs-ai/supersearch.git"
+python -m pip install hermes-supersearch
 supersearch search "Python 3.12 distutils removal migration setuptools" --pretty
 ```
 
-SuperSearch is not currently published on PyPI. The command above installs the
-current source directly from the canonical Hermes Labs repository.
+The PyPI distribution is `hermes-supersearch`; the Python import and CLI command
+are both `supersearch`.
+
+## Product boundary
+
+This repository is the open Apache-2.0 retrieval kernel: source adapters,
+deadline containment, URL deduplication, source-state reporting, the
+`supersearch.search.v1` contract, and the local CLI/Python API.
+
+Hermes Labs is separately developing a managed evidence-packet layer that can
+turn a research objective into multiple query families, inspect selected pages,
+retain passage-level provenance, expose coverage gaps, and optionally produce a
+cited synthesis. That compiler, its evaluation corpus, hosted operations, and
+enterprise controls are not part of this repository or the PyPI package.
+
+The public replay is deliberately static: it demonstrates the packet contract
+and failure visibility without pretending that a hosted API is available. If
+you are evaluating this workflow for an agent or research team, contact
+[`info@hermes-labs.ai`](mailto:info@hermes-labs.ai).
+
+Confirm the installed version without starting a search:
+
+```bash
+supersearch --version
+```
 
 The command writes exactly one versioned JSON document to stdout:
 
@@ -216,9 +243,8 @@ local-model paths; they remain base dependencies, so the
 README does not pretend the wheel is slimmer than it is.
 
 PyPI already has a case-insensitive `Super-Search` distribution. The public
-distribution should therefore be `hermes-supersearch`, while keeping the
-`supersearch` import and command, subject to a final availability check at
-release time. The public repository can be named `supersearch`.
+distribution is therefore `hermes-supersearch`, while the import, CLI command,
+and public repository remain `supersearch`.
 
 ## Tests
 

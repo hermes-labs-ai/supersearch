@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="A 60-second replay of the SuperSearch evidence-packet contract." />
+    <title>SuperSearch — Keep the receipt</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #0a1118;
+        --paper: #f4efe3;
+        --card: #fffdf7;
+        --green: #0c765f;
+        --red: #b83f33;
+        --blue: #275dad;
+        --muted: #6b665c;
+        --line: #c8bfad;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; background: var(--paper); color: var(--ink); font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+      a { color: inherit; }
+      .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+      header { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; border-bottom: 1px solid var(--line); font-size: 12px; font-weight: 900; letter-spacing: .08em; }
+      header nav { display: flex; gap: 18px; color: var(--green); }
+      .hero { padding: 72px 0 48px; display: grid; grid-template-columns: 1.45fr .75fr; gap: 48px; align-items: end; }
+      .eyebrow, .label { color: var(--green); font-size: 11px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+      h1 { margin: 18px 0; font-family: Georgia, serif; font-size: clamp(58px, 9vw, 116px); line-height: .85; letter-spacing: -.065em; }
+      h1 em { color: var(--green); font-weight: 700; }
+      .lede { max-width: 760px; font-family: Georgia, serif; font-size: clamp(20px, 2.2vw, 30px); line-height: 1.25; }
+      .boundary { padding: 22px; border: 2px solid var(--ink); background: var(--card); box-shadow: 7px 7px 0 #d7cfbe; }
+      .boundary strong { display: block; margin-bottom: 8px; font-family: Georgia, serif; font-size: 24px; }
+      .boundary p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+      .replay { padding: 34px 0 64px; }
+      .replay-top { display: flex; justify-content: space-between; gap: 28px; align-items: end; margin-bottom: 18px; }
+      h2 { margin: 8px 0 0; font-family: Georgia, serif; font-size: clamp(34px, 5vw, 62px); letter-spacing: -.045em; }
+      .fixture { max-width: 440px; color: var(--muted); font-size: 11px; line-height: 1.5; text-align: right; }
+      .query { padding: 24px; border: 2px solid var(--ink); background: var(--ink); color: #fff; font-family: Georgia, serif; font-size: clamp(22px, 3vw, 36px); }
+      .stages { display: grid; grid-template-columns: repeat(4, 1fr); margin: 18px 0; border: 1px solid var(--ink); }
+      .stage { min-height: 150px; padding: 18px; border-right: 1px solid var(--ink); background: rgba(255,255,255,.3); }
+      .stage:last-child { border-right: 0; }
+      .stage span { display: block; color: var(--muted); font-size: 9px; letter-spacing: .1em; }
+      .stage strong { display: block; margin: 24px 0 7px; font-family: Georgia, serif; font-size: 28px; }
+      .stage small { color: var(--muted); line-height: 1.4; }
+      .stage.timeout strong { color: var(--red); }
+      .source-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 28px; }
+      .chip { padding: 9px 11px; border: 1px solid currentColor; border-radius: 99px; color: var(--green); font-size: 10px; font-weight: 900; }
+      .chip.timeout { color: var(--red); }
+      .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .card { min-height: 260px; padding: 22px; display: flex; flex-direction: column; border: 2px solid var(--ink); background: var(--card); box-shadow: 5px 6px 0 #d7cfbe; }
+      .card blockquote { margin: 24px 0; flex: 1; font-family: Georgia, serif; font-size: 22px; line-height: 1.18; }
+      .card footer { padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 9px; line-height: 1.45; }
+      .truth { margin-top: 22px; padding: 20px 22px; display: grid; grid-template-columns: auto 1fr; gap: 20px; border-left: 5px solid var(--red); background: #fff8f4; }
+      .truth strong { color: var(--red); }
+      .truth p { margin: 0; font-family: Georgia, serif; font-size: 19px; }
+      .split { padding: 64px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; border-top: 1px solid var(--line); }
+      .lane { padding: 26px; border: 1px solid var(--ink); background: var(--card); }
+      .lane h3 { margin: 12px 0; font-family: Georgia, serif; font-size: 32px; }
+      .lane ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 12px; line-height: 1.8; }
+      .cta { margin: 0 0 70px; padding: 30px; display: flex; justify-content: space-between; align-items: center; gap: 28px; background: var(--green); color: white; }
+      .cta h2 { margin: 0; font-size: clamp(30px, 4vw, 50px); }
+      .actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
+      .button { padding: 13px 16px; border: 1px solid white; text-decoration: none; font-size: 11px; font-weight: 900; }
+      .button.primary { background: white; color: var(--green); }
+      .foot { padding: 0 0 32px; color: var(--muted); font-size: 9px; line-height: 1.6; }
+      @media (max-width: 780px) {
+        .hero, .split { grid-template-columns: 1fr; }
+        .stages { grid-template-columns: 1fr 1fr; }
+        .stage:nth-child(2) { border-right: 0; }
+        .stage:nth-child(-n+2) { border-bottom: 1px solid var(--ink); }
+        .cards { grid-template-columns: 1fr; }
+        .replay-top, .cta { align-items: flex-start; flex-direction: column; }
+        .fixture { text-align: left; }
+        .actions { justify-content: flex-start; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="wrap">
+      <span>HERMES LABS / SUPERSEARCH</span>
+      <nav><a href="https://github.com/hermes-labs-ai/supersearch">SOURCE</a><a href="https://pypi.org/project/hermes-supersearch/">PYPI</a></nav>
+    </header>
+
+    <main>
+      <section class="hero wrap">
+        <div>
+          <div class="eyebrow">Evidence infrastructure for agents</div>
+          <h1>SEARCH WIDELY.<br /><em>KEEP THE RECEIPT.</em></h1>
+          <p class="lede">SuperSearch turns public discovery into an inspectable packet: what was searched, what was read, what failed, and which passages an agent actually receives.</p>
+        </div>
+        <aside class="boundary">
+          <strong>Open kernel. Managed compiler.</strong>
+          <p>The deadline-bounded retrieval engine and JSON receipt stay Apache-2.0. Multi-query compilation, managed page reading, evidence custody, and team-grade operations are a private Hermes Labs layer.</p>
+        </aside>
+      </section>
+
+      <section class="replay wrap" aria-labelledby="replay-title">
+        <div class="replay-top">
+          <div><div class="label">60-second product replay</div><h2 id="replay-title">One objective. A visible chain of custody.</h2></div>
+          <p class="fixture">Frozen demonstration data, not a live search or benchmark. The replay exists to show the contract without exposing the private compiler or implying a hosted API is available.</p>
+        </div>
+        <div class="query">“Map practical SQLite vector-search options for an embedded agent.”</div>
+        <div class="stages" aria-label="Evidence packet stages">
+          <div class="stage"><span>01 / DISCOVER</span><strong>3 candidates</strong><small>URLs retain every retrieval-route stamp.</small></div>
+          <div class="stage"><span>02 / READ</span><strong>2 pages</strong><small>A discovered URL is not mislabeled as a fetched page.</small></div>
+          <div class="stage"><span>03 / SELECT</span><strong>3 passages</strong><small>Small, attributable evidence units enter the packet.</small></div>
+          <div class="stage timeout"><span>04 / REPORT</span><strong>1 timeout</strong><small>The failed paper source remains visible.</small></div>
+        </div>
+        <div class="source-row" aria-label="Source state">
+          <span class="chip">WEB · COMPLETED</span><span class="chip">CODE · COMPLETED</span><span class="chip">COMMUNITY · COMPLETED</span><span class="chip timeout">PAPERS · TIMED OUT</span>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="label">P01 / INSTALLATION</div><blockquote>“sqlite-vec adds vector search without requiring a separate database service.”</blockquote><footer>PAGE READ · SOURCE: sqlite-vec repository · WEB / CODE / COMMUNITY</footer></article>
+          <article class="card"><div class="label">P02 / USAGE</div><blockquote>“Load the extension before creating a virtual table for storing and searching vectors.”</blockquote><footer>PAGE READ · SAME PAGE, DISTINCT PASSAGE · CONTENT HASH RETAINED</footer></article>
+          <article class="card"><div class="label">P03 / PORTABILITY</div><blockquote>“USearch presents a single-file similarity-search engine with bindings for several languages.”</blockquote><footer>PAGE READ · SOURCE: USearch repository · CODE / WEB</footer></article>
+        </div>
+        <div class="truth"><strong>WHY THIS MATTERS</strong><p>The packet can be partial and still useful. Missing evidence stays missing; a model never gets permission to silently fill the gap.</p></div>
+      </section>
+
+      <section class="split wrap" aria-label="Product boundary">
+        <article class="lane"><div class="label">Free and open</div><h3>Retrieval kernel</h3><ul><li>Local CLI and Python API</li><li>Deadline-bounded source fan-out</li><li>Source-state and provenance receipts</li><li>Schema, tests, and agent integration examples</li></ul></article>
+        <article class="lane"><div class="label">Private preview</div><h3>Evidence compiler</h3><ul><li>Objective-to-query-family planning</li><li>Managed fetching and passage custody</li><li>Coverage and gap accounting</li><li>Optional cited synthesis and operational controls</li></ul></article>
+      </section>
+
+      <section class="cta wrap">
+        <h2>Use the kernel. Shape the service.</h2>
+        <div class="actions"><a class="button primary" href="https://github.com/hermes-labs-ai/supersearch">TRY THE OPEN CLI</a><a class="button" href="mailto:info@hermes-labs.ai?subject=SuperSearch%20evidence%20compiler%20pilot">DISCUSS A PRIVATE PILOT</a></div>
+      </section>
+    </main>
+
+    <footer class="foot wrap">The quoted passages above are concise demonstration fixtures based on public project descriptions. They are not current factual assertions or a product comparison. SuperSearch does not certify source truth, authority, or completeness.</footer>
+  </body>
+</html>

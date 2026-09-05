@@ -4,6 +4,7 @@ import sys
 import json
 import os
 from typing import Any
+from . import __version__
 from .search import DuckDuckGoSearch
 
 
@@ -73,8 +74,13 @@ def main():
             " [--source=<name>] [--summarize] [--local] [--no-cache]"
             " [--expand] [--cache-clear] [--self-improve]"
             "\n       supersearch research '<topic>' [--depth=N] [--max-pages=N] [--out=<dir>] [--no-gates]"
+            "\n       supersearch --version"
         )
         sys.exit(0 if len(sys.argv) >= 2 else 1)
+
+    if sys.argv[1] in {"--version", "-V"}:
+        print(__version__)
+        sys.exit(0)
 
     if sys.argv[1] == "search":
         from .search_cli import main as search_main
