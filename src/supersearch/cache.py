@@ -11,6 +11,7 @@ import json
 import os
 import re
 import time
+import uuid
 from pathlib import Path
 from typing import Any, Optional
 
@@ -95,6 +96,7 @@ def put(
     """
     if cache_dir is None:
         cache_dir = default_cache_dir()
+    tmp: Optional[Path] = None
     try:
         Path(cache_dir).mkdir(parents=True, exist_ok=True)
         path = _cache_path(cache_dir, _cache_key(source, query))
@@ -104,13 +106,25 @@ def put(
             "ts": time.time(),
             "payload": payload,
         }
-        tmp = path.with_suffix(".tmp")
+        # Each writer gets its own tmp file: concurrent put() calls for the
+        # same key used to share one .tmp path, so two writers could race on
+        # the same inode (corrupting the loser's write) and the loser's
+        # replace() would then fail because the winner had already renamed
+        # the shared tmp path away.
+        tmp = path.with_name(f"{path.name}.{uuid.uuid4().hex}.tmp")
         with tmp.open("w") as f:
             json.dump(entry, f)
         tmp.replace(path)
+        tmp = None
         return True
     except Exception:
         return False
+    finally:
+        if tmp is not None:
+            try:
+                tmp.unlink()
+            except Exception:
+                pass
 
 
 def clear(cache_dir: Optional[str] = None) -> int:
