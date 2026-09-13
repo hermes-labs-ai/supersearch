@@ -1,0 +1,5 @@
+{
+  "name": "supersearch",
+  "version": "0.11.0",
+  "description": "Bounded public search evidence with source-explicit supersearch.search.v1 receipts (pinned hermes-supersearch 0.11.0); evidence, not answers"
+}

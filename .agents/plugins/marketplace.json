@@ -1,0 +1,20 @@
+{
+  "name": "supersearch",
+  "interface": {
+    "displayName": "SuperSearch"
+  },
+  "plugins": [
+    {
+      "name": "supersearch",
+      "source": {
+        "source": "local",
+        "path": "./"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

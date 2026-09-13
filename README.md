@@ -25,6 +25,35 @@ supersearch search "Python 3.12 distutils removal migration setuptools" --pretty
 The PyPI distribution is `hermes-supersearch`; the Python import and CLI command
 are both `supersearch`.
 
+### Install the agent skill in Claude Code, Codex, or Gemini CLI
+
+The repository root is one portable [Agent Plugin](https://agent-plugins.org/):
+a `plugin.json` manifest and the single skill
+[`skills/supersearch/SKILL.md`](skills/supersearch/SKILL.md). Each host
+installs that same root through its own native command; none gets a separate
+copy of the skill.
+
+| Host | Install | Read back |
+| --- | --- | --- |
+| Claude Code | `claude plugin marketplace add hermes-labs-ai/supersearch && claude plugin install supersearch@supersearch` | `claude plugin list` |
+| OpenAI Codex CLI | `codex plugin marketplace add hermes-labs-ai/supersearch && codex plugin add supersearch@supersearch` | `codex plugin list` |
+| Gemini CLI | `gemini extensions install https://github.com/hermes-labs-ai/supersearch --ref main` | `gemini extensions list` |
+| Any skills-compatible agent | `npx skills add hermes-labs-ai/supersearch --skill supersearch` | `npx skills list` |
+
+Claude Code reads `.claude-plugin/marketplace.json` and
+`.claude-plugin/plugin.json`; Codex reads `.agents/plugins/marketplace.json`
+(entry `./`) and `plugin.json`; Gemini CLI reads `gemini-extension.json` and
+discovers the skill under `skills/`. Keep `--ref main` for Gemini: without a
+ref it installs the latest GitHub release archive, and v0.11.0 predates
+`gemini-extension.json`.
+
+Installing the skill does not install the Python package. The skill runs
+`uvx --from hermes-supersearch==0.11.0 supersearch search ...` (or a throwaway
+venv at the same pin) with an explicit source mix, per-source cap, and
+deadline; validates the receipt against the v0.11.0
+`supersearch.search.v1` schema; and reports per-source status. It returns
+evidence, never a synthesized answer.
+
 ## Product boundary
 
 This repository is the open Apache-2.0 retrieval kernel: source adapters,
