@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "supersearch",
+  "description": "The SuperSearch Claude Code plugin from Hermes Labs.",
+  "owner": {
+    "name": "Hermes Labs",
+    "email": "info@hermes-labs.ai",
+    "url": "https://github.com/hermes-labs-ai"
+  },
+  "plugins": [
+    {
+      "name": "supersearch",
+      "source": "./",
+      "description": "Bounded public search evidence with source-explicit supersearch.search.v1 receipts (pinned hermes-supersearch 0.11.0); evidence, not answers",
+      "category": "productivity",
+      "homepage": "https://hermes-labs.ai"
+    }
+  ]
+}
