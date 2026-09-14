@@ -6,6 +6,7 @@ authors:
     given-names: "Rolando"
     affiliation: "Hermes Labs"
 url: "https://hermes-labs.ai"
+repository-code: "https://github.com/hermes-labs-ai/supersearch"
 license: Apache-2.0
 version: "0.11.0"
 type: software
