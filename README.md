@@ -1,5 +1,7 @@
 # SuperSearch
 
+[![CI](https://github.com/hermes-labs-ai/supersearch/actions/workflows/ci.yml/badge.svg)](https://github.com/hermes-labs-ai/supersearch/actions/workflows/ci.yml)
+
 **One query across web, code, community, and research sources. One deadline.**
 
 SuperSearch is a local Python library and CLI for agents and engineers who need
