@@ -1,0 +1,17 @@
+{
+  "@context": "https://w3id.org/codemeta/3.1",
+  "@type": "SoftwareSourceCode",
+  "name": "supersearch",
+  "description": "Deadline-bounded local search fan-out across web, code, community, and research sources that returns source-explicit JSON receipts for agents and engineers, with no paid key or LLM required by default.",
+  "codeRepository": "https://github.com/hermes-labs-ai/supersearch",
+  "version": "0.11.0",
+  "license": "https://spdx.org/licenses/Apache-2.0",
+  "programmingLanguage": "Python",
+  "runtimePlatform": "Python >=3.10",
+  "identifier": [
+    "https://pypi.org/project/hermes-supersearch/0.11.0/"
+  ],
+  "author": [{"@type": "Person", "givenName": "Rolando", "familyName": "Bosch"}],
+  "url": "https://pypi.org/project/hermes-supersearch/0.11.0/",
+  "keywords": ["search", "agents", "metasearch", "provenance", "cli"]
+}
