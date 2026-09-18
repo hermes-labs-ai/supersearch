@@ -79,7 +79,19 @@ Confirm the installed version without starting a search:
 supersearch --version
 ```
 
-The command writes exactly one versioned JSON document to stdout:
+Outputs the version number as plain text:
+
+```
+0.11.0
+```
+
+To search and receive structured results, run:
+
+```bash
+supersearch search "query"
+```
+
+The search command writes exactly one versioned JSON document to stdout:
 
 ```json
 {
