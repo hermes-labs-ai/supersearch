@@ -1,14 +1,18 @@
-# SuperSearch
+<div align="center">
+
+<h1>SuperSearch</h1>
+
+<p>SuperSearch is a local Python library and CLI that searches web, code, community, and research sources concurrently, deduplicates results, preserves source provenance, and returns within one deadline.</p>
+
+<p>SuperSearch is developed by <a href="https://hermes-labs.ai">Hermes Labs</a>.</p>
+
+<p>Hermes Labs is an agentic infrastructure company building the reliability layer for autonomous systems.</p>
 
 [![CI](https://github.com/hermes-labs-ai/supersearch/actions/workflows/ci.yml/badge.svg)](https://github.com/hermes-labs-ai/supersearch/actions/workflows/ci.yml)
 
+</div>
+
 **One query across web, code, community, and research sources. One deadline.**
-
-SuperSearch is a local Python library and CLI that searches web, code, community, and research sources concurrently, deduplicates results, preserves source provenance, and returns within one deadline.
-
-SuperSearch is developed by [Hermes Labs](https://hermes-labs.ai).
-
-Hermes Labs studies failure modes in agent and LLM systems, develops open-source tools that treat language as part of the runtime, and works with teams to remediate reliability failures in production.
 
 The default `search` path needs **no paid search key and no LLM**. It returns
 search evidence, not an answer.
