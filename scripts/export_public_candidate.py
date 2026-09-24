@@ -18,7 +18,7 @@ FORBIDDEN_PATTERNS = (
         "home-relative workspace path",
         re.compile(r"~/" + r"(?:ai-infra|Documents|dev|projects)(?:/|\b)"),
     ),
-    ("local workspace path", re.compile(r"(?:\bHAL/" + r"_workspace|\.control/)")),
+    ("local workspace path", re.compile(r"(?:\.control|_workspace)/[A-Za-z0-9._-]+")),
 )
 
 
