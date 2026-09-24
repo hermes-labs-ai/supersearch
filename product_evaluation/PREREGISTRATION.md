@@ -88,9 +88,9 @@ evidence about result truth.
   the first-use path cannot produce a useful receipt.
 
 
-## Public copy note
+## Evaluation provenance
 
-The 2026-09-24 public cleanup removed an unrelated component decision and
-normalized a host label. The queries, criteria, configuration, controls, and
-product acceptance rule remain as preregistered. The original public version
-is retained in Git history; this is a redacted copy, not a new preregistration.
+This is a normalized presentation of the original preregistration, not a new
+experiment. Query text, criteria, configuration, controls, and the product
+acceptance rule remain as preregistered. `PREREGISTRATION.json` records the
+source document's hash and uses normalized host labels.

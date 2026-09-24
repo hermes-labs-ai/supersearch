@@ -5,8 +5,7 @@ criteria, machine measurements, human usefulness labels, host integration
 reports, and deterministic controls. It does not establish general search
 quality, factual truth, or vendor superiority.
 
-- `PREREGISTRATION.*`: the original evaluation design, with explicitly recorded
-  public redactions. Query text, criteria, configuration, and controls are unchanged.
+- `PREREGISTRATION.*`: fixed query text, criteria, configuration, and controls.
 - `run_live_pack.py`: capture the same query pack from an installed CLI.
 - `results/live-final/`: original final parallel/serial query receipts.
 - `results/HUMAN-EVALUATION.*`: criterion-bound usefulness labels.
@@ -28,11 +27,10 @@ or `--claude-model` only when a particular installed host configuration requires
 it; otherwise each host uses its own default. Capture output outside the source
 checkout. Review and normalize logs before sharing them.
 
-## Public copy provenance
+## Evidence provenance
 
-The 2026-09-24 cleanup removed operating metadata and normalized local command
-paths and host labels. JSON redaction notes identify original public content by
-hash; Git history retains the earlier versions. The raw final query receipts,
-human labels, live summary, and deadline-control result are unchanged. Hashes in
-`PRODUCT-RECEIPT.json` identify the current public copies. No evaluation was rerun
-or new performance claim introduced by that cleanup.
+The normalized reports retain the original evaluation inputs and measurements.
+Their provenance fields identify the source documents by hash. The final query
+receipts, human labels, live summary, and deadline control describe the original
+0.11.0 runs. Companion hashes in `PRODUCT-RECEIPT.json` identify the current
+report files; formatting and host-label normalization do not represent new runs.

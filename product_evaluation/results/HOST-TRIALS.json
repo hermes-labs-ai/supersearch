@@ -81,9 +81,8 @@
     "A network-disabled host correctly yielded unavailable receipts."
   ],
   "nonclaim": "Host prose and selections demonstrate integration usability only, not factual truth or general search quality.",
-  "public_redaction": {
-    "date": "2026-09-24",
+  "provenance": {
     "source_sha256": "029842af8c4f0df3b30e9f53c758af767b4b789d6d83d54d7b2963a9a6bc6930",
-    "scope": "Normalized host labels and setup notes. Trial statuses, counts, schema-failure disclosure, and raw evidence hashes are unchanged; the public summary reference now hashes the named public file."
+    "note": "Normalized host labels and setup notes. Trial statuses, result counts, schema-failure disclosure, and raw evidence hashes describe the original runs. The public summary reference hashes the named report file."
   }
 }
