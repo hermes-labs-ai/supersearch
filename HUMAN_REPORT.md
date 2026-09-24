@@ -20,9 +20,11 @@ instructions, and reproducible evidence. Raw agent-host logs remain unavailable;
 the normalized reports say so. Legacy scaffold identifiers remain for API
 compatibility. No package functionality or prompt text was removed.
 
-Validation: 289 offline tests passed; two opt-in live-model tests skipped. Lint
-and initial package builds passed. Final export, installed-package validation,
-and publication state are recorded in `ACTION_MANIFEST.json`.
+Validation: 289 offline tests passed, including from the exported source archive
+on Python 3.12; two live-model tests skipped. Lint, clean export, wheel/sdist
+installation, metadata and deadline checks passed. Independent review passed.
+`ACTION_MANIFEST.json` records evidence; canonical publication state is available
+at [PR #21](https://github.com/hermes-labs-ai/supersearch/pull/21).
 
 **Decision for Roli:** whether to pursue removal of historical material from old
 commits, immutable tags, or published archives. That would require separate
