@@ -1,15 +1,17 @@
-# Distribution and source exports
+# Releases and source archives
 
-Install the Python distribution `hermes-supersearch`. Its import package and
-CLI are both `supersearch`; the license is Apache-2.0.
+The Python distribution is `hermes-supersearch`. Its import package and CLI are
+both `supersearch`; the license is Apache-2.0.
 
-## Build and check a release candidate
+## Build and validate
 
-From a clean checkout with Python 3.10+:
+Use a clean, committed checkout with Python 3.10+:
 
 ```bash
-python -m pip install -e '.[test]' build twine
+python -m pip install -e '.[test]' build twine 'ruff==0.15.14'
+ruff check .
 python -m pytest
+python scripts/export_public_candidate.py --check
 python scripts/export_public_candidate.py --destination ../supersearch-export
 cd ../supersearch-export
 python -m build
@@ -20,30 +22,34 @@ python -m venv .venv
 .venv/bin/supersearch search --list-sources
 ```
 
-On Windows, use `.venv\Scripts\python` and `.venv\Scripts\supersearch`.
-A live search additionally requires access to the selected public sources.
-See [privacy and cost](PRIVACY-COST.md) and [limitations](LIMITATIONS.md).
+The export destination must not already exist. On Windows, use
+`.venv\Scripts\python` and `.venv\Scripts\supersearch` for the installed commands.
+A live search additionally requires access to the selected sources; see
+[privacy and cost](PRIVACY-COST.md) and [limitations](LIMITATIONS.md).
 
-## Public source boundary
+## Source selection
 
-`scripts/public-files.txt` lists each reviewed export file explicitly. Adding a
-file to a directory does not authorize its export. Review additions for user,
-contributor, or reproducibility value before adding them to this list. Keep
-operating notes, session output, local configuration, credentials, and private
-integration details out of source exports and package archives.
+`scripts/public-files.txt` is the exact list of reviewed source-export files.
+Add new source, documentation, test, or integration files explicitly. The
+`--check` command rejects tracked files missing from the list and listed files
+missing from the commit. CI and the tag-release workflow run this check.
 
-The exporter reads committed bytes from a clean Git HEAD, checks selected text
-for local paths, and rejects symbolic links. It validates the full selection
-before writing the destination. `PUBLIC-EXPORT-RECEIPT.json` records file hashes
-and the source commit; it is generated metadata, not part of the package API.
-Run `python scripts/export_public_candidate.py --check` to verify that every
-tracked file in this public repository is covered by the reviewed list.
-Automated checks supplement content review; they cannot determine whether new
-prose reveals private operating knowledge.
+The exporter reads committed bytes from Git HEAD, checks text for local paths,
+and rejects symbolic links and binary files. It validates the complete selection
+before creating the destination. Review file contents as well as the file list;
+path checks do not detect every credential or machine-specific detail.
 
-Published evaluation data includes fixed queries, criteria, measurements,
-limitations, and normalized host reports. Machine-specific logs are not needed
-to install or use the package. [Evaluation documentation](../product_evaluation/README.md)
-distinguishes public evidence from reported host outcomes.
+`PUBLIC-EXPORT-RECEIPT.json` records the source commit and each exported file's
+SHA-256 hash. It is generated export metadata and is not included in the Python
+wheel or source distribution.
 
-Source cleanup does not erase prior commits, tags, or released archives.
+`MANIFEST.in` selects documentation, examples, tests, integration files, and
+[evaluation data](../product_evaluation/README.md) for the source distribution.
+The wheel contains the Python package and standard distribution metadata.
+Inspect both archives after changes to either source-selection list.
+
+## Publishing
+
+The `Publish to PyPI` workflow builds and checks distributions for `v*` tags.
+The tag version must match `pyproject.toml`. Publishing uses the repository's
+configured PyPI environment and trusted-publishing credentials.

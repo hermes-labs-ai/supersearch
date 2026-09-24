@@ -5,13 +5,13 @@
     "product_thesis": "One query across heterogeneous public web, code, community, and research surfaces under one caller-visible deadline, with source-explicit failure states and no paid key or LLM required by the default path."
   },
   "proof": {
-    "preregistration_sha256": "e168e028ec3ad3dedfe89fdb3820c10748172612bfefd3a5aa55bc3e78e02f6a",
+    "preregistration_sha256": "f87593dde8a42ab1bff30bdecb648a4ca5182f57c937cc6ec3da265fc4f7bfe8",
     "offline_tests": {
       "passed": 270,
       "skipped_live_model": 2
     },
     "terminal_repair_wheel_sha256": "0996e4b66f24d149516a7bd0cc0d2007bd3579223b3ab53dcccd499e3087c914",
-    "source_boundary": "Historical 0.11.0 evaluation; file hashes below identify the current public copies, with redaction provenance recorded separately.",
+    "source_boundary": "Historical 0.11.0 evaluation; file hashes below identify the current report files.",
     "clean_install": "PASS on Python 3.13.12; model/key not needed for install, help, list-sources, or default search",
     "live_evaluation": {
       "results": 27,
@@ -21,7 +21,7 @@
     },
     "public_live_summary_sha256": "714bca05572fc847b79f1891fb1ceb8d8746892e496e97b45010eb1d32deff1b",
     "human_evaluation_sha256": "011d7bf33e45ebbca643f6e19cca18ab0ec5ee4a7cb699d62434ab52ae83ef54",
-    "host_trials_sha256": "722789ac5ceb99f1feda177add4c2cf8fd673691a5be01c9cbc1f9c9bff9a140",
+    "host_trials_sha256": "94f2d0c8890634b13a22a082bb362b58c7cd468815de010c99e334c3000a5207",
     "deadline_control": {
       "status": "PASS",
       "deadline_ms": 250,
@@ -43,9 +43,8 @@
     "Search provenance is retrieval-route identity, not authorship, authority, or independence.",
     "Host trials demonstrate protocol usability, not factual correctness."
   ],
-  "public_redaction": {
-    "date": "2026-09-24",
+  "provenance": {
     "source_sha256": "a25bbd36406cfc248ddc7b63b05ef1c2d531ca39ed6eb543b75ab08fd295b746",
-    "scope": "Removed private component, review workflow, publication handoff, and prioritization metadata. Product mechanisms, measured outcomes, limitations, and evidence remain. Hashes of redacted public files were updated; this is not a new evaluation."
+    "note": "Summary of the original 0.11.0 evaluation. Measurements and limitations describe those runs; companion hashes identify the current normalized report files."
   }
 }

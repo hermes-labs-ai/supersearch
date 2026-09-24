@@ -12,8 +12,7 @@ product_evaluation/results/host-trials*/
 product_evaluation/results/live/
 product_evaluation/results/live-final/MACHINE-SUMMARY.json
 
-# Local work and generated validation output
-.boundary-validation/
+# Local work
 AGENTS.md
 CLAUDE.md
 HANDOFF.md

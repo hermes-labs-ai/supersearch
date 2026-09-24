@@ -7,11 +7,9 @@
 .github/workflows/pages.yml
 .github/workflows/publish.yml
 .gitignore
-ACTION_MANIFEST.json
 CITATION.cff
 CODE_OF_CONDUCT.md
 CONTRIBUTING.md
-HUMAN_REPORT.md
 LICENSE
 MANIFEST.in
 README.md

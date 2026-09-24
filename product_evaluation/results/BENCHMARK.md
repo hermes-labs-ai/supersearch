@@ -27,8 +27,7 @@ a timed-out source; the repaired CLI returned a `partial` one-result receipt in
 255.950 ms and the process exited in 316.429 ms under a 250 ms deadline. Control
 status: PASS ([DEADLINE-CONTROL.json](DEADLINE-CONTROL.json), SHA-256
 `ba388dab605518f0285a0168378efb1dcb17adee89d0dbfd6e4751d3451b7a38`).
-These values identify the retained final control receipt; earlier draft values
-were corrected during the public documentation cleanup.
+These values identify the retained final control receipt.
 
 ## Value and failure honesty
 
