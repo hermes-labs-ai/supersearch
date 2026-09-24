@@ -12,17 +12,12 @@ product_evaluation/results/host-trials*/
 product_evaluation/results/live/
 product_evaluation/results/live-final/MACHINE-SUMMARY.json
 
-# Internal / local working docs — not part of the public release
+# Local work and generated validation output
+.boundary-validation/
+AGENTS.md
 CLAUDE.md
 HANDOFF.md
 STATUS.md
 SCOPE.md
-CLI-SHAPE-BUGS.md
-COMPLIANCE-DRAFT.md
-fact-audit.md
-routing-evidence.txt
-ab-sample.txt
-deep-obligatory-grammar.md
-.hermes-seal.yaml
 _workspace/
 audits/

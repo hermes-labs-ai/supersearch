@@ -30,6 +30,9 @@ jobs:
             exit 1
           fi
 
+      - name: Check reviewed public source boundary
+        run: python scripts/export_public_candidate.py --check
+
       - name: Build and check distribution
         run: |
           python -m pip install --upgrade build twine

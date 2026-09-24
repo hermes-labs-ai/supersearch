@@ -1,27 +1,38 @@
 # Product V1 evaluation
 
-This directory separates preregistration, machine capture, human usefulness
-labels, host-integration trials, and the final bounded evaluation receipt.
+This directory contains the historical 0.11.0 evaluation: fixed queries and
+criteria, machine measurements, human usefulness labels, host integration
+reports, and deterministic controls. It does not establish general search
+quality, factual truth, or vendor superiority.
 
-- `PREREGISTRATION.*`: frozen before implementation/live runs;
-- `run_live_pack.py`: credential-stripped live receipt capture;
-- `results/live/`: first live run that exposed the CLI process-tail defect;
-- `results/live-final/`: repaired final parallel/serial query receipts;
-- `results/HUMAN-EVALUATION.*`: small criterion-bound usefulness table;
-- `results/HOST-TRIALS.*`: generic and Claude/Fable positive protocol proof,
-  a Codex failure-honesty control, and a separately labeled schema-invalid
-  network-enabled Codex summary;
-- `results/PRODUCT-RECEIPT.json`: final scope, hashes, decision, and limitations;
-- `FIVE-MINUTE-SHOWCASE.md`: exact demo script.
+- `PREREGISTRATION.*`: the original evaluation design, with explicitly recorded
+  public redactions. Query text, criteria, configuration, and controls are unchanged.
+- `run_live_pack.py`: capture the same query pack from an installed CLI.
+- `results/live-final/`: original final parallel/serial query receipts.
+- `results/HUMAN-EVALUATION.*`: criterion-bound usefulness labels.
+- `results/HOST-TRIALS.*`: reported host outcomes, including the schema-invalid
+  network-enabled Codex summary and failure-honesty negative control.
+- `results/PRODUCT-RECEIPT.json`: bounded results, hashes, and nonclaims.
+- `deadline_probe.py`: reproducible slow-source and process-exit control.
+- `FIVE-MINUTE-SHOWCASE.md`: demo commands and scope.
 
-Nothing here establishes general search quality, factual truth, or vendor
-superiority.
+Agent-host raw logs are not public. Their hashes identify reported historical
+observations, not independently inspectable public proof. The generic CLI
+receipts and evaluation harnesses are public so readers can run their own trials.
+Model-host trials require separately configured host tools and may incur host
+model costs; SuperSearch's core search itself invokes no model.
 
-The ignored `.control/raw-product-evaluation-archive/` retains the raw
-pre-repair and host logs. The tracked candidate and public allowlisted export
-keep normalized reports and final query receipts while
-omitting local session diagnostics and the Evidence Bridge appendix.
+The cross-host harness requires `python -m pip install '.[test]'` and validates
+actual host stdout against `host-trial-output.schema.json`. Pass `--codex-model`
+or `--claude-model` only when a particular installed host configuration requires
+it; otherwise each host uses its own default. Capture output outside the source
+checkout. Review and normalize logs before sharing them.
 
-The cross-host harness uses the JSON Schema validator in the test extra:
-`python -m pip install '.[test]'`. It locally parses and validates actual host
-stdout; a zero host-process exit alone is never a passing trial.
+## Public copy provenance
+
+The 2026-09-24 cleanup removed operating metadata and normalized local command
+paths and host labels. JSON redaction notes identify original public content by
+hash; Git history retains the earlier versions. The raw final query receipts,
+human labels, live summary, and deadline-control result are unchanged. Hashes in
+`PRODUCT-RECEIPT.json` identify the current public copies. No evaluation was rerun
+or new performance claim introduced by that cleanup.

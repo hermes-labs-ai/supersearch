@@ -25,6 +25,5 @@ Roadmap items are hypotheses, not committed release promises.
 - framework-logo adapters that only wrap JSON or Python;
 - answer synthesis as the default search behavior;
 - truth or certification labels;
-- a daemon or hosted SuperSearch account service;
-- native Evidence Bridge integration while its component hold remains open.
+- a daemon or hosted SuperSearch account service.
 

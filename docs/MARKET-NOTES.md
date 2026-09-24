@@ -18,11 +18,7 @@ The sources above do not support a controlled cross-product relevance or truth
 comparison. SuperSearch therefore makes no superiority claim about index size,
 ranking quality, factual accuracy, uptime, or end-to-end research quality.
 
-## Distribution name check
+## Package identity
 
-PyPI already has a case-insensitive [`Super-Search`](https://pypi.org/project/Super-Search/)
-distribution for a filesystem-search utility. A public release should retain
-the `supersearch` import and CLI but use a distinct distribution name such as
-`hermes-supersearch`, after a final availability and naming check immediately
-before publication. No package or public repository is created by this work.
-
+Install `hermes-supersearch`; the Python import and command remain `supersearch`.
+See [distribution and source exports](DISTRIBUTION.md).

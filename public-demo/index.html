@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A 60-second replay of the SuperSearch evidence-packet contract." />
+    <meta name="description" content="An illustration of the SuperSearch source-explicit search receipt." />
     <title>SuperSearch — Keep the receipt</title>
     <style>
       :root {
@@ -86,48 +86,48 @@
         <div>
           <div class="eyebrow">Evidence infrastructure for agents</div>
           <h1>SEARCH WIDELY.<br /><em>KEEP THE RECEIPT.</em></h1>
-          <p class="lede">SuperSearch turns public discovery into an inspectable packet: what was searched, what was read, what failed, and which passages an agent actually receives.</p>
+          <p class="lede">SuperSearch queries public sources under one deadline and returns an inspectable receipt: result URLs, retrieval sources, and every source that failed or timed out.</p>
         </div>
         <aside class="boundary">
-          <strong>Open kernel. Managed compiler.</strong>
-          <p>The deadline-bounded retrieval engine and JSON receipt stay Apache-2.0. Multi-query compilation, managed page reading, evidence custody, and team-grade operations are a private Hermes Labs layer.</p>
+          <strong>Open CLI. Inspectable receipts.</strong>
+          <p>The retrieval engine, Python API, schemas, and reproducible evaluation are Apache-2.0. The default search path needs no paid search key and invokes no model.</p>
         </aside>
       </section>
 
       <section class="replay wrap" aria-labelledby="replay-title">
         <div class="replay-top">
-          <div><div class="label">60-second product replay</div><h2 id="replay-title">One objective. A visible chain of custody.</h2></div>
-          <p class="fixture">Frozen demonstration data, not a live search or benchmark. The replay exists to show the contract without exposing the private compiler or implying a hosted API is available.</p>
+          <div><div class="label">60-second product replay</div><h2 id="replay-title">One query. A source-explicit receipt.</h2></div>
+          <p class="fixture">Illustrative result cards, not a live search or benchmark. Search snippets are discovery aids; independently read the linked sources before relying on their claims.</p>
         </div>
         <div class="query">“Map practical SQLite vector-search options for an embedded agent.”</div>
-        <div class="stages" aria-label="Evidence packet stages">
+        <div class="stages" aria-label="Search receipt stages">
           <div class="stage"><span>01 / DISCOVER</span><strong>3 candidates</strong><small>URLs retain every retrieval-route stamp.</small></div>
-          <div class="stage"><span>02 / READ</span><strong>2 pages</strong><small>A discovered URL is not mislabeled as a fetched page.</small></div>
-          <div class="stage"><span>03 / SELECT</span><strong>3 passages</strong><small>Small, attributable evidence units enter the packet.</small></div>
+          <div class="stage"><span>02 / MERGE</span><strong>Unique URLs</strong><small>Duplicate results retain their contributing source identities.</small></div>
+          <div class="stage"><span>03 / RETURN</span><strong>1 JSON receipt</strong><small>Titles, URLs, snippets, and source states stay inspectable.</small></div>
           <div class="stage timeout"><span>04 / REPORT</span><strong>1 timeout</strong><small>The failed paper source remains visible.</small></div>
         </div>
         <div class="source-row" aria-label="Source state">
           <span class="chip">WEB · COMPLETED</span><span class="chip">CODE · COMPLETED</span><span class="chip">COMMUNITY · COMPLETED</span><span class="chip timeout">PAPERS · TIMED OUT</span>
         </div>
         <div class="cards">
-          <article class="card"><div class="label">P01 / INSTALLATION</div><blockquote>“sqlite-vec adds vector search without requiring a separate database service.”</blockquote><footer>PAGE READ · SOURCE: sqlite-vec repository · WEB / CODE / COMMUNITY</footer></article>
-          <article class="card"><div class="label">P02 / USAGE</div><blockquote>“Load the extension before creating a virtual table for storing and searching vectors.”</blockquote><footer>PAGE READ · SAME PAGE, DISTINCT PASSAGE · CONTENT HASH RETAINED</footer></article>
-          <article class="card"><div class="label">P03 / PORTABILITY</div><blockquote>“USearch presents a single-file similarity-search engine with bindings for several languages.”</blockquote><footer>PAGE READ · SOURCE: USearch repository · CODE / WEB</footer></article>
+          <article class="card"><div class="label">RESULT 01 / INSTALLATION</div><blockquote>“sqlite-vec adds vector search without requiring a separate database service.”</blockquote><footer>ILLUSTRATIVE SNIPPET · sqlite-vec · WEB / CODE / COMMUNITY</footer></article>
+          <article class="card"><div class="label">RESULT 02 / USAGE</div><blockquote>“Load the extension before creating a virtual table for storing and searching vectors.”</blockquote><footer>ILLUSTRATIVE SNIPPET · EXTENSION USAGE · WEB / CODE</footer></article>
+          <article class="card"><div class="label">RESULT 03 / PORTABILITY</div><blockquote>“USearch presents a single-file similarity-search engine with bindings for several languages.”</blockquote><footer>ILLUSTRATIVE SNIPPET · USearch · CODE / WEB</footer></article>
         </div>
-        <div class="truth"><strong>WHY THIS MATTERS</strong><p>The packet can be partial and still useful. Missing evidence stays missing; a model never gets permission to silently fill the gap.</p></div>
+        <div class="truth"><strong>WHY THIS MATTERS</strong><p>A receipt can be partial and still useful. Source failures remain visible; retrieved snippets do not establish truth, authority, or completeness.</p></div>
       </section>
 
       <section class="split wrap" aria-label="Product boundary">
         <article class="lane"><div class="label">Free and open</div><h3>Retrieval kernel</h3><ul><li>Local CLI and Python API</li><li>Deadline-bounded source fan-out</li><li>Source-state and provenance receipts</li><li>Schema, tests, and agent integration examples</li></ul></article>
-        <article class="lane"><div class="label">Private preview</div><h3>Evidence compiler</h3><ul><li>Objective-to-query-family planning</li><li>Managed fetching and passage custody</li><li>Coverage and gap accounting</li><li>Optional cited synthesis and operational controls</li></ul></article>
+        <article class="lane"><div class="label">Integrate anywhere</div><h3>One public contract</h3><ul><li>Parse JSON from a shell tool</li><li>Call the Python API directly</li><li>Validate against the published schema</li><li>Keep partial results and source diagnostics</li></ul></article>
       </section>
 
       <section class="cta wrap">
-        <h2>Use the kernel. Shape the service.</h2>
-        <div class="actions"><a class="button primary" href="https://github.com/hermes-labs-ai/supersearch">TRY THE OPEN CLI</a><a class="button" href="mailto:info@hermes-labs.ai?subject=SuperSearch%20evidence%20compiler%20pilot">DISCUSS A PRIVATE PILOT</a></div>
+        <h2>Try SuperSearch in your workflow.</h2>
+        <div class="actions"><a class="button primary" href="https://github.com/hermes-labs-ai/supersearch">TRY THE OPEN CLI</a><a class="button" href="mailto:roli@hermes-labs.ai?subject=SuperSearch%20pilot">DISCUSS A PILOT</a></div>
       </section>
     </main>
 
-    <footer class="foot wrap">The quoted passages above are concise demonstration fixtures based on public project descriptions. They are not current factual assertions or a product comparison. SuperSearch does not certify source truth, authority, or completeness.</footer>
+    <footer class="foot wrap">The result snippets above are concise demonstration fixtures based on public project descriptions. They are not current factual assertions or a product comparison. SuperSearch does not certify source truth, authority, or completeness.</footer>
   </body>
 </html>

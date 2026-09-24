@@ -1,10 +1,9 @@
 # Capability map at the Product V1 boundary
 
-Inspected against the sealed parent `d0e4aa30f06ae192738aad195b31b1aa5094c467`
-and the Evidence Component terminal head `2dd9e99cdb11cf811dccf1e501c39e4257654d84`
-on 2026-07-18.
+This map describes the shipped package. The stable contract is
+`supersearch search` and `supersearch.fanout_search`.
 
-## Core candidate
+## Core
 
 | Surface | Code evidence | Product disposition |
 |---|---|---|
@@ -30,7 +29,7 @@ limits.
 | SearXNG | user-supplied/self-hosted instance | Optional source |
 | authenticated GitHub | `GITHUB_TOKEN` when present | Optional quota improvement |
 
-## Experimental or internal
+## Experimental and compatibility utilities
 
 | Surface | Reason | Product disposition |
 |---|---|---|
@@ -38,8 +37,7 @@ limits.
 | intelligence routing | embedding-based route selection and limited lived-workflow proof | Experimental |
 | query expansion | local-model path and limited product evaluation | Experimental |
 | scraper one-shots | heterogeneous maintenance and dependency quality | Experimental utilities |
-| self-improvement report | maintainer utility, not user job | Internal |
-| Evidence Bridge adapter | terminal component status `PHASED_COMPONENT_HOLD`; missing-member rejection remains the next falsifier | Internal experimental appendix; no integration |
+| self-improvement report | local search-profile analysis | Experimental maintainer utility |
 | legacy positional CLI | always reranks/summarizes and mixes progress text with JSON | Compatibility-only until replaced or removed in a later major version |
 
 ## Broken or misleading pre-Product-V1 surface

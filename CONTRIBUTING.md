@@ -31,5 +31,13 @@ python -m pytest -v
 
 1. Keep changes focused — one feature or fix per PR.
 2. Add tests for new engines or scrapers.
-3. Update `CHANGELOG.md` under an `Unreleased` section.
+3. Update the relevant public documentation for behavior or interface changes.
 4. Open a PR against `main` with a clear description of what and why.
+
+## Public source review
+
+Add new public files explicitly to `scripts/public-files.txt`. Add package source
+files to `MANIFEST.in` where needed. The export check deliberately rejects
+unreviewed tracked additions; see [distribution and source exports](docs/DISTRIBUTION.md).
+Keep reproducible product evidence and contributor guidance public; leave local
+operating notes, private integrations, and raw session logs out of contributions.

@@ -22,12 +22,13 @@ between calls.
 
 The initial pack found a material process-tail defect: Q2's receipt returned at
 12.006 seconds with DDGS marked `timed_out` and nine sibling results, but the CLI
-process took 15.284 seconds to exit. Product commit `eb68f56` repaired the CLI
-boundary. The deterministic process control registers a 30-second atexit hook in
+process took 15.284 seconds to exit. The CLI now exits after flushing its receipt. The deterministic process control registers a 30-second atexit hook in
 a timed-out source; the repaired CLI returned a `partial` one-result receipt in
-252.609 ms and the process exited in 576.795 ms under a 250 ms deadline. Control
-status: PASS (`DEADLINE-CONTROL.json`, SHA-256
-`a1a784e29034372948e802b8eb402ad1ce86bf5cd395504c367bb30150a9eb3f`).
+255.950 ms and the process exited in 316.429 ms under a 250 ms deadline. Control
+status: PASS ([DEADLINE-CONTROL.json](DEADLINE-CONTROL.json), SHA-256
+`ba388dab605518f0285a0168378efb1dcb17adee89d0dbfd6e4751d3451b7a38`).
+These values identify the retained final control receipt; earlier draft values
+were corrected during the public documentation cleanup.
 
 ## Value and failure honesty
 
@@ -36,8 +37,9 @@ status: PASS (`DEADLINE-CONTROL.json`, SHA-256
 - every query had a useful rank-1 result;
 - initial and host trials exercised `failed`, `timed_out`, `partial`, and
   `unavailable` without converting them into successful search;
-- direct CLI, Python API tests, Codex, and Claude/Fable all parsed the same JSON
-  contract without a framework adapter.
+- direct CLI receipts and Python API tests exercise the same JSON contract;
+  reported agent-host outcomes and their schema limitations are separated in
+  [HOST-TRIALS.md](HOST-TRIALS.md).
 
 ## Limits
 

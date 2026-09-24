@@ -23,7 +23,12 @@
     }
   ],
   "configuration": {
-    "sources": ["ddg", "hn", "github", "arxiv"],
+    "sources": [
+      "ddg",
+      "hn",
+      "github",
+      "arxiv"
+    ],
     "max_per_source": 3,
     "deadline_seconds": 12,
     "parallel": true,
@@ -43,7 +48,11 @@
   ],
   "decision_rule": {
     "standalone_candidate": "clean base install plus CLI/Python controls plus two host trials work without paid key or model and limitations are explicit",
-    "component": "Evidence Bridge remains an unpublished experimental appendix while its terminal component hold is open",
     "product_hold": "availability laundering, failed deadline containment, undisclosed model/key dependency, or no useful first-use receipt"
+  },
+  "public_redaction": {
+    "date": "2026-09-24",
+    "source_sha256": "50d49ea4a7e4a8a9a3d0b070b376f3366949c9e20785cd4880574d861bd2fa90",
+    "scope": "Removed a non-evaluation component decision. Queries, criteria, configuration, controls, and product acceptance rule are unchanged."
   }
 }

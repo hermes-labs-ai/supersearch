@@ -9,7 +9,7 @@ or cost claim.
 | Host | Q1 | Q2 | Q3 | Adapter | Disposition |
 |---|---|---|---|---|---|
 | Generic CLI harness | ok / 6 | ok / 12 | ok / 9 | none | PASS |
-| Claude/Fable | ok / 6 | ok / 11 | ok / 9 | none | PASS; selected a useful source for all three |
+| Claude Code | ok / 6 | ok / 11 | ok / 9 | none | PASS; selected a useful source for all three |
 | Codex, network enabled | ok / 6 | ok / 12 | ok / 9 | none | PARTIAL: three raw SuperSearch receipts are parseable, but the host summary fails the fixed schema and is not a protocol PASS |
 | Codex, workspace sandbox | unavailable / 0 | unavailable / 0 | unavailable / 0 | none | Negative-control PASS: DNS denial was explicit for all sources |
 
@@ -19,11 +19,12 @@ contains three parseable `supersearch.search.v1` receipts and useful selections,
 but the summary is schema-invalid and therefore cannot count as a host protocol
 PASS. The repaired harness now validates actual host stdout locally and would
 fail this historical output. The run is not repeated because the bounded pack
-already has two positive hosts (generic and Claude/Fable), while the separate
+already has two positive hosts (generic and Claude Code), while the separate
 schema-valid Codex sandbox trial supplies the preregistered failure-honesty
 negative control.
 
-The initial host launches also exposed three concrete setup frictions: an old
-Codex CLI/default-model mismatch, a Claude schema-draft incompatibility, and a
-Codex strict-map schema requirement. They were harness compatibility issues,
-not SuperSearch product defects, and their raw stderr is retained.
+Agent-host raw logs are not public; the normalized outcomes above are reported
+observations, not independently inspectable traces. Reproduce the protocol with
+`run_host_trials.py` and your own installed host tools. Select a host model with
+an explicit command-line option if needed. The public harness validates host
+JSON envelopes and schema contents before counting a trial as passing.

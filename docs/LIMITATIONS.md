@@ -23,9 +23,6 @@
   receipt surface; its legacy model calls do not yet share the total deadline.
 - Direct `supersearch.LocalReranker` access remains lazy-compatible, but legacy
   wildcard imports no longer bind it; wildcard-import compatibility is backlog.
-- The cross-host harness prefixes displayed shell lines with query labels such
-  as `Q1:`. Existing agent trials interpreted these as labels, but literal shell
-  replay must remove the label; rendering labels as comments is backlog.
 - Codex host trials default to a read-only sandbox. Network-enabled trials must
   opt into broader host authority explicitly; any non-ignored Git status change
   makes the harness fail.
@@ -33,14 +30,5 @@
   Use `supersearch search` for the Product V1 path.
 - Verify can emit positive evidence-relationship verdicts only when its evaluator
   is available. Those verdicts are not certification.
-- Research, intelligence routing, expansion, scrapers, and the Evidence Bridge
-  adapter remain experimental or internal and are not part of Product V1's
-  stability promise.
-
-## Explicit component backlog
-
-The Evidence Bridge shadow adapter is terminalized as
-`PHASED_COMPONENT_HOLD`. Its next material falsifier is a self-consistent bundle
-that omits a fixed required member: it must be rejected as a machine-readable
-component error rather than surfacing an unhandled `FileNotFoundError`. This
-does not reopen Product V1 or authorize native integration.
+- Research, intelligence routing, expansion, and scrapers remain experimental
+  and are not part of Product V1's stability promise.

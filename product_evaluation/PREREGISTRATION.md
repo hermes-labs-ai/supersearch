@@ -16,7 +16,7 @@ conditions recorded in the resulting receipt.
 
 ## Fixed live query pack
 
-All three hosts (direct CLI, Codex, and Claude/Fable) receive the same query IDs
+All three hosts (direct CLI, Codex, and Claude Code) receive the same query IDs
 and text. They may explain the receipt, but they must not rewrite the query.
 
 | ID | Recurring job | Query | Useful-result criterion |
@@ -83,9 +83,14 @@ evidence about result truth.
 - Recommend a **standalone OSS Product V1 candidate** if the clean base install,
   direct CLI/Python path, deterministic controls, and at least two host trials
   work without a paid key or model, and the README states the limitations.
-- Keep the Evidence Bridge as an **unpublished experimental appendix** unless a
-  later exact falsifier closes its component hold.
 - Hold Product V1 if the stable output launders availability, the deadline does
   not contain a hung source, clean install needs an undisclosed model/key, or
   the first-use path cannot produce a useful receipt.
 
+
+## Public copy note
+
+The 2026-09-24 public cleanup removed an unrelated component decision and
+normalized a host label. The queries, criteria, configuration, controls, and
+product acceptance rule remain as preregistered. The original public version
+is retained in Git history; this is a redacted copy, not a new preregistration.

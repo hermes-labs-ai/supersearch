@@ -1,0 +1,228 @@
+{
+  "schema_version": "supersearch.public-boundary-audit.v1",
+  "date": "2026-09-24",
+  "repository": "hermes-labs-ai/supersearch",
+  "base_commit": "50b0c9cd4a13fc746b6f213072fec5abdc6101d4",
+  "scope": {
+    "current_tree": "all tracked public files; docs, code, tests, metadata, integrations, demo and evaluation",
+    "history": "27 commits and 163 unique blobs reachable from audited public main; both public tags are ancestors of that main.",
+    "private_maintenance": "Inspected the maintenance checkout instructions and public export implementation for context; no changes to private maintenance branches."
+  },
+  "status": "cleanup_validated",
+  "findings": [
+    {
+      "id": "F1",
+      "finding": "Product docs included private component status, topology, local paths and handoff policy.",
+      "action": "Replaced with shipped-product boundaries and portable build/contributor guidance.",
+      "paths": [
+        "README.md",
+        "docs/CAPABILITY-MAP.md",
+        "docs/DISTRIBUTION.md",
+        "docs/LIMITATIONS.md",
+        "docs/PUBLIC-POSITIONING.md",
+        "docs/ROADMAP.md",
+        "docs/MARKET-NOTES.md",
+        "CONTRIBUTING.md"
+      ]
+    },
+    {
+      "id": "F2",
+      "finding": "Evaluation metadata mixed measured evidence with operating state and stale references.",
+      "action": "Removed non-evaluation metadata; labeled redactions; normalized paths and host labels; corrected public hash references and retained final control values.",
+      "paths": [
+        "product_evaluation/PREREGISTRATION.json",
+        "product_evaluation/PREREGISTRATION.md",
+        "product_evaluation/PRODUCT-DECISION.md",
+        "product_evaluation/README.md",
+        "product_evaluation/FIVE-MINUTE-SHOWCASE.md",
+        "product_evaluation/results/PRODUCT-RECEIPT.json",
+        "product_evaluation/results/CLEAN-INSTALL.json",
+        "product_evaluation/results/HOST-TRIALS.json",
+        "product_evaluation/results/HOST-TRIALS.md",
+        "product_evaluation/results/BENCHMARK.md"
+      ]
+    },
+    {
+      "id": "F3",
+      "finding": "Directory-prefix exports could admit unreviewed files and excluded newer public integrations; content failure could leave a partial export.",
+      "action": "Exact reviewed file list, clean committed bytes, preflight before output, regular-file checks, CI coverage, explicit source-archive selection and regression tests.",
+      "paths": [
+        "scripts/export_public_candidate.py",
+        "scripts/public-files.txt",
+        "MANIFEST.in",
+        ".github/workflows/ci.yml",
+        "tests/test_public_export.py",
+        ".github/workflows/publish.yml"
+      ]
+    },
+    {
+      "id": "F4",
+      "finding": "Host harness hard-coded a local model alias and generated nonliteral shell labels.",
+      "action": "Use configured host defaults or explicit model options; render query labels as shell comments; validate both launch paths without invoking host models.",
+      "paths": [
+        "product_evaluation/run_host_trials.py",
+        "tests/test_host_trial_harness.py"
+      ]
+    },
+    {
+      "id": "F5",
+      "finding": "Demo disclosed private implementation layers and implied page/passage capabilities outside the core search contract.",
+      "action": "Describe public search receipts and limitations while retaining the pilot contact route.",
+      "paths": [
+        "public-demo/index.html"
+      ]
+    },
+    {
+      "id": "F6",
+      "finding": "Source comments named internal research/work allocation that did not explain runtime behavior.",
+      "action": "Replace with product mechanism descriptions; preserve runtime prompts and legacy output identifiers.",
+      "paths": [
+        "src/supersearch/summarize.py",
+        "src/supersearch/sources_ext/__init__.py",
+        "tests/test_sources_ext.py",
+        ".gitignore"
+      ]
+    }
+  ],
+  "preserved": {
+    "runtime": "All executable package code and prompt constants; only two module docstrings and comments changed under src/.",
+    "apis": [
+      "supersearch search",
+      "fanout_search",
+      "verify",
+      "legacy research and utilities",
+      "receipt schema and scaffold identifiers"
+    ],
+    "license": "Apache-2.0 unchanged",
+    "evidence_paths": [
+      "product_evaluation/results/live-final/",
+      "product_evaluation/results/HUMAN-EVALUATION.json",
+      "product_evaluation/results/HUMAN-EVALUATION.md",
+      "product_evaluation/results/PUBLIC-LIVE-SUMMARY.json",
+      "product_evaluation/results/DEADLINE-CONTROL.json"
+    ],
+    "agent_instructions": "Public skill and plugin manifests retained; no operating AGENTS/HANDOFF files were tracked in public main."
+  },
+  "evidence": {
+    "history_audit": ".boundary-validation/history-audit.json",
+    "redactions": ".boundary-validation/redaction-provenance.json",
+    "history_secret_scan": ".boundary-validation/history-secrets.json",
+    "local_evidence_note": "Ignored validation outputs are retained in the working checkout, not exported. Source paths and Git base identify the independently reviewable diff.",
+    "runtime_preservation": ".boundary-validation/runtime-preservation.json",
+    "archive_inventory": ".boundary-validation/archive-inventory.json",
+    "claim_review": ".boundary-validation/claim-result.json",
+    "independent_review": ".boundary-validation/review.json",
+    "publication_readback": ".boundary-validation/publication.json"
+  },
+  "validation": [
+    {
+      "check": "offline suite",
+      "command": "python -m pytest -ra",
+      "result": "289 passed, 2 opt-in live-model tests skipped",
+      "evidence": ".boundary-validation/tests.log"
+    },
+    {
+      "check": "lint",
+      "command": "ruff check .",
+      "result": "passed; existing malformed-noqa warnings",
+      "evidence": ".boundary-validation/lint.log"
+    },
+    {
+      "check": "history credentials",
+      "command": "gitleaks git . --log-opts=origin/main --redact",
+      "result": "no leaks detected; scanner reported 21 non-merge commits",
+      "evidence": ".boundary-validation/history-secrets.log"
+    },
+    {
+      "check": "Hermes Gate",
+      "command": "hermes-gate fast",
+      "result": "NOT_CONFIGURED; public repository has no profile or adoption history. No initialization performed. Standard repository checks apply.",
+      "evidence": ".boundary-validation/gate-fast.log"
+    },
+    {
+      "check": "independent bounded review",
+      "result": "PASS for 50b0c9c..914434a; no material findings; dangling copy and tag-release guard suggestions addressed in ee6c828.",
+      "evidence": ".boundary-validation/review.json"
+    },
+    {
+      "check": "Hermes Gate review",
+      "command": "hermes-gate review",
+      "result": "NOT_CONFIGURED; never-adopted public repository; independent review and standard checks used.",
+      "evidence": ".boundary-validation/gate-review.log"
+    },
+    {
+      "check": "clean committed export",
+      "command": "python scripts/export_public_candidate.py --check; python scripts/export_public_candidate.py --destination <new-directory>",
+      "result": "149 explicitly reviewed files; privacy preflight passed; plugins, skills and demo included.",
+      "evidence": ".boundary-validation/export-check.json"
+    },
+    {
+      "check": "exported wheel and source archive",
+      "command": "python -m build; python -m twine check dist/*",
+      "result": "Both artifacts pass; archive inventories contain only reviewed files and standard build metadata.",
+      "evidence": ".boundary-validation/archive-inventory.json"
+    },
+    {
+      "check": "installed wheel and sdist",
+      "command": "Install each artifact in a separate Python 3.12 environment outside the repository; run CLI help/version/source listing and deadline_probe.py.",
+      "result": "Both pass; fast result retained and slow source timed out; imports resolve to installed packages.",
+      "evidence": [
+        ".boundary-validation/wheel-deadline.json",
+        ".boundary-validation/sdist-deadline.json",
+        ".boundary-validation/wheel-import.log",
+        ".boundary-validation/sdist-import.log"
+      ]
+    },
+    {
+      "check": "exported source-archive tests on supported Python",
+      "command": "python -m pytest -ra",
+      "result": "289 passed, 2 opt-in live-model tests skipped on Python 3.12.",
+      "evidence": ".boundary-validation/sdist-tests.log"
+    },
+    {
+      "check": "runtime and evidence preservation",
+      "result": "All src executable AST and prompt constants unchanged; final query receipts, labels, live summary and deadline control byte-identical to base. Receipt companion hashes pass regression checks.",
+      "evidence": [
+        ".boundary-validation/runtime-preservation.json",
+        "tests/test_public_export.py"
+      ]
+    },
+    {
+      "check": "bounded historical claims",
+      "result": "PASS as local_observation only; 15/27 useful results and retained process-control values match evidence; no general quality or speed claim.",
+      "evidence": ".boundary-validation/claim-result.json"
+    }
+  ],
+  "remaining_decisions": [
+    {
+      "id": "D1",
+      "owner": "Roli",
+      "decision": "Whether historical public material warrants a separate history/tag/archive remediation effort.",
+      "reason": "Current-tree cleanup cannot erase old revisions, immutable releases, mirrors, or forks. History rewriting and removal of published artifacts are outside this mandate.",
+      "blocking_current_cleanup": false
+    }
+  ],
+  "deferred_work": [
+    {
+      "item": "Historical rewrite or artifact removal",
+      "reason": "Requires D1; no credentials detected in the bounded scan."
+    },
+    {
+      "item": "New versioned package release",
+      "reason": "No runtime release needed for this source cleanup; existing release artifacts are immutable and unchanged."
+    },
+    {
+      "item": "New live search or paid host evaluation",
+      "reason": "Historical measured evidence preserved; offline regression and installed deterministic controls validate this change."
+    }
+  ],
+  "publication": {
+    "pull_request": "https://github.com/hermes-labs-ai/supersearch/pull/21",
+    "canonical_repository": "https://github.com/hermes-labs-ai/supersearch",
+    "canonical_demo": "https://hermes-labs-ai.github.io/supersearch/",
+    "verification": "Canonical merge/deployment state is checked via the linked PR, GitHub Actions and live demo. Local terminal readback is retained at .boundary-validation/publication.json.",
+    "history_rewritten": false,
+    "visibility_changed": false,
+    "package_released": false
+  }
+}

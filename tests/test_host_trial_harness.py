@@ -43,13 +43,13 @@ def _valid_document(host: str) -> dict:
 def test_host_stdout_validator_accepts_direct_and_claude_envelope():
     schema = _schema()
     codex = _valid_document("codex")
-    claude = _valid_document("claude-fable")
+    claude = _valid_document("claude")
 
     assert run_host_trials._validate_host_stdout(
         "codex", json.dumps(codex), schema
     ) == (True, None)
     assert run_host_trials._validate_host_stdout(
-        "claude-fable", json.dumps({"structured_output": claude}), schema
+        "claude", json.dumps({"structured_output": claude}), schema
     ) == (True, None)
 
 
@@ -88,3 +88,38 @@ def test_host_prompt_shell_quotes_paths_and_query():
 
     assert "SUPERSEARCH_CACHE_DIR='/tmp/cache with space'" in prompt
     assert "'/tmp/bin with space/supersearch' search 'what'\"'\"'s new'" in prompt
+
+
+def test_host_launch_uses_defaults_or_explicit_models(tmp_path, monkeypatch):
+    import subprocess
+    import sys
+
+    for explicit in (False, True):
+        commands = []
+
+        def fake_run(command):
+            commands.append(command)
+            host = "codex" if command[0] == "codex-bin" else "claude"
+            document = _valid_document(host)
+            if host == "claude":
+                document = {"structured_output": document}
+            return subprocess.CompletedProcess(command, 0, json.dumps(document), ""), 1.0
+
+        monkeypatch.setattr(run_host_trials, "_run", fake_run)
+        monkeypatch.setattr(run_host_trials, "_worktree_status", lambda _: "")
+        args = [
+            "run_host_trials.py", "--codex", "codex-bin", "--claude", "claude-bin",
+            "--executable", str(tmp_path / "supersearch"),
+            "--output-dir", str(tmp_path / str(explicit)),
+            "--cache-root", str(tmp_path / "cache"),
+        ]
+        if explicit:
+            args += ["--codex-model", "test-codex-model", "--claude-model", "test-claude-model"]
+        monkeypatch.setattr(sys, "argv", args)
+        assert run_host_trials.main() == 0
+        assert len(commands) == 2
+        for host, command in zip(("codex", "claude"), commands):
+            if explicit:
+                assert command[command.index("--model") + 1] == f"test-{host}-model"
+            else:
+                assert "--model" not in command
