@@ -1,4 +1,4 @@
-"""Round-3 connector fleet (v0.10) — reach-gap closers surfaced by Wave 2A.
+"""Additional regulatory, legal, code, and company search connectors.
 
 Each connector targets a source class the free-engine stack couldn't reach:
 

@@ -1,44 +1,49 @@
-# Distribution plan
+# Distribution and source exports
 
-## Identity
+Install the Python distribution `hermes-supersearch`. Its import package and
+CLI are both `supersearch`; the license is Apache-2.0.
 
-- Public repository name: `supersearch`.
-- Python distribution: `hermes-supersearch` (the case-insensitive
-  `Super-Search` name is occupied on PyPI).
-- Import package and CLI: `supersearch`.
-- License: Apache-2.0.
+## Build and check a release candidate
 
-Recheck package and repository availability immediately before publication.
-This candidate does not reserve or create either identity.
+From a clean checkout with Python 3.10+:
 
-## Exact local artifacts
+```bash
+python -m pip install -e '.[test]' build twine
+python -m pytest
+python scripts/export_public_candidate.py --destination ../supersearch-export
+cd ../supersearch-export
+python -m build
+python -m twine check dist/*
+python -m venv .venv
+.venv/bin/python -m pip install dist/*.whl
+.venv/bin/supersearch search --help
+.venv/bin/supersearch search --list-sources
+```
 
-1. Build the test wheel from the final clean internal Git head.
-2. Install that wheel into a fresh Python 3.10+ environment.
-3. Run offline tests, `supersearch search --help`, `--list-sources`, the
-   deterministic deadline control, and one live receipt.
-4. Create the public source tree with:
+On Windows, use `.venv\Scripts\python` and `.venv\Scripts\supersearch`.
+A live search additionally requires access to the selected public sources.
+See [privacy and cost](PRIVACY-COST.md) and [limitations](LIMITATIONS.md).
 
-   ```bash
-   python scripts/export_public_candidate.py --destination <empty-local-path>
-   ```
+## Public source boundary
 
-5. Compare the generated `PUBLIC-EXPORT-RECEIPT.json` to the final lifecycle
-   receipt. Build any publication sdist and wheel from that allowlisted tree,
-   then repeat the clean-install controls before any remote action.
+`scripts/public-files.txt` lists each reviewed export file explicitly. Adding a
+file to a directory does not authorize its export. Review additions for user,
+contributor, or reproducibility value before adding them to this list. Keep
+operating notes, session output, local configuration, credentials, and private
+integration details out of source exports and package archives.
 
-The public export is allowlisted from the exact Git head. It omits the internal
-Evidence Bridge component, raw host logs, local controls, and the pre-repair
-pack. This avoids promoting the adapter into the product and prevents local
-paths/session diagnostics from becoming public. Product code, tests, docs,
-normalized evaluation, and final live query receipts remain. `MANIFEST.in`
-also enumerates the sanitized evaluation files explicitly; it does not recurse
-through internal host logs or pre-repair results. The internal historical
-changelog is intentionally excluded because it contains machine-relative tool
-paths from before the public Product V1 boundary.
+The exporter reads committed bytes from a clean Git HEAD, checks selected text
+for local paths, and rejects symbolic links. It validates the full selection
+before writing the destination. `PUBLIC-EXPORT-RECEIPT.json` records file hashes
+and the source commit; it is generated metadata, not part of the package API.
+Run `python scripts/export_public_candidate.py --check` to verify that every
+tracked file in this public repository is covered by the reviewed list.
+Automated checks supplement content review; they cannot determine whether new
+prose reveals private operating knowledge.
 
-## Separate authority required
+Published evaluation data includes fixed queries, criteria, measurements,
+limitations, and normalized host reports. Machine-specific logs are not needed
+to install or use the package. [Evaluation documentation](../product_evaluation/README.md)
+distinguishes public evidence from reported host outcomes.
 
-Creating a remote repository, pushing, publishing a package, creating a release,
-or adopting the component in HAL/Fable all remain outside this candidate. No
-publication step is performed by the Product V1 work.
+Source cleanup does not erase prior commits, tags, or released archives.

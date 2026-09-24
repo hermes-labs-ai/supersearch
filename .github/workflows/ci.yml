@@ -28,6 +28,9 @@ jobs:
           pip install -e '.[test]'
           pip install 'ruff==0.15.14'
 
+      - name: Check reviewed public source boundary
+        run: python scripts/export_public_candidate.py --check
+
       - name: Lint
         run: ruff check .
 

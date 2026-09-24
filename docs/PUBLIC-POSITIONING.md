@@ -37,4 +37,3 @@ scale, or an SLA is the actual job.
 - Optional: source-bound Verify.
 - Experimental: local reranking (outside the total-deadline contract), research,
   routing, expansion, and scraper utilities.
-- Internal: Evidence Bridge shadow adapter, status `PHASED_COMPONENT_HOLD`.

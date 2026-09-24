@@ -231,7 +231,6 @@ See [architecture](docs/ARCHITECTURE.md) and the inspected
 | Optional | `supersearch verify` source-bound evidence receipt | Local Ollama evaluator for positive verdicts; otherwise fail-closed `UNVERIFIED` |
 | Optional | authenticated GitHub and self-hosted SearXNG sources | User-supplied credential or service |
 | Experimental | `research`, intelligence routing, query expansion, scraper utilities | Mixed; some paths use local models |
-| Internal | Research Evidence Bridge shadow adapter | Component hold; not integrated or published |
 
 The older positional command `supersearch "query"` remains for compatibility,
 but it reranks and summarizes through local-model-oriented code and is not the

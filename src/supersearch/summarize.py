@@ -1,23 +1,14 @@
 """
 summarize.py — Scaffolded Haiku summarization for SuperSearch results.
 
-Scaffold design based on TierJump research (PF-001 through PF-007):
-- "Guards not curricula" — negative constraints, not teaching
-- One constraint block at top, not per-result
-- Contrastive markers for quality anchoring
-- Prefix injection for structured output
+The prompts constrain summaries to supplied results and request explicit
+citations, missing information, and contradictions.
 """
 
 
 import httpx
 
-# Proven scaffold from TierJump research
-# Combined Guard Constraints + QuickThink scaffold
-# Winner of A/B test across 5 scaffold variants (2026-03-21)
-# Guard constraints prevent hallucination, QuickThink adds analytical depth
-# calibrated: intentional multi-technique (contrastive guards + format + step-by-step);
-# subadditive stacking is accepted — each technique addresses a distinct failure mode
-# (hallucination, structure, synthesis). Measured via blind eval 2026-03-21.
+# Keep citation, grounding, and output-format instructions together.
 SEARCH_SUMMARY_SCAFFOLD = """## CONSTRAINTS (mandatory)
 - Answer ONLY from the search results provided below. NOT from general knowledge.
 - Cite which result (by number) supports each claim. NOT vague references.

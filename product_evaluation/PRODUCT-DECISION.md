@@ -1,45 +1,25 @@
-# Product V1 decision
+# Product V1 evaluation outcome
 
-## Decision: standalone OSS candidate
+The historical evaluation supported a standalone retrieval package centered on
+deadline-bounded heterogeneous search fan-out. The distribution is
+`hermes-supersearch`; its Python import and CLI are `supersearch`. Verify is an
+optional source-bound evidence workflow.
 
-SuperSearch should ship, under separate exact publication authority, as a
-standalone Product V1 centered on deadline-bounded heterogeneous search fan-out.
-The public repository can be named `supersearch`; the PyPI distribution should
-be `hermes-supersearch`, with the `supersearch` import and CLI retained.
+The final evaluation recorded 27 parallel results over three queries, of which
+15 met the preregistered usefulness criteria. Each query had a useful first
+result. These measurements cover one bounded pack, not general search quality.
+See [the benchmark](results/BENCHMARK.md), [human labels](results/HUMAN-EVALUATION.md),
+and [machine receipt](results/PRODUCT-RECEIPT.json) for the exact evidence.
 
-Verify stays as an optional source-bound evidence workflow. The Evidence Bridge
-shadow adapter stays an unpublished internal appendix with terminal status
-`PHASED_COMPONENT_HOLD`; it is neither the product center nor an integration
-recommendation.
+The generic CLI and a reported Claude Code trial used the same JSON protocol.
+The Codex network-enabled summary failed its schema and is not a protocol PASS;
+a separate sandbox trial reported source unavailability honestly. The raw
+agent-host logs are not public, so these host outcomes are reported observations.
 
-## Evidence for the decision
+Reproducible regressions to check include an install that cannot emit parseable
+JSON, a failed source mislabeled as successful, or a slow source extending the
+parallel deadline. Product APIs, deterministic controls, query receipts, and
+limitations remain available for independent evaluation.
 
-- clean wheel install on Python 3.13.12: PASS;
-- offline suite: 255 passed, 2 opt-in live-model skips at the last product run;
-- final live pack: 27 parallel results, 15 criterion-useful, useful rank 1 for
-  all three queries;
-- final live parallel calls: 8.668 s, 12.341 s, and 2.509 s versus 22.590 s,
-  14.095 s, and 16.273 s serial under changing network conditions;
-- deterministic process control: 250 ms deadline, partial receipt in 253 ms,
-  process exit in 577 ms despite a registered 30-second cleanup hook;
-- generic CLI, Claude/Fable, and network-enabled Codex all used the same JSON
-  protocol without an adapter; sandboxed Codex converted DNS denial into exact
-  `unavailable` receipts;
-- the README leads with the user job, one truthful install path, core/optional/
-  experimental boundaries, privacy/network/cost, and nonclaims.
-
-## Exact next action
-
-Prepare a new public repository from the allowlisted local export, preserving
-Apache-2.0 and the final source/hash receipt, then publish the
-`hermes-supersearch` wheel only under separate exact authority. Do not publish
-the raw internal Evidence Bridge appendix or raw host logs. No product-choice
-or adapter-choice gate remains.
-
-## Next falsifier
-
-A fresh supported-platform install that cannot produce a parseable receipt, a
-source failure that becomes `ok`, or caller-visible latency materially exceeding
-the declared parallel deadline after the receipt repair should hold publication.
-Ordinary ranking noise, optional dependency slimming, and framework adapters are
-backlog, not reasons to reopen Product V1.
+This document summarizes historical product evidence. It is not an instruction
+to publish or a promise about future product direction.

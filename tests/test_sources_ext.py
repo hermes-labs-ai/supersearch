@@ -34,7 +34,7 @@ def test_all_connectors_registered():
 
 
 def test_adapter_converts_dicts_to_searchresult(monkeypatch):
-    """The adapter converts SIGMA's list[dict] contract to list[SearchResult]."""
+    """The adapter converts the connector list[dict] contract to list[SearchResult]."""
     class _FakeDictSource:
         def search(self, query, max_results=5):
             return [

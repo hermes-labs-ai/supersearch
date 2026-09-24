@@ -1,4 +1,4 @@
-"""Run the preregistered Product V1 pack through Codex and Claude/Fable."""
+"""Run the preregistered Product V1 pack through Codex and Claude Code."""
 
 from __future__ import annotations
 
@@ -25,7 +25,7 @@ def _prompt(host: str, executable: Path, cache_dir: Path, prereg: dict) -> str:
     quoted_sources = shlex.quote(",".join(config["sources"]))
     for query in prereg["queries"]:
         commands.append(
-            f"{query['id']}: {unset} SUPERSEARCH_CACHE_DIR={quoted_cache_dir} "
+            f"# {query['id']}\n{unset} SUPERSEARCH_CACHE_DIR={quoted_cache_dir} "
             f"{quoted_executable} search {shlex.quote(query['query'])} "
             f"--sources {quoted_sources} "
             f"--max-per-source {config['max_per_source']} "
@@ -89,7 +89,7 @@ def _validate_host_stdout(
         return False, f"stdout is not JSON at line {exc.lineno}, column {exc.colno}"
 
     document = outer
-    if host == "claude-fable":
+    if host == "claude":
         if isinstance(outer, dict) and isinstance(
             outer.get("structured_output"), dict
         ):
@@ -145,6 +145,8 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--codex", type=Path, required=True)
     parser.add_argument("--claude", type=Path, required=True)
+    parser.add_argument("--codex-model", help="Optional model supported by your Codex installation")
+    parser.add_argument("--claude-model", help="Optional model supported by your Claude installation")
     parser.add_argument("--executable", type=Path, required=True)
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--cache-root", type=Path, required=True)
@@ -182,8 +184,7 @@ def main() -> int:
                 "--ephemeral",
                 "--sandbox",
                 args.codex_sandbox,
-                "--model",
-                "gpt-5.4-mini",
+                *(["--model", args.codex_model] if args.codex_model else []),
                 "--cd",
                 str(repo),
                 "--output-schema",
@@ -199,9 +200,9 @@ def main() -> int:
 
     if args.only in {"all", "claude"}:
         claude_prompt = _prompt(
-            "claude-fable",
+            "claude",
             args.executable.resolve(),
-            (args.cache_root / "claude-fable").resolve(),
+            (args.cache_root / "claude").resolve(),
             prereg,
         )
         claude_schema = {
@@ -211,8 +212,7 @@ def main() -> int:
             [
                 str(args.claude),
                 "--print",
-                "--model",
-                "fable",
+                *(["--model", args.claude_model] if args.claude_model else []),
                 "--safe-mode",
                 "--no-session-persistence",
                 "--permission-mode",
@@ -225,10 +225,10 @@ def main() -> int:
                 claude_prompt,
             ]
         )
-        (args.output_dir / "claude-fable.stdout.txt").write_text(claude.stdout)
-        (args.output_dir / "claude-fable.stderr.txt").write_text(claude.stderr)
+        (args.output_dir / "claude.stdout.txt").write_text(claude.stdout)
+        (args.output_dir / "claude.stderr.txt").write_text(claude.stderr)
         hosts.append(
-            _host_summary("claude-fable", claude, claude_ms, schema)
+            _host_summary("claude", claude, claude_ms, schema)
         )
 
     worktree_unchanged = _worktree_status(repo) == initial_worktree_status

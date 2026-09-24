@@ -53,7 +53,7 @@ results.
 python examples/agent_search.py
 ```
 
-The same JSON works in a shell tool, Python, Codex, Claude/Fable, or any host
+The same JSON works in a shell tool, Python, Codex, Claude Code, or any host
 that can launch a process. No framework adapter is required.
 
 ## 4:10–5:00 — refusal and decision
@@ -65,5 +65,3 @@ you need managed extraction, synthesis, or an SLA. Use SuperSearch when local,
 multi-surface scouting with one deadline and explicit failure state is the job.”
 
 Product recommendation: standalone OSS candidate. Verify is optional. The
-Evidence Bridge remains an unpublished `PHASED_COMPONENT_HOLD`, not the product
-center and not an integration recommendation.

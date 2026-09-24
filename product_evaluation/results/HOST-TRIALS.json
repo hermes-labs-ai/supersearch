@@ -10,28 +10,41 @@
     {
       "host": "generic CLI harness",
       "status": "PASS",
-      "queries": {"Q1": "ok/6", "Q2": "ok/12", "Q3": "ok/9"},
+      "queries": {
+        "Q1": "ok/6",
+        "Q2": "ok/12",
+        "Q3": "ok/9"
+      },
       "one_json_document_per_call": true,
       "bespoke_adapter_needed": false,
       "public_evidence": "PUBLIC-LIVE-SUMMARY.json",
-      "evidence_sha256": "04d248541c9ac8cf15f7360aa72370ff03aeca6d78cf3db9ba0259d6692442ae"
+      "source_machine_summary_sha256": "04d248541c9ac8cf15f7360aa72370ff03aeca6d78cf3db9ba0259d6692442ae",
+      "evidence_sha256": "714bca05572fc847b79f1891fb1ceb8d8746892e496e97b45010eb1d32deff1b"
     },
     {
-      "host": "claude-fable",
+      "host": "Claude Code",
       "status": "PASS",
-      "queries": {"Q1": "ok/6", "Q2": "ok/11", "Q3": "ok/9"},
+      "queries": {
+        "Q1": "ok/6",
+        "Q2": "ok/11",
+        "Q3": "ok/9"
+      },
       "useful_result_selected_for_each_query": true,
       "one_json_document_per_call": true,
       "bespoke_adapter_needed": false,
       "supersearch_keys_removed": true,
       "host_model_cost_is_not_supersearch_cost": true,
-      "internal_raw_evidence_sha256": "955c6e860f85c1e4fbc1cf5982dbb0a39d810d46343284b67700d701f7387059",
-      "raw_evidence_public": false
+      "raw_evidence_public": false,
+      "raw_evidence_sha256": "955c6e860f85c1e4fbc1cf5982dbb0a39d810d46343284b67700d701f7387059"
     },
     {
       "host": "codex network-enabled",
       "status": "PARTIAL_HOST_SUMMARY_SCHEMA_INVALID",
-      "queries": {"Q1": "ok/6", "Q2": "ok/12", "Q3": "ok/9"},
+      "queries": {
+        "Q1": "ok/6",
+        "Q2": "ok/12",
+        "Q3": "ok/9"
+      },
       "raw_supersearch_receipts_in_trace": 3,
       "raw_supersearch_receipts_parseable": true,
       "useful_result_reported_for_each_query": true,
@@ -41,27 +54,36 @@
       "host_summary_schema_valid": false,
       "protocol_pass": false,
       "host_output_disposition": "Codex serialized each complete source object into the string-valued source_states field instead of returning only its status. The raw SuperSearch receipts are parseable, but the host summary is invalid under the fixed schema and is not counted as a protocol PASS.",
-      "internal_raw_evidence_sha256": "3e22777a5a69a84ac6a3e83f7898706f53016c5fc3ac4ab0ce70a215a068cfe6",
-      "raw_evidence_public": false
+      "raw_evidence_public": false,
+      "raw_evidence_sha256": "3e22777a5a69a84ac6a3e83f7898706f53016c5fc3ac4ab0ce70a215a068cfe6"
     },
     {
       "host": "codex workspace sandbox negative control",
       "status": "PASS_FAILURE_HONESTY",
-      "queries": {"Q1": "unavailable/0", "Q2": "unavailable/0", "Q3": "unavailable/0"},
+      "queries": {
+        "Q1": "unavailable/0",
+        "Q2": "unavailable/0",
+        "Q3": "unavailable/0"
+      },
       "source_state": "all four failed because the host sandbox denied DNS",
       "one_json_document_per_call": true,
       "bespoke_adapter_needed": false,
-      "internal_raw_evidence_sha256": "318e10789f613a410e54147fbda18d754d3e3311662a93832373318bcd8b2e41",
-      "raw_evidence_public": false
+      "raw_evidence_public": false,
+      "raw_evidence_sha256": "318e10789f613a410e54147fbda18d754d3e3311662a93832373318bcd8b2e41"
     }
   ],
-  "public_evidence_policy": "Normalized claims and final query receipts are exported. Raw host logs are retained internally and bound by hash because they contain local session diagnostics.",
+  "public_evidence_policy": "Normalized reports and final query receipts are public. Agent-host raw logs are not public; their hashes identify historical observations but do not let a reader independently inspect those logs.",
   "launch_friction": [
-    "installed Codex CLI default model required a newer CLI, resolved by choosing locally advertised gpt-5.4-mini",
-    "Claude rejected the draft marker in the supplied schema, resolved by removing that marker for its CLI",
-    "Codex structured output requires fixed map keys and strict enums",
-    "the terminal harness validates actual host stdout locally instead of trusting a zero process exit",
-    "network-disabled Codex sandbox correctly yielded unavailable receipts; useful retrieval required an explicitly network-enabled host sandbox"
+    "Host CLI/model compatibility must be checked before a trial.",
+    "Claude requires the schema without its draft marker.",
+    "Codex structured output requires fixed map keys and strict enums.",
+    "The harness validates actual host stdout locally instead of trusting a zero process exit.",
+    "A network-disabled host correctly yielded unavailable receipts."
   ],
-  "nonclaim": "Host prose and selections demonstrate integration usability only, not factual truth or general search quality."
+  "nonclaim": "Host prose and selections demonstrate integration usability only, not factual truth or general search quality.",
+  "public_redaction": {
+    "date": "2026-09-24",
+    "source_sha256": "029842af8c4f0df3b30e9f53c758af767b4b789d6d83d54d7b2963a9a6bc6930",
+    "scope": "Normalized host labels and setup notes. Trial statuses, counts, schema-failure disclosure, and raw evidence hashes are unchanged; the public summary reference now hashes the named public file."
+  }
 }

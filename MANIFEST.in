@@ -1,9 +1,53 @@
 include CITATION.cff CODE_OF_CONDUCT.md CONTRIBUTING.md SECURITY.md llms.txt
 exclude CHANGELOG.md
 exclude AGENTS.md
-recursive-include docs *.md *.json
-recursive-include examples *.md *.py
-recursive-include tests *.py
+prune docs
+include docs/AGENT-INTEGRATION.md
+include docs/ARCHITECTURE.md
+include docs/CAPABILITY-MAP.md
+include docs/DISTRIBUTION.md
+include docs/LIMITATIONS.md
+include docs/MARKET-NOTES.md
+include docs/PRIVACY-COST.md
+include docs/PUBLIC-POSITIONING.md
+include docs/ROADMAP.md
+include docs/search-receipt-v1.schema.json
+include docs/verify-receipt-v1.md
+prune examples
+include examples/agent_search.py
+include examples/verify.md
+prune tests
+include tests/__init__.py
+include tests/conftest.py
+include tests/test_agent_plugin.py
+include tests/test_antidetect.py
+include tests/test_cache.py
+include tests/test_crunchbase_lite.py
+include tests/test_expand.py
+include tests/test_fact_audit.py
+include tests/test_host_trial_harness.py
+include tests/test_intelligence_ab.py
+include tests/test_intelligence_live.py
+include tests/test_main.py
+include tests/test_product.py
+include tests/test_rerank.py
+include tests/test_research.py
+include tests/test_research_cli.py
+include tests/test_routing.py
+include tests/test_scrapers.py
+include tests/test_search.py
+include tests/test_self_improve.py
+include tests/test_sources.py
+include tests/test_sources_ext.py
+include tests/test_summarize.py
+include tests/test_verify_deep.py
+include tests/test_verify_formatter.py
+include tests/test_verify_gates.py
+include tests/test_verify_nli.py
+include tests/test_verify_pipeline_audit.py
+include tests/test_verify_retrieval.py
+include tests/test_verify_scaffold.py
+include tests/test_public_export.py
 prune product_evaluation
 include product_evaluation/FIVE-MINUTE-SHOWCASE.md
 include product_evaluation/PREREGISTRATION.json
@@ -23,7 +67,24 @@ include product_evaluation/results/HUMAN-EVALUATION.json
 include product_evaluation/results/HUMAN-EVALUATION.md
 include product_evaluation/results/PRODUCT-RECEIPT.json
 include product_evaluation/results/PUBLIC-LIVE-SUMMARY.json
-include product_evaluation/results/live-final/Q*.json
-include product_evaluation/results/live-final/Q*.stderr.txt
-prune evidence_showcase
+include product_evaluation/results/live-final/Q1.parallel.json
+include product_evaluation/results/live-final/Q1.parallel.stderr.txt
+include product_evaluation/results/live-final/Q1.serial.json
+include product_evaluation/results/live-final/Q1.serial.stderr.txt
+include product_evaluation/results/live-final/Q2.parallel.json
+include product_evaluation/results/live-final/Q2.parallel.stderr.txt
+include product_evaluation/results/live-final/Q2.serial.json
+include product_evaluation/results/live-final/Q2.serial.stderr.txt
+include product_evaluation/results/live-final/Q3.parallel.json
+include product_evaluation/results/live-final/Q3.parallel.stderr.txt
+include product_evaluation/results/live-final/Q3.serial.json
+include product_evaluation/results/live-final/Q3.serial.stderr.txt
+prune scripts
+include scripts/export_public_candidate.py scripts/public-files.txt
+include HUMAN_REPORT.md ACTION_MANIFEST.json
 global-exclude __pycache__ *.py[cod]
+
+include plugin.json gemini-extension.json
+include .agents/plugins/marketplace.json
+include .claude-plugin/marketplace.json .claude-plugin/plugin.json
+include skills/supersearch/SKILL.md
