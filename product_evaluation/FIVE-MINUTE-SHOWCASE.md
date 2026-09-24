@@ -64,4 +64,4 @@ provider directly when one index is enough; use a hosted research system when
 you need managed extraction, synthesis, or an SLA. Use SuperSearch when local,
 multi-surface scouting with one deadline and explicit failure state is the job.”
 
-Product recommendation: standalone OSS candidate. Verify is optional. The
+SuperSearch provides the retrieval receipt; Verify is an optional workflow.
