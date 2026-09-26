@@ -823,12 +823,11 @@ def _parse_startpage_html(html_text: str, max_results: int = 5) -> list[SearchRe
 
 
 def _ext_result_adapter(inner_cls):
-    """Wrap a ``sources_ext`` connector (search → list[dict]) as a SuperSearch
-    source (search → list[SearchResult]).
+    """Wrap a ``sources_ext`` connector as a SuperSearch source.
 
-    v0.10 round-3 connectors (EurLex, Lexology, GitHubDeep, OpenCorporates,
-    SECEdgar) were built against a minimal dict contract and don't depend on
-    supersearch internals. This adapter is the integration seam.
+    Dictionary-based connectors can return a list of records or an envelope
+    containing ``results`` and an error or rate-limit flag. This adapter
+    converts their results and reports errors to the source-status collector.
     """
 
     class _Adapted:
@@ -838,24 +837,36 @@ def _ext_result_adapter(inner_cls):
         def search(self, query: str, max_results: int = 5) -> list[SearchResult]:
             try:
                 raw = self._inner.search(query, max_results=max_results) or []
+                if isinstance(raw, dict):
+                    if raw.get("error"):
+                        report(f"{inner_cls.__name__} search error: {raw['error']}")
+                    if raw.get("rate_limited"):
+                        report(f"{inner_cls.__name__} rate limited")
+                    raw = raw.get("results", [])
+                if not isinstance(raw, (list, tuple)):
+                    report(f"{inner_cls.__name__} returned invalid result data")
+                    return []
+                out: list[SearchResult] = []
+                for item in raw[:max_results]:
+                    if not isinstance(item, dict):
+                        continue
+                    if item.get("error"):
+                        report(f"{inner_cls.__name__} search error: {item['error']}")
+                        continue
+                    url = item.get("url", "") or ""
+                    if not url:
+                        continue
+                    out.append(
+                        SearchResult(
+                            title=item.get("title", "") or url,
+                            url=url,
+                            snippet=item.get("snippet", "") or "",
+                        )
+                    )
+                return out
             except Exception as exc:  # noqa: BLE001 — parity with sibling sources
                 report(f"{inner_cls.__name__} search error: {exc}")
                 return []
-            out: list[SearchResult] = []
-            for item in raw[:max_results]:
-                if not isinstance(item, dict):
-                    continue
-                url = item.get("url", "") or ""
-                if not url:
-                    continue
-                out.append(
-                    SearchResult(
-                        title=item.get("title", "") or url,
-                        url=url,
-                        snippet=item.get("snippet", "") or "",
-                    )
-                )
-            return out
 
     _Adapted.__name__ = f"{inner_cls.__name__}Adapter"
     return _Adapted
