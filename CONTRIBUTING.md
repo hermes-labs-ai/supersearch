@@ -1,5 +1,7 @@
 # Contributing
 
+Bugs and feature requests: https://github.com/hermes-labs-ai/supersearch/issues
+
 ## Getting started
 
 1. Fork the repository.
