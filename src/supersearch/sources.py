@@ -858,7 +858,7 @@ def _ext_result_adapter(inner_cls):
                     report(f"{inner_cls.__name__} returned invalid result data")
                     return []
                 out: list[SearchResult] = []
-                for item in raw[:max_results]:
+                for item in raw:
                     if isinstance(item, SearchResult):
                         markers = sorted(set(item.sources or ()) & error_markers)
                         if markers:
@@ -867,7 +867,8 @@ def _ext_result_adapter(inner_cls):
                                     f"{inner_cls.__name__} source error marker: {marker}"
                                 )
                             continue
-                        out.append(item)
+                        if len(out) < max_results:
+                            out.append(item)
                         continue
                     if not isinstance(item, dict):
                         report(f"{inner_cls.__name__} returned invalid result data")
@@ -879,13 +880,14 @@ def _ext_result_adapter(inner_cls):
                     if not url:
                         report(f"{inner_cls.__name__} returned invalid result data")
                         continue
-                    out.append(
-                        SearchResult(
-                            title=item.get("title", "") or url,
-                            url=url,
-                            snippet=item.get("snippet", "") or "",
+                    if len(out) < max_results:
+                        out.append(
+                            SearchResult(
+                                title=item.get("title", "") or url,
+                                url=url,
+                                snippet=item.get("snippet", "") or "",
+                            )
                         )
-                    )
                 return out
             except Exception as exc:  # noqa: BLE001 — parity with sibling sources
                 report(f"{inner_cls.__name__} search error: {exc}")

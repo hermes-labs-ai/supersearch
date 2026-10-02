@@ -260,6 +260,30 @@ def test_adapter_keeps_valid_search_results_while_reporting_sentinel(monkeypatch
     assert "ssrn_blocked" in statuses[0]["diagnostics"][0]
 
 
+def test_adapter_max_results_counts_content_not_sentinels():
+    expected = SearchResult(
+        title="SSRN paper",
+        url="https://ssrn.com/abstract=890",
+        snippet="A paper summary",
+    )
+    sentinel = SearchResult(
+        title="SSRN Access Blocked",
+        url="https://api.ssrn.com/content/v1/bindings/search",
+        snippet="SSRN API is behind Cloudflare bot protection.",
+        sources=["ssrn_blocked"],
+    )
+
+    class _MixedSource:
+        def search(self, query, max_results=5):
+            return [sentinel, expected]
+
+    adapted = sources._ext_result_adapter(_MixedSource)()
+    results = adapted.search("q", max_results=1)
+
+    assert len(results) == 1
+    assert results[0].url == expected.url
+
+
 def test_adapter_reports_malformed_items_without_dropping_valid_results(monkeypatch):
     expected = SearchResult(
         title="SSRN paper",
