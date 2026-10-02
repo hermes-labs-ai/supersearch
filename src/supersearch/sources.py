@@ -823,13 +823,20 @@ def _parse_startpage_html(html_text: str, max_results: int = 5) -> list[SearchRe
 
 
 def _ext_result_adapter(inner_cls):
-    """Wrap a ``sources_ext`` connector (search → list[dict]) as a SuperSearch
-    source (search → list[SearchResult]).
+    """Wrap a ``sources_ext`` connector as a SuperSearch source.
 
-    v0.10 round-3 connectors (EurLex, Lexology, GitHubDeep, OpenCorporates,
-    SECEdgar) were built against a minimal dict contract and don't depend on
-    supersearch internals. This adapter is the integration seam.
+    Connectors may return ``SearchResult`` objects, dictionaries, or an envelope
+    containing ``results`` and an error or rate-limit flag. The adapter preserves
+    structured results and reports errors or malformed data to the status collector.
     """
+
+    error_markers = {
+        "ssrn_blocked",
+        "ssrn_timeout",
+        "ssrn_error",
+        "lexology_timeout",
+        "lexology_error",
+    }
 
     class _Adapted:
         def __init__(self):
@@ -837,25 +844,54 @@ def _ext_result_adapter(inner_cls):
 
         def search(self, query: str, max_results: int = 5) -> list[SearchResult]:
             try:
-                raw = self._inner.search(query, max_results=max_results) or []
+                raw = self._inner.search(query, max_results=max_results)
+                if isinstance(raw, dict):
+                    if raw.get("error"):
+                        report(f"{inner_cls.__name__} search error: {raw['error']}")
+                    if raw.get("rate_limited"):
+                        report(f"{inner_cls.__name__} rate limited")
+                    if "results" not in raw:
+                        report(f"{inner_cls.__name__} returned invalid result data")
+                        return []
+                    raw = raw["results"]
+                if not isinstance(raw, (list, tuple)):
+                    report(f"{inner_cls.__name__} returned invalid result data")
+                    return []
+                out: list[SearchResult] = []
+                for item in raw:
+                    if isinstance(item, SearchResult):
+                        markers = sorted(set(item.sources or ()) & error_markers)
+                        if markers:
+                            for marker in markers:
+                                report(
+                                    f"{inner_cls.__name__} source error marker: {marker}"
+                                )
+                            continue
+                        if len(out) < max_results:
+                            out.append(item)
+                        continue
+                    if not isinstance(item, dict):
+                        report(f"{inner_cls.__name__} returned invalid result data")
+                        continue
+                    if item.get("error"):
+                        report(f"{inner_cls.__name__} search error: {item['error']}")
+                        continue
+                    url = item.get("url", "") or ""
+                    if not url:
+                        report(f"{inner_cls.__name__} returned invalid result data")
+                        continue
+                    if len(out) < max_results:
+                        out.append(
+                            SearchResult(
+                                title=item.get("title", "") or url,
+                                url=url,
+                                snippet=item.get("snippet", "") or "",
+                            )
+                        )
+                return out
             except Exception as exc:  # noqa: BLE001 — parity with sibling sources
                 report(f"{inner_cls.__name__} search error: {exc}")
                 return []
-            out: list[SearchResult] = []
-            for item in raw[:max_results]:
-                if not isinstance(item, dict):
-                    continue
-                url = item.get("url", "") or ""
-                if not url:
-                    continue
-                out.append(
-                    SearchResult(
-                        title=item.get("title", "") or url,
-                        url=url,
-                        snippet=item.get("snippet", "") or "",
-                    )
-                )
-            return out
 
     _Adapted.__name__ = f"{inner_cls.__name__}Adapter"
     return _Adapted
