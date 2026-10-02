@@ -825,10 +825,18 @@ def _parse_startpage_html(html_text: str, max_results: int = 5) -> list[SearchRe
 def _ext_result_adapter(inner_cls):
     """Wrap a ``sources_ext`` connector as a SuperSearch source.
 
-    Dictionary-based connectors can return a list of records or an envelope
-    containing ``results`` and an error or rate-limit flag. This adapter
-    converts their results and reports errors to the source-status collector.
+    Connectors may return ``SearchResult`` objects, dictionaries, or an envelope
+    containing ``results`` and an error or rate-limit flag. The adapter preserves
+    structured results and reports errors or malformed data to the status collector.
     """
+
+    error_markers = {
+        "ssrn_blocked",
+        "ssrn_timeout",
+        "ssrn_error",
+        "lexology_timeout",
+        "lexology_error",
+    }
 
     class _Adapted:
         def __init__(self):
@@ -851,13 +859,25 @@ def _ext_result_adapter(inner_cls):
                     return []
                 out: list[SearchResult] = []
                 for item in raw[:max_results]:
+                    if isinstance(item, SearchResult):
+                        markers = sorted(set(item.sources or ()) & error_markers)
+                        if markers:
+                            for marker in markers:
+                                report(
+                                    f"{inner_cls.__name__} source error marker: {marker}"
+                                )
+                            continue
+                        out.append(item)
+                        continue
                     if not isinstance(item, dict):
+                        report(f"{inner_cls.__name__} returned invalid result data")
                         continue
                     if item.get("error"):
                         report(f"{inner_cls.__name__} search error: {item['error']}")
                         continue
                     url = item.get("url", "") or ""
                     if not url:
+                        report(f"{inner_cls.__name__} returned invalid result data")
                         continue
                     out.append(
                         SearchResult(

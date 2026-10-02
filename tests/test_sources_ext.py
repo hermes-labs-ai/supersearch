@@ -56,7 +56,7 @@ def test_adapter_converts_dicts_to_searchresult(monkeypatch):
 
 
 def test_adapter_skips_items_without_url():
-    """Items without a URL are dropped silently; empty dicts don't crash."""
+    """Items without a URL are dropped and reported; empty dicts don't crash."""
     class _FakeBad:
         def search(self, query, max_results=5):
             return [
@@ -146,6 +146,150 @@ def test_adapter_malformed_results_are_failed(monkeypatch, raw):
     assert any("invalid result data" in item for item in statuses[0]["diagnostics"])
     if raw == {"error": "upstream down"}:
         assert any("upstream down" in item for item in statuses[0]["diagnostics"])
+
+
+def test_adapter_preserves_search_result_items(monkeypatch):
+    expected = SearchResult(
+        title="SSRN paper",
+        url="https://ssrn.com/abstract=123",
+        snippet="A paper summary",
+    )
+
+    class _SearchResultSource:
+        def search(self, query, max_results=5):
+            return [expected]
+
+    monkeypatch.setattr(
+        sources,
+        "_source_map",
+        lambda: {"ssrn": sources._ext_result_adapter(_SearchResultSource)},
+    )
+    statuses = []
+
+    results = sources.search_all(
+        "q", sources=["ssrn"], parallel=False, source_statuses=statuses
+    )
+
+    assert len(results) == 1
+    assert (results[0].title, results[0].url, results[0].snippet) == (
+        expected.title,
+        expected.url,
+        expected.snippet,
+    )
+    assert statuses[0]["status"] == "completed"
+    assert statuses[0]["result_count"] == 1
+
+
+@pytest.mark.parametrize(
+    "marker",
+    [
+        "ssrn_blocked",
+        "ssrn_timeout",
+        "ssrn_error",
+        "lexology_timeout",
+        "lexology_error",
+    ],
+)
+def test_adapter_reports_structured_search_result_errors(monkeypatch, marker):
+    sentinel = SearchResult(
+        title="Connector status",
+        url="https://example.test/source-status",
+        snippet="Source-provided diagnostic record",
+        sources=[marker],
+    )
+
+    class _SentinelSource:
+        def search(self, query, max_results=5):
+            return [sentinel]
+
+    monkeypatch.setattr(
+        sources,
+        "_source_map",
+        lambda: {"connector": sources._ext_result_adapter(_SentinelSource)},
+    )
+    statuses = []
+
+    results = sources.search_all(
+        "q", sources=["connector"], parallel=False, source_statuses=statuses
+    )
+
+    assert results == []
+    assert statuses[0]["status"] == "failed"
+    assert statuses[0]["result_count"] == 0
+    assert statuses[0]["diagnostics"] == [
+        f"_SentinelSource source error marker: {marker}"
+    ]
+
+
+def test_adapter_keeps_valid_search_results_while_reporting_sentinel(monkeypatch):
+    expected = SearchResult(
+        title="SSRN paper",
+        url="https://ssrn.com/abstract=789",
+        snippet="A paper summary",
+    )
+    sentinel = SearchResult(
+        title="SSRN Access Blocked",
+        url="https://api.ssrn.com/content/v1/bindings/search",
+        snippet="SSRN API is behind Cloudflare bot protection.",
+        sources=["ssrn_blocked"],
+    )
+
+    class _MixedSource:
+        def search(self, query, max_results=5):
+            return [expected, sentinel]
+
+    monkeypatch.setattr(
+        sources,
+        "_source_map",
+        lambda: {"ssrn": sources._ext_result_adapter(_MixedSource)},
+    )
+    statuses = []
+
+    results = sources.search_all(
+        "q", sources=["ssrn"], parallel=False, source_statuses=statuses
+    )
+
+    assert len(results) == 1
+    assert (results[0].title, results[0].url, results[0].snippet) == (
+        expected.title,
+        expected.url,
+        expected.snippet,
+    )
+    assert statuses[0]["status"] == "degraded"
+    assert statuses[0]["result_count"] == 1
+    assert "ssrn_blocked" in statuses[0]["diagnostics"][0]
+
+
+def test_adapter_reports_malformed_items_without_dropping_valid_results(monkeypatch):
+    expected = SearchResult(
+        title="SSRN paper",
+        url="https://ssrn.com/abstract=456",
+        snippet="A paper summary",
+    )
+
+    class _MixedSource:
+        def search(self, query, max_results=5):
+            return [expected, "invalid record", {"url": "https://example.test/valid"}]
+
+    monkeypatch.setattr(
+        sources,
+        "_source_map",
+        lambda: {"mixed": sources._ext_result_adapter(_MixedSource)},
+    )
+    statuses = []
+
+    results = sources.search_all(
+        "q", sources=["mixed"], parallel=False, source_statuses=statuses
+    )
+
+    assert [result.url for result in results] == [
+        expected.url,
+        "https://example.test/valid",
+    ]
+    assert statuses[0]["status"] == "degraded"
+    assert statuses[0]["result_count"] == 2
+    assert len(statuses[0]["diagnostics"]) == 1
+    assert "invalid result data" in statuses[0]["diagnostics"][0]
 
 
 def test_adapter_respects_max_results():
