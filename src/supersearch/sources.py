@@ -836,13 +836,16 @@ def _ext_result_adapter(inner_cls):
 
         def search(self, query: str, max_results: int = 5) -> list[SearchResult]:
             try:
-                raw = self._inner.search(query, max_results=max_results) or []
+                raw = self._inner.search(query, max_results=max_results)
                 if isinstance(raw, dict):
                     if raw.get("error"):
                         report(f"{inner_cls.__name__} search error: {raw['error']}")
                     if raw.get("rate_limited"):
                         report(f"{inner_cls.__name__} rate limited")
-                    raw = raw.get("results", [])
+                    if "results" not in raw:
+                        report(f"{inner_cls.__name__} returned invalid result data")
+                        return []
+                    raw = raw["results"]
                 if not isinstance(raw, (list, tuple)):
                     report(f"{inner_cls.__name__} returned invalid result data")
                     return []

@@ -83,6 +83,71 @@ def test_adapter_swallows_search_exceptions():
     assert results == []
 
 
+@pytest.mark.parametrize(
+    "raw",
+    [
+        pytest.param([], id="empty-list"),
+        pytest.param({"results": []}, id="empty-envelope"),
+    ],
+)
+def test_adapter_valid_empty_results_are_completed(monkeypatch, raw):
+    class _EmptySource:
+        def search(self, query, max_results=5):
+            return raw
+
+    monkeypatch.setattr(
+        sources,
+        "_source_map",
+        lambda: {"empty": sources._ext_result_adapter(_EmptySource)},
+    )
+    statuses = []
+
+    results = sources.search_all(
+        "q", sources=["empty"], parallel=False, source_statuses=statuses
+    )
+
+    assert results == []
+    assert len(statuses) == 1
+    assert statuses[0]["status"] == "completed"
+    assert statuses[0]["result_count"] == 0
+    assert statuses[0]["diagnostics"] == []
+
+
+@pytest.mark.parametrize(
+    "raw",
+    [
+        pytest.param(None, id="none"),
+        pytest.param({}, id="empty-envelope-missing-results"),
+        pytest.param({"error": "upstream down"}, id="error-without-results"),
+        pytest.param({"results": None}, id="none-results"),
+        pytest.param({"results": "not-a-list"}, id="non-list-results"),
+    ],
+)
+def test_adapter_malformed_results_are_failed(monkeypatch, raw):
+    class _MalformedSource:
+        def search(self, query, max_results=5):
+            return raw
+
+    monkeypatch.setattr(
+        sources,
+        "_source_map",
+        lambda: {"malformed": sources._ext_result_adapter(_MalformedSource)},
+    )
+    statuses = []
+
+    results = sources.search_all(
+        "q", sources=["malformed"], parallel=False, source_statuses=statuses
+    )
+
+    assert results == []
+    assert len(statuses) == 1
+    assert statuses[0]["status"] == "failed"
+    assert statuses[0]["result_count"] == 0
+    assert any("invalid result data" in item for item in statuses[0]["diagnostics"])
+    if raw == {"error": "upstream down"}:
+        assert any("upstream down" in item for item in statuses[0]["diagnostics"])
+
+
 def test_adapter_respects_max_results():
     """Adapter caps output at max_results."""
     class _Many:
