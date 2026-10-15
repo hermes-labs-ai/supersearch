@@ -19,10 +19,12 @@ class GitHubDeepSource:
 
     def search(self, query: str, max_results: int = 10) -> dict:
         """
-        Search GitHub repos matching query, then fetch issues + wiki from top-3.
+        Search GitHub repos matching query, then fetch issues + README from top-3.
         Returns combined results with source_type populated.
         """
         results = []
+        self.rate_limited = False
+        self._errors: list[str] = []
 
         # Step 1: Search repos
         repo_params = {
@@ -50,7 +52,9 @@ class GitHubDeepSource:
         except Exception as e:
             return {"results": [], "error": str(e), "rate_limited": False}
 
-        # Step 2: For each repo, fetch issues + wiki
+        # Step 2: For each repo, fetch issues + README. GitHub's wiki lives in
+        # a separate repository, not at /repos/{owner}/{repo}/contents/wiki.
+        # That endpoint usually returns 404 and cost three serial requests.
         for repo in repos[:3]:
             owner = repo["owner"]["login"]
             repo_name = repo["name"]
@@ -58,10 +62,8 @@ class GitHubDeepSource:
             # Fetch issues
             issue_results = self._fetch_issues(owner, repo_name)
             results.extend(issue_results)
-
-            # Fetch wiki (if enabled)
-            wiki_results = self._fetch_wiki(owner, repo_name)
-            results.extend(wiki_results)
+            if self.rate_limited:
+                break
 
             # Add README if it exists
             time.sleep(self.RATE_LIMIT_SLEEP)
@@ -79,13 +81,24 @@ class GitHubDeepSource:
                         "snippet": readme_data.get("download_url", ""),
                         "source_type": "readme",
                     })
-            except Exception:  # noqa: silent — readme fetch is best-effort per repo
-                pass
+                elif readme_resp.status_code == 429:
+                    self.rate_limited = True
+                    break
+                elif readme_resp.status_code != 404:
+                    self._errors.append(
+                        f"README request for {owner}/{repo_name} returned HTTP "
+                        f"{readme_resp.status_code}"
+                    )
+            except Exception as e:
+                self._errors.append(f"README request for {owner}/{repo_name}: {e}")
 
-        return {
+        response = {
             "results": results[:max_results],
             "rate_limited": self.rate_limited,
         }
+        if self._errors:
+            response["error"] = "; ".join(self._errors)
+        return response
 
     def search_issues(self, query: str, max_results: int = 10) -> dict:
         """
@@ -154,6 +167,9 @@ class GitHubDeepSource:
                 return results
 
             if resp.status_code != 200:
+                self._errors.append(
+                    f"Issue request for {owner}/{repo} returned HTTP {resp.status_code}"
+                )
                 return results
 
             issues = resp.json()
@@ -164,8 +180,8 @@ class GitHubDeepSource:
                     "snippet": issue.get("body", "")[:200] if issue.get("body") else "",
                     "source_type": "issue",
                 })
-        except Exception:  # noqa: silent — issue search API is rate-limited; partial ok
-            pass
+        except Exception as e:
+            self._errors.append(f"Issue request for {owner}/{repo}: {e}")
 
         return results
 
@@ -198,7 +214,7 @@ class GitHubDeepSource:
                         "snippet": wiki_name,
                         "source_type": "wiki",
                     })
-        except Exception:  # noqa: silent — wiki may be disabled or empty; not fatal
+        except Exception:  # wiki may be disabled or empty; not fatal
             pass
 
         return results
