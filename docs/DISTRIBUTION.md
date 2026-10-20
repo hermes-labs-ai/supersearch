@@ -62,8 +62,8 @@ configured PyPI environment and trusted-publishing credentials.
   source status rather than returning a clean empty result. GitHubDeep keeps
   successful partial results while reporting failed issue/README requests, and
   no longer requests the unsupported `/contents/wiki` endpoint (#25).
-- Serialize cache read/merge/write operations to preserve concurrent writers
-  (#7).
+- Prevent concurrent writes to the same cache key from sharing a temporary
+  file, avoiding corrupted JSON and failed writes (#7).
 - Handle root `--version` without starting a legacy positional search (#5).
 
 ### Packaging
