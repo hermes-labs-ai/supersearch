@@ -1,6 +1,6 @@
 """SuperSearch - deadline-bounded search fan-out for agents and engineers."""
 
-__version__ = "0.11.0"
+__version__ = "0.11.1"
 __author__ = "Hermes Labs"
 
 from .search import DuckDuckGoSearch, SearchResult

@@ -1,6 +1,6 @@
 ---
 name: supersearch
-description: Collect bounded public search evidence with the pinned hermes-supersearch 0.11.0 CLI. Use when the user wants source discovery across web, GitHub, Hacker News, and arXiv under one deadline, with a validated supersearch.search.v1 receipt that shows which sources completed, failed, or timed out. It returns evidence (URLs, titles, snippets, source status), never an answer or synthesis.
+description: Collect bounded public search evidence with the pinned hermes-supersearch 0.11.1 CLI. Use when the user wants source discovery across web, GitHub, Hacker News, and arXiv under one deadline, with a validated supersearch.search.v1 receipt that shows which sources completed, failed, or timed out. It returns evidence (URLs, titles, snippets, source status), never an answer or synthesis.
 ---
 
 SuperSearch fans one query out to public search surfaces under one total
@@ -15,16 +15,16 @@ not put secrets, credentials, or private data in the query.
 1. Pick a runner and keep it for every step. Prefer `uvx` (no install, no PATH
    change):
    ```
-   uvx --from hermes-supersearch==0.11.0 supersearch search --version
+   uvx --from hermes-supersearch==0.11.1 supersearch search --version
    ```
-   It must print `0.11.0`. If `uvx` is unavailable, use a throwaway venv:
+   It must print `0.11.1`. If `uvx` is unavailable, use a throwaway venv:
    ```
    python3 -m venv .supersearch-venv
-   .supersearch-venv/bin/python -m pip install hermes-supersearch==0.11.0 "jsonschema>=4.23"
+   .supersearch-venv/bin/python -m pip install hermes-supersearch==0.11.1 "jsonschema>=4.23"
    .supersearch-venv/bin/supersearch search --version
    ```
-   Keep the exact `==0.11.0` pin. Do not run bare `supersearch --version` or
-   `supersearch "<query>"`: in 0.11.0 those reach the legacy positional
+   Keep the exact `==0.11.1` pin. Use `supersearch search` for the structured
+   receipt; `supersearch "<query>"` reaches the legacy positional
    command, which searches for the literal text and may call a local model.
    Only the `search` subcommand is the bounded, LLM-free path.
 
@@ -32,7 +32,7 @@ not put secrets, credentials, or private data in the query.
    per-source cap, and a total deadline. Pass the user's query as one
    single-quoted argument (escape any single quote inside it):
    ```
-   uvx --from hermes-supersearch==0.11.0 supersearch search '<query>' \
+   uvx --from hermes-supersearch==0.11.1 supersearch search '<query>' \
      --sources ddg,hn,github,arxiv \
      --max-per-source 3 \
      --deadline 12 \
@@ -53,7 +53,7 @@ not put secrets, credentials, or private data in the query.
    tag before using it:
    ```
    curl -fsSL -o search-receipt-v1.schema.json \
-     https://raw.githubusercontent.com/hermes-labs-ai/supersearch/v0.11.0/docs/search-receipt-v1.schema.json
+     https://raw.githubusercontent.com/hermes-labs-ai/supersearch/v0.11.1/docs/search-receipt-v1.schema.json
    uv run --no-project --with "jsonschema>=4.23" python - <<'PY'
    import json
    from jsonschema import Draft202012Validator, FormatChecker

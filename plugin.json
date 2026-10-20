@@ -1,8 +1,8 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "supersearch",
-  "version": "0.11.0",
-  "description": "Bounded public search evidence with source-explicit supersearch.search.v1 receipts (pinned hermes-supersearch 0.11.0); evidence, not answers",
+  "version": "0.11.1",
+  "description": "Bounded public search evidence with source-explicit supersearch.search.v1 receipts (pinned hermes-supersearch 0.11.1); evidence, not answers",
   "author": { "name": "Hermes Labs", "email": "info@hermes-labs.ai" },
   "homepage": "https://hermes-labs.ai",
   "repository": "https://github.com/hermes-labs-ai/supersearch",
