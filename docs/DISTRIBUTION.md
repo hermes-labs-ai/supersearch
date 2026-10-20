@@ -68,7 +68,8 @@ configured PyPI environment and trusted-publishing credentials.
 
 ### Packaging
 
-- Include the portable agent plugin and pinned receipt workflow (#8).
+- Include the portable agent plugin in the repository and source distribution,
+  with a pinned receipt workflow (#8).
 - Build distributions from an explicitly reviewed public source selection,
   checked in package CI and tag publishing (#16, #21, #22).
 
