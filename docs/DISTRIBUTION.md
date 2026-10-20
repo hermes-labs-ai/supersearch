@@ -53,3 +53,34 @@ Inspect both archives after changes to either source-selection list.
 The `Publish to PyPI` workflow builds and checks distributions for `v*` tags.
 The tag version must match `pyproject.toml`. Publishing uses the repository's
 configured PyPI environment and trusted-publishing credentials.
+
+## 0.11.1 - 2026-10-20
+
+### Fixed
+
+- Preserve connector failures, rate limits and invalid response envelopes in
+  source status rather than returning a clean empty result. GitHubDeep keeps
+  successful partial results while reporting failed issue/README requests, and
+  no longer requests the unsupported `/contents/wiki` endpoint (#25).
+- Serialize cache read/merge/write operations to preserve concurrent writers
+  (#7).
+- Handle root `--version` without starting a legacy positional search (#5).
+
+### Packaging
+
+- Include the portable agent plugin and pinned receipt workflow (#8).
+- Build distributions from an explicitly reviewed public source selection,
+  checked in package CI and tag publishing (#16, #21, #22).
+
+### Compatibility and upgrade
+
+Python 3.10+ and the `supersearch.search.v1` receipt schema are unchanged.
+Custom dict-based source adapters must return a list/tuple in `results`;
+malformed envelopes now report errors. No live-source availability or search
+quality improvement is claimed.
+
+```sh
+python -m pip install --upgrade 'hermes-supersearch==0.11.1'
+supersearch --version
+supersearch search --list-sources
+```

@@ -49,14 +49,13 @@ copy of the skill.
 Claude Code reads `.claude-plugin/marketplace.json` and
 `.claude-plugin/plugin.json`; Codex reads `.agents/plugins/marketplace.json`
 (entry `./`) and `plugin.json`; Gemini CLI reads `gemini-extension.json` and
-discovers the skill under `skills/`. Keep `--ref main` for Gemini: without a
-ref it installs the latest GitHub release archive, and v0.11.0 predates
-`gemini-extension.json`.
+discovers the skill under `skills/`. Pin `--ref v0.11.1` for a reproducible Gemini
+installation, or use `--ref main` to follow development.
 
 Installing the skill does not install the Python package. The skill runs
-`uvx --from hermes-supersearch==0.11.0 supersearch search ...` (or a throwaway
+`uvx --from hermes-supersearch==0.11.1 supersearch search ...` (or a throwaway
 venv at the same pin) with an explicit source mix, per-source cap, and
-deadline; validates the receipt against the v0.11.0
+deadline; validates the receipt against the v0.11.1
 `supersearch.search.v1` schema; and reports per-source status. It returns
 evidence, never a synthesized answer.
 
@@ -86,7 +85,7 @@ supersearch --version
 Outputs the version number as plain text:
 
 ```
-0.11.0
+0.11.1
 ```
 
 To search and receive structured results, run:
