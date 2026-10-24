@@ -81,6 +81,7 @@ include product_evaluation/results/live-final/Q3.serial.json
 include product_evaluation/results/live-final/Q3.serial.stderr.txt
 prune scripts
 include scripts/export_public_candidate.py scripts/public-files.txt
+include scripts/check_installed.py
 global-exclude __pycache__ *.py[cod]
 
 include plugin.json gemini-extension.json
