@@ -65,6 +65,7 @@ public-demo/index.html
 pyproject.toml
 scripts/demo_research.sh
 scripts/export_public_candidate.py
+scripts/check_installed.py
 scripts/gen_ab_sample.py
 scripts/public-files.txt
 skills/supersearch/SKILL.md

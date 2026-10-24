@@ -16,6 +16,7 @@ python scripts/export_public_candidate.py --destination ../supersearch-export
 cd ../supersearch-export
 python -m build
 python -m twine check dist/*
+python scripts/check_installed.py dist/*.whl dist/*.tar.gz
 python -m venv .venv
 .venv/bin/python -m pip install dist/*.whl
 .venv/bin/supersearch search --help
@@ -26,6 +27,19 @@ The export destination must not already exist. On Windows, use
 `.venv\Scripts\python` and `.venv\Scripts\supersearch` for the installed commands.
 A live search additionally requires access to the selected sources; see
 [privacy and cost](PRIVACY-COST.md) and [limitations](LIMITATIONS.md).
+
+The installed check (Linux/macOS) creates two fresh virtual environments outside
+the checkout, installs the wheel and sdist separately, and runs Python in isolated
+mode with a clean environment and working directory. Installation may download
+dependencies; all behavior probes deny socket access and use controlled adapters.
+The real fan-out and CLI must produce schema-valid partial and unavailable
+receipts, preserve provenance, separate stderr, and return exits 0 and 3. Both the
+installed console entry script and `python -m supersearch` dispatch are exercised.
+The schema and explicit source resources come from the sdist. Negative controls
+temporarily break partial status and remove a module inside each disposable
+installation; both must fail before a restored installation passes. This checks
+distribution behavior, not live search availability or relevance. Use `--report`
+to save the artifact hashes, import origins, receipts and control outcomes.
 
 ## Source selection
 
