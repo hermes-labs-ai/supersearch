@@ -87,3 +87,23 @@ include plugin.json gemini-extension.json
 include .agents/plugins/marketplace.json
 include .claude-plugin/marketplace.json .claude-plugin/plugin.json
 include skills/supersearch/SKILL.md
+include product_evaluation/results/2026-10-24-release-0.11.1/COMPARISON.md
+include product_evaluation/results/2026-10-24-release-0.11.1/CRITERION-LABELS.json
+include product_evaluation/results/2026-10-24-release-0.11.1/DEADLINE-CONTROL.json
+include product_evaluation/results/2026-10-24-release-0.11.1/ENVIRONMENT.json
+include product_evaluation/results/2026-10-24-release-0.11.1/PUBLIC-LIVE-SUMMARY.json
+include product_evaluation/results/2026-10-24-release-0.11.1/Q1.parallel.json
+include product_evaluation/results/2026-10-24-release-0.11.1/Q1.parallel.stderr.txt
+include product_evaluation/results/2026-10-24-release-0.11.1/Q1.serial.json
+include product_evaluation/results/2026-10-24-release-0.11.1/Q1.serial.stderr.txt
+include product_evaluation/results/2026-10-24-release-0.11.1/Q2.parallel.json
+include product_evaluation/results/2026-10-24-release-0.11.1/Q2.parallel.stderr.txt
+include product_evaluation/results/2026-10-24-release-0.11.1/Q2.serial.json
+include product_evaluation/results/2026-10-24-release-0.11.1/Q2.serial.stderr.txt
+include product_evaluation/results/2026-10-24-release-0.11.1/Q3.parallel.json
+include product_evaluation/results/2026-10-24-release-0.11.1/Q3.parallel.stderr.txt
+include product_evaluation/results/2026-10-24-release-0.11.1/Q3.serial.json
+include product_evaluation/results/2026-10-24-release-0.11.1/Q3.serial.stderr.txt
+include product_evaluation/results/2026-10-24-release-0.11.1/WHEEL-CONTROLS.json
+include product_evaluation/results/2026-10-24-release-0.11.1/WHEEL-CONTROLS.txt
+include product_evaluation/results/2026-10-24-release-0.11.1/VALIDATION.json
