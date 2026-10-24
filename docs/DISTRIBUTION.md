@@ -31,7 +31,9 @@ A live search additionally requires access to the selected sources; see
 The installed check (Linux/macOS) creates two fresh virtual environments outside
 the checkout, installs the wheel and sdist separately, and runs Python in isolated
 mode with a clean environment and working directory. Installation may download
-dependencies; all behavior probes deny socket access and use controlled adapters.
+dependencies; Python and search CLI probes deny socket access and use controlled
+adapters. A separate direct console `--version` smoke check runs without the socket
+guard; it performs no search.
 The real fan-out and CLI must produce schema-valid partial and unavailable
 receipts, preserve provenance, separate stderr, and return exits 0 and 3. Both the
 installed console entry script and `python -m supersearch` dispatch are exercised.

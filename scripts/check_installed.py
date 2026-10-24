@@ -1,7 +1,8 @@
 """Verify built wheel and sdist behavior in fresh environments outside the checkout.
 
-Only installation may use the network. Probes deny socket access, replace source
-adapters (not the orchestrator), and run Python with -I and an empty working tree.
+Only installation needs the network. Python/search probes deny socket access,
+replace source adapters (not the orchestrator), and use -I and an empty working
+tree. The separate direct console --version smoke runs without the socket guard.
 """
 
 from __future__ import annotations
@@ -196,7 +197,8 @@ def verify(wheel: Path, sdist: Path):
                     assert "controlled source unavailable" in result.stderr
                     if scenario == "partial":
                         assert "controlled adapter stdout" in result.stderr
-            # Also execute the OS console script directly with network-free args.
+            # Execute the OS console script directly with network-free args;
+            # this version smoke does not run inside the socket audit guard.
             if os.name != "nt":
                 assert run([console, "--version"], working, env).stdout.strip()
             package = Path(observed["import_origin"]).parent
@@ -227,11 +229,14 @@ def verify(wheel: Path, sdist: Path):
                 "assertions": ["isolated site-packages import", "public Python exports",
                                "schema-valid partial/unavailable Python receipts",
                                "console/module CLI JSON and exits 0/3", "stderr isolation",
-                               "sdist explicit resources", "network guard"]})
+                               "sdist explicit resources", "Python/search network guard",
+                               "direct console version smoke (unguarded)"]})
     return report
 
 
 def main():
+    if sys.flags.optimize:
+        raise SystemExit("installed checks require assertions; do not run Python with -O")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("artifacts", nargs="*", type=Path)
     parser.add_argument("--report", type=Path)
