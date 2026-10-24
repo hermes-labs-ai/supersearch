@@ -1,0 +1,99 @@
+{
+  "schema_version": "supersearch.current-evaluation-validation.v1",
+  "issue": "https://github.com/hermes-labs-ai/supersearch/issues/24",
+  "receipts": [
+    {
+      "receipt": "Q1.serial.json",
+      "schema_valid": true,
+      "hash_matches": true,
+      "unique_urls_and_counts": true
+    },
+    {
+      "receipt": "Q1.parallel.json",
+      "schema_valid": true,
+      "hash_matches": true,
+      "unique_urls_and_counts": true
+    },
+    {
+      "receipt": "Q2.parallel.json",
+      "schema_valid": true,
+      "hash_matches": true,
+      "unique_urls_and_counts": true
+    },
+    {
+      "receipt": "Q2.serial.json",
+      "schema_valid": true,
+      "hash_matches": true,
+      "unique_urls_and_counts": true
+    },
+    {
+      "receipt": "Q3.serial.json",
+      "schema_valid": true,
+      "hash_matches": true,
+      "unique_urls_and_counts": true
+    },
+    {
+      "receipt": "Q3.parallel.json",
+      "schema_valid": true,
+      "hash_matches": true,
+      "unique_urls_and_counts": true
+    }
+  ],
+  "labels_reconciled": true,
+  "historical_and_preregistration_bytes_unchanged": {
+    "product_evaluation/FIVE-MINUTE-SHOWCASE.md": "17a3e371423b5b5b0d214da56d9bfe829d6e7b83e3f9aa4194c78ed4d23b496e",
+    "product_evaluation/PREREGISTRATION.json": "f87593dde8a42ab1bff30bdecb648a4ca5182f57c937cc6ec3da265fc4f7bfe8",
+    "product_evaluation/PREREGISTRATION.md": "9816f69e4be16718f5cedd5aed43f3c82ad1388009f37b8d0de4c7d25ec2948c",
+    "product_evaluation/PRODUCT-DECISION.md": "8cc7d1d0af42f10ecb8f82bec8e3a5ff8a777749b69f3a014b075cfd42371b90",
+    "product_evaluation/README.md": "30020ad23277135e9a905b5e4f358126966ecb440c1279fb3874ed464017df53",
+    "product_evaluation/deadline_probe.py": "f24cc027a93859d7dd7334c1d1db57df438bb2d0a47f392f71c96939e20bca02",
+    "product_evaluation/host-trial-output.schema.json": "3e4b2abde2b5a92cabf558b8703c3fa133c392aea0caeda5791736c03bbd24d3",
+    "product_evaluation/results/BENCHMARK.md": "65e6a44093f6db6b52e58eccce7d179838f20dfae61d1b965cb0f67dc048cc8f",
+    "product_evaluation/results/CLEAN-INSTALL.json": "afcc2cd6c59e1ea6e72fb349305dcb323b4521f354093f9a60108e2a8f390dee",
+    "product_evaluation/results/DEADLINE-CONTROL.json": "ba388dab605518f0285a0168378efb1dcb17adee89d0dbfd6e4751d3451b7a38",
+    "product_evaluation/results/HOST-TRIALS.json": "94f2d0c8890634b13a22a082bb362b58c7cd468815de010c99e334c3000a5207",
+    "product_evaluation/results/HOST-TRIALS.md": "2ee274c9ffeec6f81bcc753dc079d2a4b03202cc1308d29f119f472ca89962f0",
+    "product_evaluation/results/HUMAN-EVALUATION.json": "011d7bf33e45ebbca643f6e19cca18ab0ec5ee4a7cb699d62434ab52ae83ef54",
+    "product_evaluation/results/HUMAN-EVALUATION.md": "58988087f8e0a9fc84077df141b7df3f819bf46f489bccd17d97af520f9909a2",
+    "product_evaluation/results/PRODUCT-RECEIPT.json": "89b240cadadb4a02b52c1765e1c1ae432103785af06ef581305eb85d6c305841",
+    "product_evaluation/results/PUBLIC-LIVE-SUMMARY.json": "714bca05572fc847b79f1891fb1ceb8d8746892e496e97b45010eb1d32deff1b",
+    "product_evaluation/results/live-final/Q1.parallel.json": "d56960a09db4c23a705ab980bcde7b1229b58cad517348b6f6002ded202a63b2",
+    "product_evaluation/results/live-final/Q1.parallel.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "product_evaluation/results/live-final/Q1.serial.json": "d9cc3734a3a6e113ee1bc79f633a25e5e12ee9e07499f960b911ba10b76c812e",
+    "product_evaluation/results/live-final/Q1.serial.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "product_evaluation/results/live-final/Q2.parallel.json": "e522cd23abea99d923af29a26ec94e65606a55079cdda8daa96161c7f557ba91",
+    "product_evaluation/results/live-final/Q2.parallel.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "product_evaluation/results/live-final/Q2.serial.json": "b82d3039fdd6dbc815703c051a1b7f11b4860e6eb74f9b0a2034966bb44a792b",
+    "product_evaluation/results/live-final/Q2.serial.stderr.txt": "3f98deb2ece71e6a21f90f5e64a31e208317792da9bb7a95f71e20e47bbd52e3",
+    "product_evaluation/results/live-final/Q3.parallel.json": "b866bda7a9688a63cb6936a872e5fcac09b1b9820267035d082cb7b608c9950b",
+    "product_evaluation/results/live-final/Q3.parallel.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "product_evaluation/results/live-final/Q3.serial.json": "c896d75661eec6f51048b1fa769eeeecdd3efe61bb8da2da367226c6b61733a4",
+    "product_evaluation/results/live-final/Q3.serial.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "product_evaluation/run_host_trials.py": "fad14e3c882abc84eed43e2dcd2737e98a75a3a9cded3c51ce681ef3e7c3efd2",
+    "product_evaluation/run_live_pack.py": "c0de3fe440b921f8be5f9a04706f1072e0f80d76c450303165f4ada5c30fcd84"
+  },
+  "artifact_sha256": {
+    "COMPARISON.md": "eda660f3b3eaa04c278af8f5d7ffa6b780a20f0d617a6631b940333d2a52823a",
+    "CRITERION-LABELS.json": "3d53d6619ef2ccdd6dc5b2dfc440d9a3d2edfd3a470c57c2917db68b25eb1ea2",
+    "DEADLINE-CONTROL.json": "ba926e39ba8e00423c2bae965ab07feb4499cdc2e90af169197e519c19c6d436",
+    "ENVIRONMENT.json": "28598029d82a0c34da8e1e23cb840b1542f61fd2b01bc4f10aa4250e4f292bda",
+    "PUBLIC-LIVE-SUMMARY.json": "3a230c1cc7a3a7495252dd78217ad9d0c3cc9e037d3c229b5872bcb4c240e103",
+    "Q1.parallel.json": "d7df63a2b7893fe59cc495f2cdc4a7465af04c64180a55c933ad15919766fb83",
+    "Q1.parallel.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Q1.serial.json": "79d7d1c1daaa3095a447deec0833552ffb9b60465d0292adf4d794145953add5",
+    "Q1.serial.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Q2.parallel.json": "450df8b07a7d8b5b9bd3aec72ad3bd873c3f07f95734b28b7dfa124202cb377c",
+    "Q2.parallel.stderr.txt": "fc33d804354b1c46449be689cc53741a84b9ff38e56bd3c4bd1d377b95887005",
+    "Q2.serial.json": "8f507ab90ea5c9443b7728fe3fd5f384bd56671aa56701f7789ea0c001827a19",
+    "Q2.serial.stderr.txt": "fc33d804354b1c46449be689cc53741a84b9ff38e56bd3c4bd1d377b95887005",
+    "Q3.parallel.json": "c223e031b134d722fa9f33288af7d6c70f81cc8237bb822cf8bc244daed6b12c",
+    "Q3.parallel.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Q3.serial.json": "84927e76449dad8525378910fc933b8f360d5fd526f1fa2ee5d7fd737cfba63c",
+    "Q3.serial.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "WHEEL-CONTROLS.json": "e613ec07339d61702f74d6a1e50f7e6ce77d0d1df68d63fa5131f97ccc6abea9",
+    "WHEEL-CONTROLS.txt": "255a4ef65c12164f7cec47233d8aed7325804ddbe28ce0cafc98af61f3facf66"
+  },
+  "no_model_host_trials_run": true,
+  "publication_performed": false,
+  "scope": "Evidence artifact validation at capture; native installed-wheel controls and process deadline are recorded separately. PR delivery state is external to this immutable evaluation receipt."
+}

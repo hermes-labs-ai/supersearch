@@ -1,0 +1,192 @@
+{
+  "schema_version": "supersearch.criterion-labels.v1",
+  "reviewer": "Codex agent, criterion-bound manual inspection; not a human reviewer",
+  "basis": "Only returned title/snippet/URL, matching historical labeling scope; pages were not all fetched. No factual truth scoring.",
+  "preregistration_sha256": "f87593dde8a42ab1bff30bdecb648a4ca5182f57c937cc6ec3da265fc4f7bfe8",
+  "queries": [
+    {
+      "query_id": "Q1",
+      "useful_if": "concrete migration guidance or an authoritative removal notice",
+      "receipt": "Q1.parallel.json",
+      "receipt_sha256": "d7df63a2b7893fe59cc495f2cdc4a7465af04c64180a55c933ad15919766fb83",
+      "results": [
+        {
+          "rank": 1,
+          "url": "https://stackoverflow.com/questions/78834533/what-to-use-instead-of-distutils-in-setup-py-python3-12",
+          "useful": true,
+          "rationale": "Snippet gives migration to setuptools following distutils removal."
+        },
+        {
+          "rank": 2,
+          "url": "https://peps.python.org/pep-0632/",
+          "useful": true,
+          "rationale": "Authoritative PEP removal notice and concrete migration path."
+        },
+        {
+          "rank": 3,
+          "url": "https://runebook.dev/en/docs/python/library/distutils",
+          "useful": true,
+          "rationale": "Snippet gives concrete migration to setuptools."
+        },
+        {
+          "rank": 4,
+          "url": "https://arxiv.org/abs/2010.14827v1",
+          "useful": false,
+          "rationale": "Python architecture paper, no distutils migration guidance."
+        },
+        {
+          "rank": 5,
+          "url": "https://arxiv.org/abs/2102.10014v1",
+          "useful": false,
+          "rationale": "Social-network Python methods, no distutils migration guidance."
+        },
+        {
+          "rank": 6,
+          "url": "https://arxiv.org/abs/2002.10992v2",
+          "useful": false,
+          "rationale": "Human migration networks, not Python packaging migration."
+        }
+      ],
+      "useful_count": 3,
+      "first_useful_rank": 1
+    },
+    {
+      "query_id": "Q2",
+      "useful_if": "a relevant implementation, documentation page, or substantive comparison",
+      "receipt": "Q2.parallel.json",
+      "receipt_sha256": "450df8b07a7d8b5b9bd3aec72ad3bd873c3f07f95734b28b7dfa124202cb377c",
+      "results": [
+        {
+          "rank": 1,
+          "url": "https://news.ycombinator.com/item?id=44711872",
+          "useful": false,
+          "rationale": "Conservative non-count: announcement title and popularity metadata alone do not establish a substantive comparison or inspectable implementation in this result."
+        },
+        {
+          "rank": 2,
+          "url": "https://news.ycombinator.com/item?id=41137658",
+          "useful": false,
+          "rationale": "Conservative non-count: announcement title and popularity metadata alone; historical labels also excluded announcement-only HN rows."
+        },
+        {
+          "rank": 3,
+          "url": "https://news.ycombinator.com/item?id=41127849",
+          "useful": false,
+          "rationale": "Conservative non-count: announcement title and popularity metadata alone; no technical detail in the returned snippet."
+        },
+        {
+          "rank": 4,
+          "url": "https://github.com/asg017/sqlite-vec",
+          "useful": true,
+          "rationale": "Repository result identifies sqlite-vec implementation directly."
+        },
+        {
+          "rank": 5,
+          "url": "https://github.com/asg017/sqlite-vss",
+          "useful": true,
+          "rationale": "Repository result identifies SQLite vector-search extension based on Faiss."
+        },
+        {
+          "rank": 6,
+          "url": "https://github.com/sqliteai/sqlite-vector",
+          "useful": true,
+          "rationale": "Repository result identifies a SQLite vector-search implementation."
+        },
+        {
+          "rank": 7,
+          "url": "https://arxiv.org/abs/2608.24060v1",
+          "useful": true,
+          "rationale": "Paper result identifies scrydb, a concrete lexical/semantic/hybrid SQLite implementation."
+        },
+        {
+          "rank": 8,
+          "url": "https://arxiv.org/abs/2509.05750v1",
+          "useful": false,
+          "rationale": "General in-memory vector-search paper; returned text establishes no SQLite extension."
+        },
+        {
+          "rank": 9,
+          "url": "https://arxiv.org/abs/2605.05991v1",
+          "useful": false,
+          "rationale": "E-commerce relevance paper; returned text establishes no SQLite implementation."
+        }
+      ],
+      "useful_count": 4,
+      "first_useful_rank": 4
+    },
+    {
+      "query_id": "Q3",
+      "useful_if": "the standard, an implementation, or technically relevant discussion",
+      "receipt": "Q3.parallel.json",
+      "receipt_sha256": "c223e031b134d722fa9f33288af7d6c70f81cc8237bb822cf8bc244daed6b12c",
+      "results": [
+        {
+          "rank": 1,
+          "url": "https://en.wikipedia.org/wiki/Security.txt",
+          "useful": true,
+          "rationale": "Returned text describes security.txt and well-known placement."
+        },
+        {
+          "rank": 2,
+          "url": "https://www.rfc-editor.org/info/rfc9116/",
+          "useful": true,
+          "rationale": "RFC Editor standard page; snippet gives normative well-known path and HTTPS rules."
+        },
+        {
+          "rank": 3,
+          "url": "https://securescanr.com/learn/security-txt-guide",
+          "useful": true,
+          "rationale": "Technical guidance describes both security.txt lookup paths."
+        },
+        {
+          "rank": 4,
+          "url": "https://github.com/vavkamil/rfc9116-check",
+          "useful": true,
+          "rationale": "Repository result identifies RFC 9116 domain-list validator implementation."
+        },
+        {
+          "rank": 5,
+          "url": "https://github.com/ivan-podgurskiy/security-txt-parser",
+          "useful": true,
+          "rationale": "Repository result identifies RFC 9116 parser/validator implementation."
+        },
+        {
+          "rank": 6,
+          "url": "https://github.com/11lunaric11/securitychecker",
+          "useful": true,
+          "rationale": "Repository result identifies security.txt/RFC 9116 checker implementation."
+        },
+        {
+          "rank": 7,
+          "url": "https://arxiv.org/abs/hep-th/9809072v1",
+          "useful": false,
+          "rationale": "Monopole path-integral physics is off topic."
+        },
+        {
+          "rank": 8,
+          "url": "https://arxiv.org/abs/quant-ph/9810069v1",
+          "useful": false,
+          "rationale": "Quantum-spin path-integral physics is off topic."
+        },
+        {
+          "rank": 9,
+          "url": "https://arxiv.org/abs/2010.07068v1",
+          "useful": false,
+          "rationale": "UAV path planning is off topic."
+        }
+      ],
+      "useful_count": 6,
+      "first_useful_rank": 1
+    }
+  ],
+  "totals": {
+    "results": 24,
+    "useful": 13,
+    "useful_rank_one_queries": 2
+  },
+  "limitations": [
+    "One agent reviewer, compared with one historical human reviewer; rater differences limit cross-date conclusions.",
+    "Q2 HN rows conservatively excluded because their returned snippets contain only popularity metadata; alternative labeling can be recomputed from the preserved rows.",
+    "Small frozen pack, source and dependency drift, and DDGS cache effects preclude general quality/performance inference."
+  ]
+}

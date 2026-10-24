@@ -1,0 +1,234 @@
+{
+  "configuration": {
+    "cache_policy": "source_default",
+    "deadline_seconds": 12,
+    "llm_used_by_supersearch": false,
+    "max_per_source": 3,
+    "paid_api_keys_supplied": false,
+    "parallel": true,
+    "rerank": false,
+    "sources": [
+      "ddg",
+      "hn",
+      "github",
+      "arxiv"
+    ]
+  },
+  "environment": {
+    "llm_requested_by_cli": false,
+    "removed_credential_environment_names": [
+      "ANTHROPIC_API_KEY",
+      "EXA_API_KEY",
+      "FIRECRAWL_API_KEY",
+      "GITHUB_TOKEN",
+      "OPENAI_API_KEY",
+      "TAVILY_API_KEY"
+    ],
+    "supersearch_cache_dir": "isolated initially empty directory; reused across the six calls"
+  },
+  "limitations": [
+    "public indexes and network conditions can change between calls",
+    "DDGS cache state can favor the second mode for a query",
+    "serial mode is a comparison control and does not enforce the total deadline",
+    "counts do not measure factual truth or general search quality"
+  ],
+  "preregistration_sha256": "f87593dde8a42ab1bff30bdecb648a4ca5182f57c937cc6ec3da265fc4f7bfe8",
+  "provenance": {
+    "normalization": "Only the local cache path is omitted from this shareable view. Original raw machine summary is retained with the local execution environment; query receipts are unchanged.",
+    "raw_machine_summary_sha256": "0c13d48b17feedbd785d275e8c5ae08b1f7d9303ca51515a8de96b811c6a82f2"
+  },
+  "rows": [
+    {
+      "call_order": 1,
+      "mode": "serial",
+      "query_id": "Q1",
+      "receipt": "Q1.serial.json",
+      "receipt_duration_ms": 2732.749,
+      "receipt_sha256": "79d7d1c1daaa3095a447deec0833552ffb9b60465d0292adf4d794145953add5",
+      "receipt_status": "ok",
+      "represented_sources": [
+        "arxiv",
+        "ddg"
+      ],
+      "result_count": 6,
+      "return_code": 0,
+      "source_states": {
+        "arxiv": "completed",
+        "ddg": "completed",
+        "github": "completed",
+        "hn": "completed"
+      },
+      "stderr": "Q1.serial.stderr.txt",
+      "unique_domain_count": 4,
+      "unique_domains": [
+        "arxiv.org",
+        "peps.python.org",
+        "runebook.dev",
+        "stackoverflow.com"
+      ],
+      "wall_ms": 3052.906
+    },
+    {
+      "call_order": 2,
+      "mode": "parallel",
+      "query_id": "Q1",
+      "receipt": "Q1.parallel.json",
+      "receipt_duration_ms": 340.694,
+      "receipt_sha256": "d7df63a2b7893fe59cc495f2cdc4a7465af04c64180a55c933ad15919766fb83",
+      "receipt_status": "ok",
+      "represented_sources": [
+        "arxiv",
+        "ddg"
+      ],
+      "result_count": 6,
+      "return_code": 0,
+      "source_states": {
+        "arxiv": "completed",
+        "ddg": "completed",
+        "github": "completed",
+        "hn": "completed"
+      },
+      "stderr": "Q1.parallel.stderr.txt",
+      "unique_domain_count": 4,
+      "unique_domains": [
+        "arxiv.org",
+        "peps.python.org",
+        "runebook.dev",
+        "stackoverflow.com"
+      ],
+      "wall_ms": 438.353
+    },
+    {
+      "call_order": 1,
+      "mode": "parallel",
+      "query_id": "Q2",
+      "receipt": "Q2.parallel.json",
+      "receipt_duration_ms": 3111.483,
+      "receipt_sha256": "450df8b07a7d8b5b9bd3aec72ad3bd873c3f07f95734b28b7dfa124202cb377c",
+      "receipt_status": "partial",
+      "represented_sources": [
+        "arxiv",
+        "github",
+        "hn"
+      ],
+      "result_count": 9,
+      "return_code": 0,
+      "source_states": {
+        "arxiv": "completed",
+        "ddg": "failed",
+        "github": "completed",
+        "hn": "completed"
+      },
+      "stderr": "Q2.parallel.stderr.txt",
+      "unique_domain_count": 3,
+      "unique_domains": [
+        "arxiv.org",
+        "github.com",
+        "news.ycombinator.com"
+      ],
+      "wall_ms": 3208.077
+    },
+    {
+      "call_order": 2,
+      "mode": "serial",
+      "query_id": "Q2",
+      "receipt": "Q2.serial.json",
+      "receipt_duration_ms": 3448.865,
+      "receipt_sha256": "8f507ab90ea5c9443b7728fe3fd5f384bd56671aa56701f7789ea0c001827a19",
+      "receipt_status": "partial",
+      "represented_sources": [
+        "arxiv",
+        "github",
+        "hn"
+      ],
+      "result_count": 9,
+      "return_code": 0,
+      "source_states": {
+        "arxiv": "completed",
+        "ddg": "failed",
+        "github": "completed",
+        "hn": "completed"
+      },
+      "stderr": "Q2.serial.stderr.txt",
+      "unique_domain_count": 3,
+      "unique_domains": [
+        "arxiv.org",
+        "github.com",
+        "news.ycombinator.com"
+      ],
+      "wall_ms": 3550.253
+    },
+    {
+      "call_order": 1,
+      "mode": "serial",
+      "query_id": "Q3",
+      "receipt": "Q3.serial.json",
+      "receipt_duration_ms": 2352.304,
+      "receipt_sha256": "84927e76449dad8525378910fc933b8f360d5fd526f1fa2ee5d7fd737cfba63c",
+      "receipt_status": "ok",
+      "represented_sources": [
+        "arxiv",
+        "ddg",
+        "github"
+      ],
+      "result_count": 9,
+      "return_code": 0,
+      "source_states": {
+        "arxiv": "completed",
+        "ddg": "completed",
+        "github": "completed",
+        "hn": "completed"
+      },
+      "stderr": "Q3.serial.stderr.txt",
+      "unique_domain_count": 5,
+      "unique_domains": [
+        "arxiv.org",
+        "en.wikipedia.org",
+        "github.com",
+        "securescanr.com",
+        "www.rfc-editor.org"
+      ],
+      "wall_ms": 2604.223
+    },
+    {
+      "call_order": 2,
+      "mode": "parallel",
+      "query_id": "Q3",
+      "receipt": "Q3.parallel.json",
+      "receipt_duration_ms": 292.784,
+      "receipt_sha256": "c223e031b134d722fa9f33288af7d6c70f81cc8237bb822cf8bc244daed6b12c",
+      "receipt_status": "ok",
+      "represented_sources": [
+        "arxiv",
+        "ddg",
+        "github"
+      ],
+      "result_count": 9,
+      "return_code": 0,
+      "source_states": {
+        "arxiv": "completed",
+        "ddg": "completed",
+        "github": "completed",
+        "hn": "completed"
+      },
+      "stderr": "Q3.parallel.stderr.txt",
+      "unique_domain_count": 5,
+      "unique_domains": [
+        "arxiv.org",
+        "en.wikipedia.org",
+        "github.com",
+        "securescanr.com",
+        "www.rfc-editor.org"
+      ],
+      "wall_ms": 395.224
+    }
+  ],
+  "run_at": "2026-10-24T06:51:22.517553Z",
+  "schema_version": "supersearch.product-live-pack.v1",
+  "scope": "three preregistered queries on one machine/network; descriptive, not general",
+  "wheel": {
+    "filename": "hermes_supersearch-0.11.1-py3-none-any.whl",
+    "reported_version": "0.11.1",
+    "sha256": "0d2625894cdc59e98f58099249cb01cd4dd7eb46b432f7c495b65b0822741849"
+  }
+}

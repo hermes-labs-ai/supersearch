@@ -1,0 +1,38 @@
+{
+  "installed_distribution": "hermes-supersearch==0.11.1",
+  "origin_confirmed_in_clean_venv": true,
+  "source_conftest_not_copied": true,
+  "pytest_noconftest": true,
+  "counts": {
+    "tests": 67,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "test_files": {
+    "tests/test_product.py": {
+      "sha256": "b4ce92477b02e92489f4591b78034c9c5e7169864f601072bf544125e97522e0",
+      "byte_identical_copy": true
+    },
+    "tests/test_sources.py": {
+      "sha256": "22708755645d454d47e24ffbf83c0722e6b5e3308563b711f2ad92beedef0e2d",
+      "byte_identical_copy": true
+    }
+  },
+  "process_control": "DEADLINE-CONTROL.json",
+  "command": "python -I -m pytest tests/test_product.py tests/test_sources.py --noconftest -q --junitxml=wheel-controls.xml",
+  "test_copy_scope": "Unchanged native tests copied to an isolated scratch directory with only their receipt schema; they import the installed wheel rather than src/.",
+  "controls_covered": [
+    "equivalent source parallel/serial timing",
+    "hung source deadline containment",
+    "source exceptions explicit",
+    "empty success distinguished from failure",
+    "duplicate URL source identities",
+    "CLI emits one JSON document",
+    "default API requests rerank=False and emits llm_required=False"
+  ],
+  "limitations": [
+    "No new agent-host trials or models; historical host conclusions remain historical.",
+    "These are deterministic fixture controls, separate from live retrieval usefulness."
+  ]
+}
