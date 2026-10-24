@@ -1,6 +1,6 @@
 # Current-release frozen-pack rerun — 24 October 2026
 
-Local evaluation for [issue #24](https://github.com/hermes-labs-ai/supersearch/issues/24). No publication or issue update was made. No search, ranking, source-adapter, harness or preregistration bytes changed.
+Evaluation for [issue #24](https://github.com/hermes-labs-ai/supersearch/issues/24), prepared for a first-party review PR. No issue update is included. No search, ranking, source-adapter, harness or preregistration bytes changed.
 
 ## Identity and protocol
 
@@ -38,4 +38,4 @@ The unchanged [deadline probe](../../deadline_probe.py) tested a 250 ms deadline
 
 The current clean install, direct CLI contract, deterministic controls and criterion-useful receipts are demonstrated for this bounded pack. New Codex/Claude model-host trials were not run; historical host reports retain their original limitations. This is not a new standalone-product acceptance decision, general relevance/recall/freshness/latency result, factual-truth check, detector comparison or vendor-superiority claim. Retrieval-route provenance does not establish authorship, authority or independence.
 
-Issue #24's local evaluation/comparison work is substantively performed. Its requested public delivery remains unmet because this campaign authorizes no publication or submissions. The artifacts and branch are ready for a separately authorized review/delivery step; the issue remains open. No rerun or method redesign is needed merely because the result is mixed.
+Issue #24's evaluation/comparison work is substantively performed. A draft review PR presents this evidence for repository acceptance; it does not establish merged delivery, a release or issue completion. The issue remains open pending that acceptance. No rerun or method redesign is needed merely because the result is mixed.

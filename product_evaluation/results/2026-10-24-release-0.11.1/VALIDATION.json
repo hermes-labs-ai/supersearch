@@ -73,7 +73,7 @@
     "product_evaluation/run_live_pack.py": "c0de3fe440b921f8be5f9a04706f1072e0f80d76c450303165f4ada5c30fcd84"
   },
   "artifact_sha256": {
-    "COMPARISON.md": "8144515597e26c07c5ec3375f215670c386059a670b57f6523912a4e1f71531f",
+    "COMPARISON.md": "eda660f3b3eaa04c278af8f5d7ffa6b780a20f0d617a6631b940333d2a52823a",
     "CRITERION-LABELS.json": "3d53d6619ef2ccdd6dc5b2dfc440d9a3d2edfd3a470c57c2917db68b25eb1ea2",
     "DEADLINE-CONTROL.json": "ba926e39ba8e00423c2bae965ab07feb4499cdc2e90af169197e519c19c6d436",
     "ENVIRONMENT.json": "28598029d82a0c34da8e1e23cb840b1542f61fd2b01bc4f10aa4250e4f292bda",
@@ -95,5 +95,5 @@
   },
   "no_model_host_trials_run": true,
   "publication_performed": false,
-  "scope": "Evidence artifact validation; native installed-wheel controls and process deadline are recorded separately."
+  "scope": "Evidence artifact validation at capture; native installed-wheel controls and process deadline are recorded separately. PR delivery state is external to this immutable evaluation receipt."
 }
